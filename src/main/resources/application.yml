@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/healthcheck
+    username: healthcheck
+    password: healthcheck
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
