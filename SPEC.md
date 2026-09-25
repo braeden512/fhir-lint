@@ -4,7 +4,7 @@
 
 ### Working name
 
-**HealthCheck API**
+**FHIRLint API**
 
 > A developer-focused API that analyzes FHIR healthcare data and identifies interoperability, integrity, consistency, completeness, and terminology issues before the data reaches downstream applications.
 
@@ -96,7 +96,7 @@ The primary user is a software developer or engineering team working with health
 
 Example:
 
-> A healthcare application receives a 20,000-resource FHIR Bundle from an external system. Before loading it into the application's database, the engineering team sends it to HealthCheck.
+> A healthcare application receives a 20,000-resource FHIR Bundle from an external system. Before loading it into the application's database, the engineering team sends it to FHIRLint.
 
 The API responds:
 
@@ -728,7 +728,7 @@ docker compose up
 Initial Compose environment:
 
 ```text
-HealthCheck API
+FHIRLint API
 PostgreSQL
 ```
 
@@ -741,12 +741,12 @@ Add other infrastructure only when needed.
 Initial structure:
 
 ```text
-healthcheck/
+fhir-lint/
 │
 ├── src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   └── com.healthcheck/
+│   │   │   └── com.fhir-lint/
 │   │   │       ├── api/
 │   │   │       ├── quality/
 │   │   │       ├── validation/
@@ -796,7 +796,7 @@ Tasks:
 - Study `Must Support`
 - Study HAPI FHIR
 - Identify existing validation capabilities
-- Define what HealthCheck adds beyond existing validators
+- Define what FHIRLint adds beyond existing validators
 
 Deliverables:
 
@@ -1022,7 +1022,7 @@ Allow developers to define organization-specific quality rules.
 ### CI/CD Integration
 
 ```bash
-healthcheck validate bundle.json --fail-on error
+fhir-lint validate bundle.json --fail-on error
 ```
 
 Example:
@@ -1090,7 +1090,7 @@ Upload a deliberately messy FHIR Bundle.
 
 ## Step 2
 
-HealthCheck analyzes it.
+FHIRLint analyzes it.
 
 ## Step 3
 
@@ -1208,7 +1208,7 @@ This should be the flagship dataset.
 
 It should pass basic FHIR validation while containing multiple cross-resource quality problems.
 
-This dataset demonstrates **why HealthCheck exists beyond a normal FHIR validator**.
+This dataset demonstrates **why FHIRLint exists beyond a normal FHIR validator**.
 
 ---
 
@@ -1230,7 +1230,7 @@ Instead:
 ```text
 Existing FHIR infrastructure
           +
-HealthCheck's quality-analysis layer
+FHIRLint's quality-analysis layer
           =
 Product
 ```
@@ -1260,7 +1260,7 @@ Potential architecture:
           |                         |
           └────────────┬────────────┘
                        ↓
-                HealthCheck
+                FHIRLint
                        |
               ┌────────┴────────┐
               ↓                 ↓
@@ -1352,7 +1352,7 @@ How can I fix it?
 
 ### 5. Separate standard validation from custom quality analysis
 
-The project should clearly demonstrate what established FHIR tooling provides and what HealthCheck adds.
+The project should clearly demonstrate what established FHIR tooling provides and what FHIRLint adds.
 
 ### 6. Make the demo obvious
 
@@ -1413,6 +1413,6 @@ Run baseline FHIR validation
 Return structured validation results
 ```
 
-Once that works, begin adding **HealthCheck-specific quality rules**.
+Once that works, begin adding **FHIRLint-specific quality rules**.
 
 The most important early architectural decision is making the rule engine extensible. That is the part most likely to turn this from "FHIR validator wrapper" into an actual software engineering project.

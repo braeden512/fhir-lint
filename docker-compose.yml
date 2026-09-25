@@ -1,11 +1,11 @@
 services:
   postgres:
     image: postgres:17
-    container_name: healthcheck-postgres
+    container_name: fhir-lint-postgres
     environment:
-      POSTGRES_DB: healthcheck
-      POSTGRES_USER: healthcheck
-      POSTGRES_PASSWORD: healthcheck
+      POSTGRES_DB: fhirlint
+      POSTGRES_USER: fhirlint
+      POSTGRES_PASSWORD: fhirlint
     ports:
       - "5432:5432"
     volumes:

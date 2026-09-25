@@ -1,13 +1,13 @@
-package com.braeden.healthcheck;
+package com.braeden.fhirlint;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HealthCheckApplication {
+public class FHIRLintApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HealthCheckApplication.class, args);
+		SpringApplication.run(FHIRLintApplication.class, args);
 	}
 
 }

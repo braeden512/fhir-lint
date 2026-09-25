@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/healthcheck
-    username: healthcheck
-    password: healthcheck
+    url: jdbc:postgresql://localhost:5432/fhirlint
+    username: fhirlint
+    password: fhirlint
 
   jpa:
     hibernate:
