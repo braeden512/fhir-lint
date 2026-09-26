@@ -1,0 +1,226 @@
+openapi: 3.1.0
+info:
+  title: FHIRLint Quality Checks API
+  description: >
+    Developer-focused API for healthcare data quality analysis.
+    Phase 1 provides FHIR dataset ingestion, boundary pre-flight validation,
+    and asynchronous job lifecycle tracking.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+paths:
+  /api/v1/quality-checks:
+    post:
+      summary: Submit a FHIR dataset for asynchronous quality analysis
+      description: >
+        Accepts a FHIR R4 dataset (single resource or Bundle) as raw JSON or via a wrapper.
+        Validates basic syntax synchronously, creates a tracked job, and immediately returns 202 Accepted.
+      operationId: submitQualityCheck
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/QualityCheckSubmissionWrapper'
+                - $ref: '#/components/schemas/RawFhirPayload'
+            examples:
+              bundleSubmission:
+                summary: Direct FHIR Bundle submission
+                value:
+                  resourceType: Bundle
+                  type: collection
+                  entry:
+                    - resource:
+                        resourceType: Patient
+                        id: example-patient
+                        name:
+                          - family: Doe
+                            given:
+                              - Jane
+              wrappedSubmission:
+                summary: Wrapped submission with profile selection
+                value:
+                  profile: US_CORE
+                  bundle:
+                    resourceType: Bundle
+                    type: collection
+                    entry: []
+      responses:
+        '202':
+          description: Quality check job accepted and queued for background processing
+          headers:
+            Location:
+              description: URI to check the status and retrieve results of the job
+              schema:
+                type: string
+                example: /api/v1/quality-checks/9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QualityCheckJobCreatedResponse'
+        '400':
+          description: Malformed JSON or invalid submission boundary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/quality-checks/{id}:
+    get:
+      summary: Retrieve quality check job status and results
+      description: >
+        Returns the current state and execution metadata for a given quality check job.
+        When COMPLETED, includes the count and breakdown of analyzed resources.
+      operationId: getQualityCheckJob
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique UUID of the quality check job
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Job status and execution details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QualityCheckJobDetailResponse'
+        '404':
+          description: Quality check job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    RawFhirPayload:
+      type: object
+      required:
+        - resourceType
+      properties:
+        resourceType:
+          type: string
+          description: HL7 FHIR R4 resource type name (e.g. Bundle, Patient, Observation)
+          example: Bundle
+      additionalProperties: true
+
+    QualityCheckSubmissionWrapper:
+      type: object
+      properties:
+        profile:
+          type: string
+          description: Optional target validation profile
+          example: US_CORE
+          default: BASE_R4
+        bundle:
+          $ref: '#/components/schemas/RawFhirPayload'
+        resource:
+          $ref: '#/components/schemas/RawFhirPayload'
+
+    QualityCheckJobCreatedResponse:
+      type: object
+      required:
+        - id
+        - status
+        - createdAt
+        - location
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+        status:
+          $ref: '#/components/schemas/JobStatus'
+          example: QUEUED
+        createdAt:
+          type: string
+          format: date-time
+          example: '2026-09-26T14:30:00Z'
+        location:
+          type: string
+          example: /api/v1/quality-checks/9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+
+    QualityCheckJobDetailResponse:
+      type: object
+      required:
+        - id
+        - status
+        - createdAt
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+        status:
+          $ref: '#/components/schemas/JobStatus'
+          example: COMPLETED
+        targetProfile:
+          type: string
+          example: BASE_R4
+        createdAt:
+          type: string
+          format: date-time
+          example: '2026-09-26T14:30:00Z'
+        startedAt:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2026-09-26T14:30:01Z'
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2026-09-26T14:30:02Z'
+        resourcesAnalyzed:
+          type: integer
+          nullable: true
+          example: 25
+        resourceTypeCounts:
+          type: object
+          additionalProperties:
+            type: integer
+          nullable: true
+          example:
+            Patient: 1
+            Observation: 20
+            Encounter: 4
+        failureReason:
+          type: string
+          nullable: true
+          example: null
+
+    JobStatus:
+      type: string
+      enum:
+        - QUEUED
+        - PROCESSING
+        - COMPLETED
+        - FAILED
+
+    ErrorResponse:
+      type: object
+      required:
+        - status
+        - title
+        - detail
+        - timestamp
+      properties:
+        status:
+          type: integer
+          example: 400
+        title:
+          type: string
+          example: Bad Request
+        detail:
+          type: string
+          example: Payload must be valid JSON containing a 'resourceType' field.
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-09-26T14:30:00Z'
