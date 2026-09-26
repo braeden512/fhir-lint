@@ -358,7 +358,36 @@ Example:
 }
 ```
 
-The scoring algorithm will be documented and deterministic.
+The scoring algorithm will be documented, deterministic, and reproducible.
+
+### 6.1 Category Scoring Formula
+
+For each category $c \in \{\text{structural}, \text{profileConformance}, \text{referentialIntegrity}, \text{consistency}, \text{terminology}, \text{completeness}\}$:
+
+$$\text{DefectPenalty}_c = (N_{\text{error}, c} \times 15) + (N_{\text{warning}, c} \times 3) + (N_{\text{info}, c} \times 0)$$
+
+$$\text{DensityFactor}_c = \frac{\text{DefectPenalty}_c}{\max(N_{\text{totalResources}}, 1) \times 15}$$
+
+$$\text{CategoryScore}_c = \text{round}\Big(\max\big(0, 100 \times (1 - \min(1.0, \text{DensityFactor}_c))\big)\Big)$$
+
+### 6.2 Overall Weighted Score
+
+The overall score is a weighted sum across categories:
+- **Referential Integrity**: 25% ($w = 0.25$)
+- **Structural Conformance**: 20% ($w = 0.20$)
+- **Profile Conformance**: 20% ($w = 0.20$)
+- **Cross-Resource Consistency**: 15% ($w = 0.15$)
+- **Terminology**: 10% ($w = 0.10$)
+- **Completeness**: 10% ($w = 0.10$)
+
+$$\text{OverallScore} = \text{round}\left( \sum_{c} w_c \cdot \text{CategoryScore}_c \right)$$
+
+### 6.3 Engineering Grade Tiers
+
+- **90–100**: `EXCELLENT` — High integrity, safe for automated ingestion.
+- **75–89**: `ACCEPTABLE` — Minor non-critical warnings; downstream review recommended.
+- **50–74**: `DEGRADED` — Contains broken references or chronological inconsistencies.
+- **0–49**: `CRITICAL` — Severe structural or relational failures; ingestion should halt.
 
 The score is intended as an **engineering quality indicator**, not a clinical or regulatory measurement.
 
@@ -579,7 +608,26 @@ Evaluation logic
 Description
 ```
 
-This will make the system much easier to extend.
+### 10.1 MVP Rule Catalog
+
+| Rule ID | Category | Severity | Applicable Types | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| `REF-001` | `REFERENTIAL_INTEGRITY` | `ERROR` | Any with `Reference` | Target resource does not exist in the dataset (broken local/UUID reference). |
+| `REF-002` | `REFERENTIAL_INTEGRITY` | `ERROR` | Any with `Reference` | Target resource type does not match field expectations (e.g. Encounter pointing to non-Encounter). |
+| `REF-003` | `REFERENTIAL_INTEGRITY` | `WARNING` | Observation, Condition | Resource is orphaned without connection to a Patient or Encounter. |
+| `CONS-001`| `CONSISTENCY` | `ERROR` | Encounter, Coverage | Chronological inversion: `period.end` occurs before `period.start`. |
+| `CONS-002`| `CONSISTENCY` | `ERROR` | MedicationRequest, Observation | Clinical event occurs prior to Patient's `birthDate`. |
+| `CONS-003`| `CONSISTENCY` | `WARNING` | Observation, Procedure | Clinical event occurs after Patient's `deceasedDateTime`. |
+| `CONS-004`| `CONSISTENCY` | `ERROR` | DiagnosticReport | Final report references an Observation that is `entered-in-error` or `cancelled`. |
+| `DUP-001` | `DUPLICATE` | `ERROR` | Patient | Distinct Patient resources share identical identifier system and value (e.g., SSN). |
+| `DUP-002` | `DUPLICATE` | `WARNING` | Patient | Distinct Patient resources match family name, given name, birthDate, and postal code. |
+| `TERM-001`| `TERMINOLOGY` | `WARNING` | Coding | Coding system URI is invalid, misspelled, or uses non-canonical URL. |
+| `TERM-002`| `TERMINOLOGY` | `ERROR` | Observation (Vital Signs) | Vital sign valueQuantity missing UCUM unit or system `http://unitsofmeasure.org`. |
+| `TERM-003`| `TERMINOLOGY` | `ERROR` | Patient, Encounter | Code does not exist in required fixed ValueSet (e.g. AdministrativeGender). |
+| `COMP-001`| `COMPLETENESS` | `ERROR` | Observation, Condition | Clinical resource missing required `subject` reference. |
+| `COMP-002`| `COMPLETENESS` | `WARNING` | Observation | Observation has neither a `value[x]` nor a `dataAbsentReason`. |
+
+This makes the system predictable, well-defined, and much easier to extend.
 
 ---
 
@@ -781,7 +829,7 @@ The exact package structure can evolve as implementation begins.
 
 # 13. Development Phases
 
-## Phase 0 — Research & Architecture
+## Phase 0 — Research & Architecture (Status: Completed)
 
 Goal:
 
@@ -789,25 +837,30 @@ Understand the FHIR ecosystem well enough to avoid building something redundant 
 
 Tasks:
 
-- Study FHIR R4 resource model
-- Study Bundles
-- Study profiles
-- Study US Core
-- Study `Must Support`
-- Study HAPI FHIR
-- Identify existing validation capabilities
-- Define what FHIRLint adds beyond existing validators
+- [x] Study FHIR R4 resource model
+- [x] Study Bundles
+- [x] Study profiles & US Core
+- [x] Study `Must Support`
+- [x] Study HAPI FHIR validation engine
+- [x] Identify existing validation capabilities & gaps
+- [x] Define what FHIRLint adds beyond existing validators
+- [x] Design reference resolution & in-memory graph indexing
+- [x] Establish deterministic multi-category quality scoring model
+- [x] Design privacy-preserving PostgreSQL persistence (no PHI stored)
+- [x] Formulate ADRs for all subsequent project phases
 
 Deliverables:
 
-- Architecture document
-- Initial API specification
-- Rule catalog
-- Sample datasets
+- [Phase 0 Research & Technical Findings](file:///home/braeden/projects/fhir-lint/docs/research/phase-0-research-findings.md)
+- [Architecture Decision Records (ADRs) Index](file:///home/braeden/projects/fhir-lint/docs/adr/README.md)
+- [Synthetic Messy Bundle Dataset](file:///home/braeden/projects/fhir-lint/sample-data/messy/messy-bundle.json)
+- [Clean Benchmark Bundle Dataset](file:///home/braeden/projects/fhir-lint/sample-data/clean/clean-bundle.json)
 
 ---
 
 # Phase 1 — FHIR Ingestion
+
+> **Architecture Decision Record**: [ADR-001: Phase 1 — FHIR Ingestion and Asynchronous Job Lifecycle](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-001-phase-1-fhir-ingestion-and-job-lifecycle.md)
 
 Goal:
 
@@ -839,6 +892,8 @@ Do not build custom quality rules yet.
 
 # Phase 2 — Structural Validation
 
+> **Architecture Decision Record**: [ADR-002: Phase 2 — Structural and Profile Validation with HAPI FHIR](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-002-phase-2-structural-and-profile-validation.md)
+
 Integrate HAPI FHIR validation.
 
 Return:
@@ -859,6 +914,8 @@ This is important because the project's differentiation should be built **on top
 ---
 
 # Phase 3 — Referential Integrity
+
+> **Architecture Decision Record**: [ADR-003: Phase 3 — Referential Integrity and Resource Graph Indexing](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-003-phase-3-referential-integrity-and-resource-graph.md)
 
 Build the resource graph.
 
@@ -886,6 +943,8 @@ This should be one of the first major custom features.
 ---
 
 # Phase 4 — Data Quality Rules
+
+> **Architecture Decision Record**: [ADR-004: Phase 4 — Pluggable Rule Engine and Data-Quality Checks](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-004-phase-4-pluggable-rule-engine-and-data-quality.md)
 
 Implement the rule engine.
 
@@ -919,6 +978,8 @@ Do not attempt to implement the entire medical terminology ecosystem.
 
 # Phase 5 — Quality Scoring
 
+> **Architecture Decision Record**: [ADR-005: Phase 5 — Deterministic Multi-Category Quality Scoring Model](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-005-phase-5-deterministic-quality-scoring-model.md)
+
 Create:
 
 ```text
@@ -949,6 +1010,8 @@ Overall:           84
 
 # Phase 6 — Developer Experience
 
+> **Architecture Decision Record**: [ADR-006: Phase 6 — Developer Experience, OpenAPI Specification, and CLI Client](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-006-phase-6-developer-experience-and-api-design.md)
+
 Build the polished API experience.
 
 Implement:
@@ -971,6 +1034,8 @@ It exists to make the backend easy to demonstrate.
 ---
 
 # Phase 7 — Production Engineering
+
+> **Architecture Decision Record**: [ADR-007: Phase 7 — Production Engineering, Privacy-First Persistence, and Containerization](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-007-phase-7-production-engineering-and-persistence.md)
 
 Once the core system works:
 
@@ -1010,6 +1075,8 @@ Results DB
 ---
 
 # Phase 8 — Advanced Features
+
+> **Architecture Decision Record**: [ADR-008: Phase 8 — Advanced Extensibility, CI/CD Integration, and Dataset Comparison](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-008-phase-8-advanced-extensibility-and-monitoring.md)
 
 Only after the core project is solid.
 
