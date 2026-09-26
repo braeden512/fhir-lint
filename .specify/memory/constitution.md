@@ -66,6 +66,6 @@ Development of FHIRLint is structured around quality and simplicity:
 1. **Supremacy**: This Constitution represents the highest engineering and governance authority for the FHIRLint project. All design plans, architecture decision records (ADRs), pull requests, and implementations must comply with the principles outlined herein.
 2. **Amendment Procedure**: Amendments to this Constitution require a formal proposal, thorough discussion of alternatives, and a consensus decision by the project maintainers. Any amendment must be recorded by incrementing the version number (using semantic versioning rules) and updating the Last Amended Date.
 3. **Compliance Review**: All future specifications, implementation plans, and Pull Requests (PRs) must explicitly reference compliance with these principles. If a design violates or seeks to bypass any of these rules, it must be rejected or the Constitution itself must be amended first.
-4. **Tooling & Guidance**: Runtime development decisions, style guidelines, and code linting settings must be kept in sync with these principles. Use `SPEC.md` for specification details and `ADR.md` for specific architectural decisions.
+4. **Tooling & Guidance**: Runtime development decisions, style guidelines, and code linting settings must be kept in sync with these principles. Use `SPEC.md` for specification details.
 
 **Version**: 1.0.0 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-25

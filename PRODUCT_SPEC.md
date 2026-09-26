@@ -251,7 +251,7 @@ Potential checks:
 - Code/value mismatch
 - Missing coding system
 
-Terminology validation should initially focus on a manageable subset rather than attempting to implement every terminology system.
+Terminology validation should initially focus on a manageable subset using a pluggable `TerminologyService` abstraction. For MVP, an in-memory, static file-backed provider validates against a core subset of essential codes (such as US Core value sets, administrative gender, and core LOINC/RxNorm codes) without requiring an external licensed terminology server or database.
 
 ---
 
@@ -647,7 +647,7 @@ Use PostgreSQL for:
 
 Do not initially attempt to make PostgreSQL the primary FHIR repository.
 
-The original submitted Bundle can optionally be stored as JSONB for reproducibility.
+To comply with privacy requirements, raw submitted FHIR payloads MUST NOT be stored in the database. PostgreSQL stores only anonymized job execution metadata, scores, and issue reports (which reference resource IDs and FHIRPath locations, without persisting raw PHI/payload body).
 
 ---
 
