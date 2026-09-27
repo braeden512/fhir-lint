@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QualityIssue",
+  "description": "Standardized data quality and conformance issue finding produced by FHIRLint",
+  "type": "object",
+  "required": [
+    "id",
+    "severity",
+    "category",
+    "ruleId",
+    "message"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the issue finding",
+      "examples": ["issue_8f32a10c"]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["ERROR", "WARNING", "INFO"],
+      "description": "Severity level of the issue"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "STRUCTURAL",
+        "PROFILE_CONFORMANCE",
+        "REFERENTIAL_INTEGRITY",
+        "CONSISTENCY",
+        "TERMINOLOGY",
+        "COMPLETENESS",
+        "DUPLICATE"
+      ],
+      "description": "Classification category of the quality issue"
+    },
+    "ruleId": {
+      "type": "string",
+      "description": "Identifier of the rule or conformance constraint that triggered the issue",
+      "examples": ["STRUCT-001", "USCORE-PAT-001"]
+    },
+    "resourceType": {
+      "type": "string",
+      "description": "The FHIR resource type associated with the issue",
+      "examples": ["Patient", "Observation"]
+    },
+    "resourceId": {
+      "type": "string",
+      "description": "The logical ID of the resource associated with the issue",
+      "examples": ["pat-123", "obs-456"]
+    },
+    "path": {
+      "type": "string",
+      "description": "FHIRPath or JSONPath expression pinpointing the offending element",
+      "examples": ["Patient.birthDate", "Observation.code.coding[0].system"]
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable explanation of the defect"
+    },
+    "suggestion": {
+      "type": "string",
+      "description": "Actionable guidance on how to remediate the defect"
+    }
+  },
+  "additionalProperties": false
+}
