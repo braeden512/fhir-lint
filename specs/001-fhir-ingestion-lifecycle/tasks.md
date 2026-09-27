@@ -8,11 +8,11 @@ This document provides the actionable, dependency-ordered task breakdown for imp
 
 **Purpose**: Project dependency configuration, Spring Boot initialization, and core configuration beans.
 
-- [ ] T001 Update dependencies in `build.gradle` to include HAPI FHIR R4 (`ca.uhn.hapi.fhir:hapi-fhir-base:6.10.0`, `ca.uhn.hapi.fhir:hapi-fhir-structures-r4:6.10.0`), SpringDoc OpenAPI (`org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.5`), Flyway PostgreSQL (`org.flywaydb:flyway-database-postgresql`), and Testcontainers (`org.testcontainers:postgresql:1.20.4`)
-- [ ] T002 [P] Configure async task execution thread pool in `src/main/java/com/braeden/fhirlint/config/AsyncConfig.java` with core pool size 4, max pool size 8, queue capacity 500, and thread prefix `fhir-ingest-`
-- [ ] T003 [P] Configure singleton FHIR R4 context bean in `src/main/java/com/braeden/fhirlint/config/FhirConfig.java` wrapping `FhirContext.forR4()`
-- [ ] T004 [P] Configure SpringDoc OpenAPI documentation metadata in `src/main/java/com/braeden/fhirlint/config/OpenApiConfig.java` matching OpenAPI 3.1 contract
-- [ ] T005 [P] Update application properties in `src/main/resources/application.yml` for multipart limits (10MB max), PostgreSQL datasource, Flyway enabled, and watchdog timeout parameters
+- [X] T001 Update dependencies in `build.gradle` to include HAPI FHIR R4 (`ca.uhn.hapi.fhir:hapi-fhir-base:6.10.0`, `ca.uhn.hapi.fhir:hapi-fhir-structures-r4:6.10.0`), SpringDoc OpenAPI (`org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.5`), Flyway PostgreSQL (`org.flywaydb:flyway-database-postgresql`), and Testcontainers (`org.testcontainers:postgresql:1.20.4`)
+- [X] T002 [P] Configure async task execution thread pool in `src/main/java/com/braeden/fhirlint/config/AsyncConfig.java` with core pool size 4, max pool size 8, queue capacity 500, and thread prefix `fhir-ingest-`
+- [X] T003 [P] Configure singleton FHIR R4 context bean in `src/main/java/com/braeden/fhirlint/config/FhirConfig.java` wrapping `FhirContext.forR4()`
+- [X] T004 [P] Configure SpringDoc OpenAPI documentation metadata in `src/main/java/com/braeden/fhirlint/config/OpenApiConfig.java` matching OpenAPI 3.1 contract
+- [X] T005 [P] Update application properties in `src/main/resources/application.yml` for multipart limits (10MB max), PostgreSQL datasource, Flyway enabled, and watchdog timeout parameters
 
 ---
 
@@ -22,12 +22,12 @@ This document provides the actionable, dependency-ordered task breakdown for imp
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T006 Create Flyway migration script `src/main/resources/db/migration/V1__create_quality_check_jobs.sql` defining `quality_check_jobs` table with constraints `chk_job_status CHECK (status IN ('QUEUED', 'PROCESSING', 'COMPLETED', 'FAILED'))`, `chk_resources_analyzed CHECK (resources_analyzed IS NULL OR resources_analyzed >= 0)`, and composite index on `(status, created_at)`
-- [ ] T007 [P] Create job lifecycle enum in `src/main/java/com/braeden/fhirlint/model/JobStatus.java` with values `QUEUED`, `PROCESSING`, `COMPLETED`, `FAILED`
-- [ ] T008 Create JPA entity `src/main/java/com/braeden/fhirlint/model/QualityCheckJob.java` with fields: `id` (UUID, primary key), `status` (JobStatus, not null), `target_profile` (VARCHAR(64), default 'BASE_R4'), `created_at` (Instant, not null), `started_at` (Instant, nullable), `completed_at` (Instant, nullable), `failure_reason` (TEXT max 4000 chars, nullable), `resources_analyzed` (Integer >= 0, nullable), `resource_type_counts` (JSONB Map<String, Integer> using Hibernate `@JdbcTypeCode(SqlTypes.JSON)`, nullable)
-- [ ] T009 [P] Create Spring Data JPA repository in `src/main/java/com/braeden/fhirlint/repository/QualityCheckJobRepository.java` with query method `findByStatusAndStartedAtBefore(JobStatus status, Instant threshold)`
-- [ ] T010 [P] Create standardized error response DTO in `src/main/java/com/braeden/fhirlint/dto/ErrorResponse.java` with fields: `status` (int), `title` (String), `detail` (String), `timestamp` (Instant) per RFC 7807
-- [ ] T011 Create global exception handler in `src/main/java/com/braeden/fhirlint/controller/RestExceptionHandler.java` translating JSON parsing exceptions, missing fields, and custom exceptions into `ErrorResponse`
+- [X] T006 Create Flyway migration script `src/main/resources/db/migration/V1__create_quality_check_jobs.sql` defining `quality_check_jobs` table with constraints `chk_job_status CHECK (status IN ('QUEUED', 'PROCESSING', 'COMPLETED', 'FAILED'))`, `chk_resources_analyzed CHECK (resources_analyzed IS NULL OR resources_analyzed >= 0)`, and composite index on `(status, created_at)`
+- [X] T007 [P] Create job lifecycle enum in `src/main/java/com/braeden/fhirlint/model/JobStatus.java` with values `QUEUED`, `PROCESSING`, `COMPLETED`, `FAILED`
+- [X] T008 Create JPA entity `src/main/java/com/braeden/fhirlint/model/QualityCheckJob.java` with fields: `id` (UUID, primary key), `status` (JobStatus, not null), `target_profile` (VARCHAR(64), default 'BASE_R4'), `created_at` (Instant, not null), `started_at` (Instant, nullable), `completed_at` (Instant, nullable), `failure_reason` (TEXT max 4000 chars, nullable), `resources_analyzed` (Integer >= 0, nullable), `resource_type_counts` (JSONB Map<String, Integer> using Hibernate `@JdbcTypeCode(SqlTypes.JSON)`, nullable)
+- [X] T009 [P] Create Spring Data JPA repository in `src/main/java/com/braeden/fhirlint/repository/QualityCheckJobRepository.java` with query method `findByStatusAndStartedAtBefore(JobStatus status, Instant threshold)`
+- [X] T010 [P] Create standardized error response DTO in `src/main/java/com/braeden/fhirlint/dto/ErrorResponse.java` with fields: `status` (int), `title` (String), `detail` (String), `timestamp` (Instant) per RFC 7807
+- [X] T011 Create global exception handler in `src/main/java/com/braeden/fhirlint/controller/RestExceptionHandler.java` translating JSON parsing exceptions, missing fields, and custom exceptions into `ErrorResponse`
 
 **Checkpoint**: Foundation ready - database schema, JPA entity, repository, and error handler complete.
 
@@ -41,16 +41,16 @@ This document provides the actionable, dependency-ordered task breakdown for imp
 
 ### Tests for User Story 1 ⚠️
 
-- [ ] T012 [P] [US1] Create controller web slice test in `src/test/java/com/braeden/fhirlint/controller/QualityCheckControllerTest.java` verifying `POST /api/v1/quality-checks` returns `202 Accepted`, `Location` header matching `/api/v1/quality-checks/{id}`, and `JobCreatedResponse` body
-- [ ] T013 [P] [US1] Create unit test in `src/test/java/com/braeden/fhirlint/service/AsyncIngestionWorkerTest.java` verifying HAPI FHIR parsing extracts accurate resource counts and resource type distributions for both single resources (Patient) and collection Bundles
-- [ ] T014 [US1] Create end-to-end integration test in `src/test/java/com/braeden/fhirlint/integration/QualityCheckLifecycleIT.java` using Testcontainers PostgreSQL verifying submission, asynchronous state transitions (`QUEUED` $\to$ `PROCESSING` $\to$ `COMPLETED`), and metric calculation
+- [X] T012 [P] [US1] Create controller web slice test in `src/test/java/com/braeden/fhirlint/controller/QualityCheckControllerTest.java` verifying `POST /api/v1/quality-checks` returns `202 Accepted`, `Location` header matching `/api/v1/quality-checks/{id}`, and `JobCreatedResponse` body
+- [X] T013 [P] [US1] Create unit test in `src/test/java/com/braeden/fhirlint/service/AsyncIngestionWorkerTest.java` verifying HAPI FHIR parsing extracts accurate resource counts and resource type distributions for both single resources (Patient) and collection Bundles
+- [X] T014 [US1] Create end-to-end integration test in `src/test/java/com/braeden/fhirlint/integration/QualityCheckLifecycleIT.java` using Testcontainers PostgreSQL verifying submission, asynchronous state transitions (`QUEUED` $\to$ `PROCESSING` $\to$ `COMPLETED`), and metric calculation
 
 ### Implementation for User Story 1
 
-- [ ] T015 [P] [US1] Create response DTO `src/main/java/com/braeden/fhirlint/dto/JobCreatedResponse.java` with fields `id` (UUID), `status` (JobStatus), `createdAt` (Instant), `location` (String)
-- [ ] T016 [US1] Implement asynchronous ingestion worker in `src/main/java/com/braeden/fhirlint/service/AsyncIngestionWorker.java` annotated with `@Async("qualityCheckExecutor")` to transition job to `PROCESSING` with `started_at`, parse transient payload using HAPI `IParser`, count total resources and group by resource type, update job to `COMPLETED` with `completed_at` and metrics, and release payload memory
-- [ ] T017 [US1] Implement intake service logic in `src/main/java/com/braeden/fhirlint/service/QualityCheckService.java` to generate UUID, persist `QualityCheckJob` in `QUEUED` status, dispatch async execution to `AsyncIngestionWorker`, and return `JobCreatedResponse`
-- [ ] T018 [US1] Implement `POST /api/v1/quality-checks` endpoint in `src/main/java/com/braeden/fhirlint/controller/QualityCheckController.java` returning HTTP `202 Accepted` with `Location` header
+- [X] T015 [P] [US1] Create response DTO `src/main/java/com/braeden/fhirlint/dto/JobCreatedResponse.java` with fields `id` (UUID), `status` (JobStatus), `createdAt` (Instant), `location` (String)
+- [X] T016 [US1] Implement asynchronous ingestion worker in `src/main/java/com/braeden/fhirlint/service/AsyncIngestionWorker.java` annotated with `@Async("qualityCheckExecutor")` to transition job to `PROCESSING` with `started_at`, parse transient payload using HAPI `IParser`, count total resources and group by resource type, update job to `COMPLETED` with `completed_at` and metrics, and release payload memory
+- [X] T017 [US1] Implement intake service logic in `src/main/java/com/braeden/fhirlint/service/QualityCheckService.java` to generate UUID, persist `QualityCheckJob` in `QUEUED` status, dispatch async execution to `AsyncIngestionWorker`, and return `JobCreatedResponse`
+- [X] T018 [US1] Implement `POST /api/v1/quality-checks` endpoint in `src/main/java/com/braeden/fhirlint/controller/QualityCheckController.java` returning HTTP `202 Accepted` with `Location` header
 
 **Checkpoint**: At this point, User Story 1 is fully functional and delivers a complete, independently testable MVP.
 
@@ -64,14 +64,14 @@ This document provides the actionable, dependency-ordered task breakdown for imp
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T019 [P] [US2] Create controller web slice test in `src/test/java/com/braeden/fhirlint/controller/QualityCheckStatusControllerTest.java` verifying `GET /api/v1/quality-checks/{id}` returns `200 OK` with `JobDetailResponse` for existing jobs and `404 Not Found` with `ErrorResponse` for nonexistent UUIDs
-- [ ] T020 [P] [US2] Add integration test scenario in `src/test/java/com/braeden/fhirlint/integration/QualityCheckLifecycleIT.java` polling `GET /api/v1/quality-checks/{id}` until status reaches `COMPLETED` and asserting that `resourcesAnalyzed` and `resourceTypeCounts` match the submitted bundle
+- [X] T019 [P] [US2] Create controller web slice test in `src/test/java/com/braeden/fhirlint/controller/QualityCheckStatusControllerTest.java` verifying `GET /api/v1/quality-checks/{id}` returns `200 OK` with `JobDetailResponse` for existing jobs and `404 Not Found` with `ErrorResponse` for nonexistent UUIDs
+- [X] T020 [P] [US2] Add integration test scenario in `src/test/java/com/braeden/fhirlint/integration/QualityCheckLifecycleIT.java` polling `GET /api/v1/quality-checks/{id}` until status reaches `COMPLETED` and asserting that `resourcesAnalyzed` and `resourceTypeCounts` match the submitted bundle
 
 ### Implementation for User Story 2
 
-- [ ] T021 [P] [US2] Create detailed job response DTO in `src/main/java/com/braeden/fhirlint/dto/JobDetailResponse.java` with fields: `id` (UUID), `status` (JobStatus), `targetProfile` (String), `createdAt` (Instant), `startedAt` (Instant), `completedAt` (Instant), `resourcesAnalyzed` (Integer), `resourceTypeCounts` (Map<String, Integer>), and `failureReason` (String)
-- [ ] T022 [US2] Implement `getJobStatus(UUID id)` in `src/main/java/com/braeden/fhirlint/service/QualityCheckService.java` querying repository and mapping entity to `JobDetailResponse`
-- [ ] T023 [US2] Implement `GET /api/v1/quality-checks/{id}` endpoint in `src/main/java/com/braeden/fhirlint/controller/QualityCheckController.java` returning `200 OK` or throwing `ResourceNotFoundException`
+- [X] T021 [P] [US2] Create detailed job response DTO in `src/main/java/com/braeden/fhirlint/dto/JobDetailResponse.java` with fields: `id` (UUID), `status` (JobStatus), `targetProfile` (String), `createdAt` (Instant), `startedAt` (Instant), `completedAt` (Instant), `resourcesAnalyzed` (Integer), `resourceTypeCounts` (Map<String, Integer>), and `failureReason` (String)
+- [X] T022 [US2] Implement `getJobStatus(UUID id)` in `src/main/java/com/braeden/fhirlint/service/QualityCheckService.java` querying repository and mapping entity to `JobDetailResponse`
+- [X] T023 [US2] Implement `GET /api/v1/quality-checks/{id}` endpoint in `src/main/java/com/braeden/fhirlint/controller/QualityCheckController.java` returning `200 OK` or throwing `ResourceNotFoundException`
 
 **Checkpoint**: User Stories 1 and 2 work seamlessly together, allowing end-to-end ingestion and status polling.
 
@@ -85,14 +85,14 @@ This document provides the actionable, dependency-ordered task breakdown for imp
 
 ### Tests for User Story 3 ⚠️
 
-- [ ] T024 [P] [US3] Create boundary validation tests in `src/test/java/com/braeden/fhirlint/controller/QualityCheckBoundaryValidationTest.java` testing malformed JSON, empty payload, and missing `resourceType`, asserting HTTP `400 Bad Request` and zero database records created
-- [ ] T025 [P] [US3] Create parser failure unit test in `src/test/java/com/braeden/fhirlint/service/AsyncIngestionWorkerFailureTest.java` verifying that invalid FHIR R4 syntax caught by HAPI FHIR transitions the job status to `FAILED` and populates `failureReason`
+- [X] T024 [P] [US3] Create boundary validation tests in `src/test/java/com/braeden/fhirlint/controller/QualityCheckBoundaryValidationTest.java` testing malformed JSON, empty payload, and missing `resourceType`, asserting HTTP `400 Bad Request` and zero database records created
+- [X] T025 [P] [US3] Create parser failure unit test in `src/test/java/com/braeden/fhirlint/service/AsyncIngestionWorkerFailureTest.java` verifying that invalid FHIR R4 syntax caught by HAPI FHIR transitions the job status to `FAILED` and populates `failureReason`
 
 ### Implementation for User Story 3
 
-- [ ] T026 [US3] Implement synchronous pre-flight syntactic validation in `src/main/java/com/braeden/fhirlint/service/QualityCheckService.java` using Jackson `JsonNode` tree checking for valid JSON structure, non-blank `resourceType`, and throwing `MalformedPayloadException` on failure
-- [ ] T027 [US3] Enhance exception handling in `src/main/java/com/braeden/fhirlint/controller/RestExceptionHandler.java` to map `MalformedPayloadException` and `HttpMessageNotReadableException` to `400 Bad Request` with descriptive `ErrorResponse`
-- [ ] T028 [US3] Add error handling and rollback logic in `src/main/java/com/braeden/fhirlint/service/AsyncIngestionWorker.java` catching `DataFormatException` and HAPI parser exceptions, updating job status to `FAILED`, setting `completed_at`, and recording diagnostic message in `failure_reason`
+- [X] T026 [US3] Implement synchronous pre-flight syntactic validation in `src/main/java/com/braeden/fhirlint/service/QualityCheckService.java` using Jackson `JsonNode` tree checking for valid JSON structure, non-blank `resourceType`, and throwing `MalformedPayloadException` on failure
+- [X] T027 [US3] Enhance exception handling in `src/main/java/com/braeden/fhirlint/controller/RestExceptionHandler.java` to map `MalformedPayloadException` and `HttpMessageNotReadableException` to `400 Bad Request` with descriptive `ErrorResponse`
+- [X] T028 [US3] Add error handling and rollback logic in `src/main/java/com/braeden/fhirlint/service/AsyncIngestionWorker.java` catching `DataFormatException` and HAPI parser exceptions, updating job status to `FAILED`, setting `completed_at`, and recording diagnostic message in `failure_reason`
 
 **Checkpoint**: Ingestion boundary and asynchronous pipeline are hardened against corrupted, malformed, and invalid inputs.
 
@@ -106,13 +106,13 @@ This document provides the actionable, dependency-ordered task breakdown for imp
 
 ### Tests for User Story 4 ⚠️
 
-- [ ] T029 [P] [US4] Create watchdog test in `src/test/java/com/braeden/fhirlint/service/JobWatchdogServiceTest.java` verifying that jobs stuck in `PROCESSING` past the timeout threshold are identified and transitioned to `FAILED` with message `"Processing timed out or worker terminated unexpectedly"`
-- [ ] T030 [P] [US4] Create privacy assertion integration test in `src/test/java/com/braeden/fhirlint/integration/ZeroRetentionPrivacyIT.java` inspecting PostgreSQL information schema and job table contents to verify 0% payload retention
+- [X] T029 [P] [US4] Create watchdog test in `src/test/java/com/braeden/fhirlint/service/JobWatchdogServiceTest.java` verifying that jobs stuck in `PROCESSING` past the timeout threshold are identified and transitioned to `FAILED` with message `"Processing timed out or worker terminated unexpectedly"`
+- [X] T030 [P] [US4] Create privacy assertion integration test in `src/test/java/com/braeden/fhirlint/integration/ZeroRetentionPrivacyIT.java` inspecting PostgreSQL information schema and job table contents to verify 0% payload retention
 
 ### Implementation for User Story 4
 
-- [ ] T031 [US4] Implement scheduled watchdog in `src/main/java/com/braeden/fhirlint/service/JobWatchdogService.java` annotated with `@Scheduled(fixedDelayString = "${fhirlint.watchdog.interval:60000}")` calling `QualityCheckJobRepository.findByStatusAndStartedAtBefore`, transitioning stalled jobs to `FAILED`, and recording failure reason
-- [ ] T032 [US4] Explicitly verify memory dereferencing in `src/main/java/com/braeden/fhirlint/service/AsyncIngestionWorker.java` by nullifying payload and HAPI AST references in a `finally` block to allow immediate garbage collection
+- [X] T031 [US4] Implement scheduled watchdog in `src/main/java/com/braeden/fhirlint/service/JobWatchdogService.java` annotated with `@Scheduled(fixedDelayString = "${fhirlint.watchdog.interval:60000}")` calling `QualityCheckJobRepository.findByStatusAndStartedAtBefore`, transitioning stalled jobs to `FAILED`, and recording failure reason
+- [X] T032 [US4] Explicitly verify memory dereferencing in `src/main/java/com/braeden/fhirlint/service/AsyncIngestionWorker.java` by nullifying payload and HAPI AST references in a `finally` block to allow immediate garbage collection
 
 **Checkpoint**: All 4 user stories implemented with full zero-retention compliance and automated self-healing.
 
@@ -122,9 +122,9 @@ This document provides the actionable, dependency-ordered task breakdown for imp
 
 **Purpose**: Verification of documentation, contract compliance, quickstart validation, and build verification.
 
-- [ ] T033 [P] Verify live Swagger UI and OpenAPI documentation at `/swagger-ui.html` and `/v3/api-docs` matches `contracts/quality-checks-api.yaml`
-- [ ] T034 Execute end-to-end scenarios from `quickstart.md` using `sample-data/clean/clean-bundle.json` and `sample-data/messy/messy-bundle.json` against local running application
-- [ ] T035 Execute full test suite via `./gradlew check` ensuring 100% test pass rate with zero compiler warnings or lint errors
+- [X] T033 [P] Verify live Swagger UI and OpenAPI documentation at `/swagger-ui.html` and `/v3/api-docs` matches `contracts/quality-checks-api.yaml`
+- [X] T034 Execute end-to-end scenarios from `quickstart.md` using `sample-data/clean/clean-bundle.json` and `sample-data/messy/messy-bundle.json` against local running application
+- [X] T035 Execute full test suite via `./gradlew check` ensuring 100% test pass rate with zero compiler warnings or lint errors
 
 ---
 

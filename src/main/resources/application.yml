@@ -1,10 +1,33 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/fhirlint
-    username: fhirlint
-    password: fhirlint
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/fhirlint}
+    username: ${SPRING_DATASOURCE_USERNAME:fhirlint}
+    password: ${SPRING_DATASOURCE_PASSWORD:fhirlint}
 
   jpa:
     hibernate:
       ddl-auto: update
     open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+fhirlint:
+  watchdog:
+    timeout-minutes: 5
+    interval: 60000
