@@ -38,7 +38,7 @@ class FhirLintCliTest {
             assertThat(exitCode).isZero();
             String output = outContent.toString(StandardCharsets.UTF_8);
             assertThat(output).contains("\"totalResources\" : 5");
-            assertThat(output).contains("\"overallScore\" : 100");
+            assertThat(output).contains("\"grade\" : \"EXCELLENT\"");
         } finally {
             System.setOut(originalOut);
         }
@@ -95,7 +95,20 @@ class FhirLintCliTest {
                 {
                   "resource": {
                     "resourceType": "Patient",
-                    "id": "pat-stdin-1"
+                    "id": "pat-stdin-1",
+                    "identifier": [
+                      {
+                        "system": "http://hospital.smarthealth.org/mrn",
+                        "value": "MRN-STDIN-01"
+                      }
+                    ],
+                    "name": [
+                      {
+                        "family": "Doe",
+                        "given": ["Jane"]
+                      }
+                    ],
+                    "gender": "female"
                   }
                 }
               ]

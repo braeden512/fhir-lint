@@ -12,9 +12,15 @@ public record ParsedDataset(
     IBaseResource rootResource,
     List<IBaseResource> resources,
     IngestionInventory inventory,
-    boolean isBundle
+    boolean isBundle,
+    List<ca.uhn.fhir.validation.SingleValidationMessage> parseMessages
 ) {
     public ParsedDataset {
         resources = resources == null ? Collections.emptyList() : Collections.unmodifiableList(resources);
+        parseMessages = parseMessages == null ? Collections.emptyList() : Collections.unmodifiableList(parseMessages);
+    }
+
+    public ParsedDataset(IBaseResource rootResource, List<IBaseResource> resources, IngestionInventory inventory, boolean isBundle) {
+        this(rootResource, resources, inventory, isBundle, Collections.emptyList());
     }
 }

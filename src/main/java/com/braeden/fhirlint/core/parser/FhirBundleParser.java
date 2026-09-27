@@ -93,8 +93,10 @@ public class FhirBundleParser {
             throw new FhirParseException("Payload must contain a valid FHIR 'resourceType' declaration.");
         }
 
-        // 2. Parse using HAPI FHIR
+        // 2. Parse using HAPI FHIR with recording error handler
         IParser parser = fhirContext.newJsonParser();
+        RecordingParserErrorHandler errorHandler = new RecordingParserErrorHandler();
+        parser.setParserErrorHandler(errorHandler);
         IBaseResource parsedResource;
         try {
             parsedResource = parser.parseResource(jsonContent);
@@ -128,6 +130,6 @@ public class FhirBundleParser {
         long durationMs = System.currentTimeMillis() - startTime;
         IngestionInventory inventory = new IngestionInventory(resources.size(), counts, durationMs);
 
-        return new ParsedDataset(parsedResource, resources, inventory, isBundle);
+        return new ParsedDataset(parsedResource, resources, inventory, isBundle, errorHandler.getMessages());
     }
 }

@@ -25,6 +25,22 @@ public record LintReport(
         return issues.stream().anyMatch(i -> i.severity() == Severity.WARNING);
     }
 
+    public long getErrorCount() {
+        return issues.stream().filter(i -> i.severity() == Severity.ERROR).count();
+    }
+
+    public ValidationProfile getTargetProfile() {
+        return targetProfile;
+    }
+
+    public List<QualityIssue> getIssues() {
+        return issues;
+    }
+
+    public QualityScore getQualityScore() {
+        return qualityScore;
+    }
+
     public boolean passes(int minScore, Severity failOn) {
         if (qualityScore.getOverallScore() < minScore) {
             return false;

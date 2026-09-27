@@ -37,12 +37,21 @@ Validate a sample FHIR Bundle with a colorized terminal report:
 ./gradlew run --args="validate sample-data/messy/messy-bundle.json"
 ```
 
+Choose between target validation profiles:
+```bash
+# Validate against US Core v3.1.1 (default)
+./gradlew run --args="validate bundle.json --profile US_CORE"
+
+# Validate strictly against HL7 FHIR R4 base schema
+./gradlew run --args="validate bundle.json --profile BASE_R4"
+```
+
 ### 3. CI/CD Pipeline Quality Gate
 Enforce a minimum quality score of 85 and fail on errors:
 ```bash
-fhir-lint validate bundle.json --min-score 85 --fail-on error
+fhir-lint validate bundle.json --profile US_CORE --min-score 85 --fail-on error
 ```
-*Returns exit code `0` if passed, `1` if the quality gate fails.*
+*Returns exit code `0` if passed, `1` if the quality gate fails, `2` for syntax or argument errors.*
 
 ### 4. UNIX Pipes (`stdin`)
 Pipe JSON directly from curl, jq, or other tools:
@@ -74,7 +83,7 @@ LintReport report = linter.lint(new File("patient-bundle.json"));
 System.out.println("Score: " + report.getQualityScore().getOverallScore());
 if (report.hasErrors()) {
     report.getIssues().forEach(issue -> 
-        System.err.println(issue.getRuleId() + " [" + issue.getPath() + "]: " + issue.getMessage())
+        System.err.println(issue.ruleId() + " [" + issue.path() + "]: " + issue.message() + " -> Suggestion: " + issue.suggestion())
     );
 }
 ```
@@ -86,8 +95,8 @@ if (report.hasErrors()) {
 | Phase | Description | Status |
 | :--- | :--- | :--- |
 | **Phase 0** | Research, HAPI FHIR Architecture, Synthetic Benchmark Datasets | Completed |
-| **Phase 1** | Local Dataset Ingestion, HAPI R4 Parsing, Boundary Verification | In Progress |
-| **Phase 2** | Structural and US Core Profile Validation | Next |
+| **Phase 1** | Local Dataset Ingestion, HAPI R4 Parsing, Boundary Verification | Completed |
+| **Phase 2** | Structural and US Core Profile Validation | Completed |
 | **Phase 3** | Referential Integrity & In-Memory Resource Graph | Planned |
 | **Phase 4** | Pluggable Rule Engine & Data Quality Checks | Planned |
 | **Phase 5** | Deterministic Quality Scoring & Defect Density Model | Planned |

@@ -46,6 +46,17 @@
           "code": "AMB",
           "display": "ambulatory"
         },
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185349003",
+                "display": "Encounter for checkup"
+              }
+            ]
+          }
+        ],
         "subject": {
           "reference": "Patient/pat-001"
         },
@@ -159,6 +170,9 @@
         },
         "subject": {
           "reference": "Patient/pat-001"
+        },
+        "requester": {
+          "reference": "Practitioner/prac-001"
         },
         "authoredOn": "2026-05-01T09:30:00Z"
       }

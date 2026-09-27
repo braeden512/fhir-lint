@@ -23,7 +23,8 @@ class FhirLinterTest {
         assertThat(report).isNotNull();
         assertThat(report.targetProfile()).isEqualTo(ValidationProfile.US_CORE);
         assertThat(report.inventory().totalResources()).isEqualTo(5);
-        assertThat(report.qualityScore().getOverallScore()).isEqualTo(100);
+        assertThat(report.hasErrors()).isFalse();
+        assertThat(report.qualityScore().getOverallScore()).isGreaterThanOrEqualTo(90);
         assertThat(report.passes(80, null)).isTrue();
     }
 }

@@ -26,6 +26,6 @@ public enum ValidationProfile {
                 return profile;
             }
         }
-        return US_CORE;
+        throw new IllegalArgumentException("Unknown or unsupported validation profile: '" + value + "'. Supported profiles: BASE_R4, US_CORE.");
     }
 }

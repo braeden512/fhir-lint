@@ -19,10 +19,12 @@ import java.util.List;
 public class FhirLinter {
 
     private final FhirBundleParser parser;
+    private final com.braeden.fhirlint.core.validation.FhirValidationEngine validationEngine;
     private ValidationProfile profile = ValidationProfile.US_CORE;
 
     private FhirLinter() {
         this.parser = new FhirBundleParser();
+        this.validationEngine = new com.braeden.fhirlint.core.validation.FhirValidationEngine();
     }
 
     public static FhirLinter create() {
@@ -44,13 +46,17 @@ public class FhirLinter {
         return parser;
     }
 
+    public com.braeden.fhirlint.core.validation.FhirValidationEngine getValidationEngine() {
+        return validationEngine;
+    }
+
     /**
      * Lints a FHIR JSON file.
      */
     public LintReport lint(File file) {
         long start = System.currentTimeMillis();
         ParsedDataset dataset = parser.parse(file);
-        return evaluate(dataset, System.currentTimeMillis() - start);
+        return evaluate(dataset, start);
     }
 
     /**
@@ -59,7 +65,7 @@ public class FhirLinter {
     public LintReport lint(String jsonContent) {
         long start = System.currentTimeMillis();
         ParsedDataset dataset = parser.parse(jsonContent);
-        return evaluate(dataset, System.currentTimeMillis() - start);
+        return evaluate(dataset, start);
     }
 
     /**
@@ -68,7 +74,7 @@ public class FhirLinter {
     public LintReport lint(InputStream inputStream) {
         long start = System.currentTimeMillis();
         ParsedDataset dataset = parser.parse(inputStream);
-        return evaluate(dataset, System.currentTimeMillis() - start);
+        return evaluate(dataset, start);
     }
 
     /**
@@ -86,6 +92,10 @@ public class FhirLinter {
             for (java.util.Map.Entry<String, Integer> entry : dataset.inventory().resourceTypeCounts().entrySet()) {
                 aggregatedCounts.put(entry.getKey(), aggregatedCounts.getOrDefault(entry.getKey(), 0) + entry.getValue());
             }
+            if (!dataset.parseMessages().isEmpty()) {
+                allIssues.addAll(validationEngine.getNormalizer().normalize(dataset.parseMessages(), null, null));
+            }
+            allIssues.addAll(validationEngine.validateAll(dataset.resources(), profile));
         }
 
         long durationMs = System.currentTimeMillis() - start;
@@ -96,11 +106,15 @@ public class FhirLinter {
         return new LintReport(profile, inventory, allIssues, score, durationMs);
     }
 
-    private LintReport evaluate(ParsedDataset dataset, long durationMs) {
+    private LintReport evaluate(ParsedDataset dataset, long startTime) {
         List<QualityIssue> issues = new ArrayList<>();
-        // Note: Phase 2 (Validation) and Phase 4 (Rules) will populate issues here.
+        if (!dataset.parseMessages().isEmpty()) {
+            issues.addAll(validationEngine.getNormalizer().normalize(dataset.parseMessages(), null, null));
+        }
+        issues.addAll(validationEngine.validateAll(dataset.resources(), profile));
         QualityScore score = QualityScore.calculate(dataset.inventory().totalResources(), issues);
 
+        long durationMs = System.currentTimeMillis() - startTime;
         return new LintReport(
             profile,
             dataset.inventory(),

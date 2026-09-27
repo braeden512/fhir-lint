@@ -81,8 +81,18 @@ public class ValidateCommand implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        ValidationProfile profile = ValidationProfile.fromString(profileName);
+        ValidationProfile profile;
+        try {
+            profile = ValidationProfile.fromString(profileName);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
+            return 2;
+        }
+
         Severity failOnSeverity = parseSeverity(failOn);
+        if (failOnSeverity == null) {
+            return 2;
+        }
 
         FhirLinter linter = FhirLinter.create().withProfile(profile);
         LintReport report;
@@ -159,7 +169,8 @@ public class ValidateCommand implements Callable<Integer> {
         try {
             return Severity.valueOf(value.toUpperCase());
         } catch (IllegalArgumentException e) {
-            return Severity.ERROR;
+            System.err.println("Error: Unknown or unsupported severity threshold '" + value + "'. Supported: error, warning, info.");
+            return null;
         }
     }
 }

@@ -10,9 +10,9 @@
 
 **Purpose**: Configure build dependencies, parser error handling, and resource assets required for HAPI FHIR validation and US Core profiles.
 
-- [ ] T001 Add HAPI FHIR validation dependencies (`ca.uhn.hapi.fhir:hapi-fhir-validation:6.10.0` and `ca.uhn.hapi.fhir:hapi-fhir-validation-resources-r4:6.10.0`) to `build.gradle`
-- [ ] T002 [P] Package official HL7 US Core v3.1.1 package (`package.tgz`) and transitive definitions into `src/main/resources/profiles/us-core/`
-- [ ] T003 Configure `FhirBundleParser.java` in `src/main/java/com/braeden/fhirlint/core/parser/FhirBundleParser.java` with lenient error handling so primitive format defects and unknown fields are preserved for structural validation rather than triggering pre-flight syntax aborts (code 2)
+- [X] T001 Add HAPI FHIR validation dependencies (`ca.uhn.hapi.fhir:hapi-fhir-validation:6.10.0` and `ca.uhn.hapi.fhir:hapi-fhir-validation-resources-r4:6.10.0`) to `build.gradle`
+- [X] T002 [P] Package official HL7 US Core v3.1.1 package (`package.tgz`) and transitive definitions into `src/main/resources/profiles/us-core/`
+- [X] T003 Configure `FhirBundleParser.java` in `src/main/java/com/braeden/fhirlint/core/parser/FhirBundleParser.java` with lenient error handling so primitive format defects and unknown fields are preserved for structural validation rather than triggering pre-flight syntax aborts (code 2)
 
 ---
 
@@ -22,9 +22,9 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T004 Implement `ValidationSupportFactory` in `src/main/java/com/braeden/fhirlint/core/validation/ValidationSupportFactory.java` assembling `ValidationSupportChain` with base R4, snapshot generation, local US Core package, terminology, and LRU caching support
-- [ ] T005 Implement `ValidationMessageNormalizer` in `src/main/java/com/braeden/fhirlint/core/validation/ValidationMessageNormalizer.java` to map HAPI `SingleValidationMessage` to `QualityIssue` with severity (`ERROR`, `WARNING`, `INFO`), category (`STRUCTURAL` vs `PROFILE_CONFORMANCE`), deterministic rule ID scheme, FHIRPath, and remediation suggestions
-- [ ] T006 Implement `FhirValidationEngine` in `src/main/java/com/braeden/fhirlint/core/validation/FhirValidationEngine.java` managing `FhirValidator`, `FhirInstanceValidator`, and support chain lifecycle
+- [X] T004 Implement `ValidationSupportFactory` in `src/main/java/com/braeden/fhirlint/core/validation/ValidationSupportFactory.java` assembling `ValidationSupportChain` with base R4, snapshot generation, local US Core package, terminology, and LRU caching support
+- [X] T005 Implement `ValidationMessageNormalizer` in `src/main/java/com/braeden/fhirlint/core/validation/ValidationMessageNormalizer.java` to map HAPI `SingleValidationMessage` to `QualityIssue` with severity (`ERROR`, `WARNING`, `INFO`), category (`STRUCTURAL` vs `PROFILE_CONFORMANCE`), deterministic rule ID scheme, FHIRPath, and remediation suggestions
+- [X] T006 Implement `FhirValidationEngine` in `src/main/java/com/braeden/fhirlint/core/validation/FhirValidationEngine.java` managing `FhirValidator`, `FhirInstanceValidator`, and support chain lifecycle
 
 **Checkpoint**: Foundation ready — user story implementation can now begin.
 
@@ -40,13 +40,13 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T007 [P] [US1] Unit test for base R4 structural validation in `src/test/java/com/braeden/fhirlint/core/validation/BaseR4StructuralValidationTest.java`
+- [X] T007 [P] [US1] Unit test for base R4 structural validation in `src/test/java/com/braeden/fhirlint/core/validation/BaseR4StructuralValidationTest.java`
 
 ### Implementation for User Story 1
 
-- [ ] T008 [US1] Implement base structural validation evaluation logic in `src/main/java/com/braeden/fhirlint/core/validation/FhirValidationEngine.java` using `DefaultProfileValidationSupport`
-- [ ] T009 [US1] Integrate `FhirValidationEngine` into `src/main/java/com/braeden/fhirlint/core/FhirLinter.java` in both `evaluate()` and `lint(List<File> files)` methods to populate `QualityIssue` list across single and multi-file inputs
-- [ ] T010 [US1] Verify structural issues are categorized as `STRUCTURAL` and reflected in `LintReport` inventory and score calculations in `src/main/java/com/braeden/fhirlint/core/FhirLinter.java`
+- [X] T008 [US1] Implement base structural validation evaluation logic in `src/main/java/com/braeden/fhirlint/core/validation/FhirValidationEngine.java` using `DefaultProfileValidationSupport`
+- [X] T009 [US1] Integrate `FhirValidationEngine` into `src/main/java/com/braeden/fhirlint/core/FhirLinter.java` in both `evaluate()` and `lint(List<File> files)` methods to populate `QualityIssue` list across single and multi-file inputs
+- [X] T010 [US1] Verify structural issues are categorized as `STRUCTURAL` and reflected in `LintReport` inventory and score calculations in `src/main/java/com/braeden/fhirlint/core/FhirLinter.java`
 
 **Checkpoint**: User Story 1 is fully functional and testable independently (Base R4 Structural Validation MVP).
 
@@ -60,13 +60,13 @@
 
 ### Tests for User Story 2
 
-- [ ] T011 [P] [US2] Unit and integration tests for US Core profile validation in `src/test/java/com/braeden/fhirlint/core/validation/UsCoreProfileValidationTest.java`
+- [X] T011 [P] [US2] Unit and integration tests for US Core profile validation in `src/test/java/com/braeden/fhirlint/core/validation/UsCoreProfileValidationTest.java`
 
 ### Implementation for User Story 2
 
-- [ ] T012 [US2] Configure US Core StructureDefinition package loader in `src/main/java/com/braeden/fhirlint/core/validation/ValidationSupportFactory.java` using `NpmPackageValidationSupport` with local classpath package
-- [ ] T013 [US2] Implement default US Core profile URL association in `src/main/java/com/braeden/fhirlint/core/validation/FhirValidationEngine.java` with category-based routing for `Observation` (`vital-signs` vs `laboratory`) and `DiagnosticReport` (`lab` vs `note`)
-- [ ] T014 [US2] Configure `FhirInstanceValidator` in `src/main/java/com/braeden/fhirlint/core/validation/FhirValidationEngine.java` to enable snapshot generation, slice validation, invariant checking, and Must Support constraint evaluation
+- [X] T012 [US2] Configure US Core StructureDefinition package loader in `src/main/java/com/braeden/fhirlint/core/validation/ValidationSupportFactory.java` using `NpmPackageValidationSupport` with local classpath package
+- [X] T013 [US2] Implement default US Core profile URL association in `src/main/java/com/braeden/fhirlint/core/validation/FhirValidationEngine.java` with category-based routing for `Observation` (`vital-signs` vs `laboratory`) and `DiagnosticReport` (`lab` vs `note`)
+- [X] T014 [US2] Configure `FhirInstanceValidator` in `src/main/java/com/braeden/fhirlint/core/validation/FhirValidationEngine.java` to enable snapshot generation, slice validation, invariant checking, and Must Support constraint evaluation
 
 **Checkpoint**: User Stories 1 and 2 are functional independently and combined.
 
@@ -80,12 +80,12 @@
 
 ### Tests for User Story 3
 
-- [ ] T015 [P] [US3] Unit and CLI integration tests for profile switching and invalid profile handling in `src/test/java/com/braeden/fhirlint/cli/ProfileSelectionTest.java`
+- [X] T015 [P] [US3] Unit and CLI integration tests for profile switching and invalid profile handling in `src/test/java/com/braeden/fhirlint/cli/ProfileSelectionTest.java`
 
 ### Implementation for User Story 3
 
-- [ ] T016 [US3] Wire profile routing in `src/main/java/com/braeden/fhirlint/core/FhirLinter.java` to pass configured `ValidationProfile` to `FhirValidationEngine`
-- [ ] T017 [US3] Update `ValidationProfile.fromString()` in `src/main/java/com/braeden/fhirlint/core/model/ValidationProfile.java` to throw `IllegalArgumentException` on invalid names, and update `ValidateCommand.java` in `src/main/java/com/braeden/fhirlint/cli/command/ValidateCommand.java` to reject invalid profile arguments with exit code 2
+- [X] T016 [US3] Wire profile routing in `src/main/java/com/braeden/fhirlint/core/FhirLinter.java` to pass configured `ValidationProfile` to `FhirValidationEngine`
+- [X] T017 [US3] Update `ValidationProfile.fromString()` in `src/main/java/com/braeden/fhirlint/core/model/ValidationProfile.java` to throw `IllegalArgumentException` on invalid names, and update `ValidateCommand.java` in `src/main/java/com/braeden/fhirlint/cli/command/ValidateCommand.java` to reject invalid profile arguments with exit code 2
 
 **Checkpoint**: Validation profile switching works across both CLI and Java API.
 
@@ -99,12 +99,12 @@
 
 ### Tests for User Story 4
 
-- [ ] T018 [P] [US4] Contract and normalization unit tests in `src/test/java/com/braeden/fhirlint/core/validation/ValidationMessageNormalizerTest.java`
+- [X] T018 [P] [US4] Contract and normalization unit tests in `src/test/java/com/braeden/fhirlint/core/validation/ValidationMessageNormalizerTest.java`
 
 ### Implementation for User Story 4
 
-- [ ] T019 [US4] Implement compiler message cleanup, FHIRPath extraction, deterministic ruleId assignment, and remediation suggestion generator in `src/main/java/com/braeden/fhirlint/core/validation/ValidationMessageNormalizer.java`
-- [ ] T020 [US4] Verify table, JSON, and SARIF output renderers in `src/main/java/com/braeden/fhirlint/cli/renderer/` correctly display normalized issues and suggestions
+- [X] T019 [US4] Implement compiler message cleanup, FHIRPath extraction, deterministic ruleId assignment, and remediation suggestion generator in `src/main/java/com/braeden/fhirlint/core/validation/ValidationMessageNormalizer.java`
+- [X] T020 [US4] Verify table, JSON, and SARIF output renderers in `src/main/java/com/braeden/fhirlint/cli/renderer/` correctly display normalized issues and suggestions
 
 **Checkpoint**: Normalized, actionable issues render seamlessly across ANSI tables, JSON, and SARIF.
 
@@ -118,12 +118,12 @@
 
 ### Tests for User Story 5
 
-- [ ] T021 [P] [US5] Performance and zero-retention privacy test in `src/test/java/com/braeden/fhirlint/core/validation/ValidationPerformanceAndPrivacyTest.java`
+- [X] T021 [P] [US5] Performance and zero-retention privacy test in `src/test/java/com/braeden/fhirlint/core/validation/ValidationPerformanceAndPrivacyTest.java`
 
 ### Implementation for User Story 5
 
-- [ ] T022 [US5] Configure thread-safe LRU caching in `src/main/java/com/braeden/fhirlint/core/validation/ValidationSupportFactory.java` using `CachingValidationSupport`
-- [ ] T023 [US5] Verify offline execution by ensuring `InMemoryTerminologyServerValidationSupport` handles terminology without remote lookups in `src/main/java/com/braeden/fhirlint/core/validation/ValidationSupportFactory.java`
+- [X] T022 [US5] Configure thread-safe LRU caching in `src/main/java/com/braeden/fhirlint/core/validation/ValidationSupportFactory.java` using `CachingValidationSupport`
+- [X] T023 [US5] Verify offline execution by ensuring `InMemoryTerminologyServerValidationSupport` handles terminology without remote lookups in `src/main/java/com/braeden/fhirlint/core/validation/ValidationSupportFactory.java`
 
 **Checkpoint**: Sub-second in-memory performance and zero-retention posture confirmed.
 
@@ -133,9 +133,9 @@
 
 **Purpose**: End-to-end integration, quickstart validation, documentation, and overall test suite verification.
 
-- [ ] T024 [P] End-to-end quickstart validation against scenarios in `specs/002-structural-profile-validation/quickstart.md`
-- [ ] T025 [P] Update documentation in `docs/` and `README.md` with Phase 2 capabilities and `--profile` usage
-- [ ] T026 Run full project verification via `./gradlew check` and verify all tests pass
+- [X] T024 [P] End-to-end quickstart validation against scenarios in `specs/002-structural-profile-validation/quickstart.md`
+- [X] T025 [P] Update documentation in `docs/` and `README.md` with Phase 2 capabilities and `--profile` usage
+- [X] T026 Run full project verification via `./gradlew check` and verify all tests pass
 
 ---
 
