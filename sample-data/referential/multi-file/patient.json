@@ -1,0 +1,20 @@
+{
+  "resourceType": "Patient",
+  "id": "pat-mf-01",
+  "identifier": [
+    {
+      "system": "http://hospital.smarthealth.org/mrn",
+      "value": "MRN-MF-01"
+    }
+  ],
+  "active": true,
+  "name": [
+    {
+      "use": "official",
+      "family": "MultiFilePatient",
+      "given": ["Alice"]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1990-01-01"
+}

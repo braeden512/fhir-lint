@@ -29,6 +29,12 @@ public class SarifReportRenderer {
         driver.put("version", "0.1.0");
         driver.put("informationUri", "https://github.com/braeden512/fhir-lint");
 
+        ArrayNode rules = driver.putArray("rules");
+        addRule(rules, "REF-001", "Broken Local Reference", "Target resource does not exist in dataset (broken local/relative path, UUID URN, broken #contained fragment, or empty reference).");
+        addRule(rules, "REF-002", "Reference Type Mismatch", "Target resource exists, but its resource type is not permitted for the referencing field by FHIR R4 schema.");
+        addRule(rules, "REF-003", "Orphaned Clinical Resource", "Orphaned clinical resource lacks direct or indirect context link to a Patient.");
+        addRule(rules, "REF-004", "Unverified External Reference", "Reference points to an external absolute URI outside the dataset boundary during offline analysis.");
+
         ArrayNode results = run.putArray("results");
         for (QualityIssue issue : report.issues()) {
             ObjectNode resNode = mapper.createObjectNode();
@@ -63,5 +69,13 @@ public class SarifReportRenderer {
         } catch (Exception e) {
             throw new RuntimeException("Failed to render SARIF output: " + e.getMessage(), e);
         }
+    }
+
+    private void addRule(ArrayNode rules, String id, String name, String fullDescription) {
+        ObjectNode rule = rules.addObject();
+        rule.put("id", id);
+        rule.put("name", name);
+        rule.putObject("shortDescription").put("text", name);
+        rule.putObject("fullDescription").put("text", fullDescription);
     }
 }

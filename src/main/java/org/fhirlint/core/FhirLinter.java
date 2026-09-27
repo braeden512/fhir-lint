@@ -20,11 +20,13 @@ public class FhirLinter {
 
     private final FhirBundleParser parser;
     private final org.fhirlint.core.validation.FhirValidationEngine validationEngine;
+    private org.fhirlint.core.graph.ReferentialIntegrityEngine referentialIntegrityEngine;
     private ValidationProfile profile = ValidationProfile.US_CORE;
 
     private FhirLinter() {
         this.parser = new FhirBundleParser();
         this.validationEngine = new org.fhirlint.core.validation.FhirValidationEngine();
+        this.referentialIntegrityEngine = org.fhirlint.core.graph.ReferentialIntegrityEngine.create();
     }
 
     public static FhirLinter create() {
@@ -34,6 +36,13 @@ public class FhirLinter {
     public FhirLinter withProfile(ValidationProfile profile) {
         if (profile != null) {
             this.profile = profile;
+        }
+        return this;
+    }
+
+    public FhirLinter withReferentialIntegrityEngine(org.fhirlint.core.graph.ReferentialIntegrityEngine engine) {
+        if (engine != null) {
+            this.referentialIntegrityEngine = engine;
         }
         return this;
     }
@@ -48,6 +57,10 @@ public class FhirLinter {
 
     public org.fhirlint.core.validation.FhirValidationEngine getValidationEngine() {
         return validationEngine;
+    }
+
+    public org.fhirlint.core.graph.ReferentialIntegrityEngine getReferentialIntegrityEngine() {
+        return referentialIntegrityEngine;
     }
 
     /**
@@ -85,10 +98,19 @@ public class FhirLinter {
         int totalResources = 0;
         java.util.Map<String, Integer> aggregatedCounts = new java.util.TreeMap<>();
         List<QualityIssue> allIssues = new ArrayList<>();
+        List<org.hl7.fhir.instance.model.api.IBaseResource> aggregatedResources = new ArrayList<>();
+        List<org.hl7.fhir.instance.model.api.IBaseResource> aggregatedRoots = new ArrayList<>();
 
         for (File file : files) {
             ParsedDataset dataset = parser.parse(file);
             totalResources += dataset.inventory().totalResources();
+            aggregatedResources.addAll(dataset.resources());
+            if (dataset.rootResource() != null) {
+                aggregatedRoots.add(dataset.rootResource());
+            } else {
+                aggregatedRoots.addAll(dataset.resources());
+            }
+
             for (java.util.Map.Entry<String, Integer> entry : dataset.inventory().resourceTypeCounts().entrySet()) {
                 aggregatedCounts.put(entry.getKey(), aggregatedCounts.getOrDefault(entry.getKey(), 0) + entry.getValue());
             }
@@ -97,6 +119,9 @@ public class FhirLinter {
             }
             allIssues.addAll(validationEngine.validateAll(dataset.resources(), profile));
         }
+
+        // Evaluate referential integrity across the aggregated dataset
+        allIssues.addAll(referentialIntegrityEngine.analyze(aggregatedRoots));
 
         long durationMs = System.currentTimeMillis() - start;
         org.fhirlint.core.model.IngestionInventory inventory = 
@@ -112,6 +137,15 @@ public class FhirLinter {
             issues.addAll(validationEngine.getNormalizer().normalize(dataset.parseMessages(), null, null));
         }
         issues.addAll(validationEngine.validateAll(dataset.resources(), profile));
+
+        if (dataset.isBundle() && dataset.rootResource() instanceof org.hl7.fhir.r4.model.Bundle bundle) {
+            issues.addAll(referentialIntegrityEngine.analyze(bundle));
+        } else if (dataset.rootResource() != null) {
+            issues.addAll(referentialIntegrityEngine.analyze(java.util.Collections.singletonList(dataset.rootResource())));
+        } else {
+            issues.addAll(referentialIntegrityEngine.analyze(dataset.resources()));
+        }
+
         QualityScore score = QualityScore.calculate(dataset.inventory().totalResources(), issues);
 
         long durationMs = System.currentTimeMillis() - startTime;

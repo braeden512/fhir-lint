@@ -157,6 +157,26 @@
       "resource": {
         "resourceType": "MedicationRequest",
         "id": "med-001",
+        "contained": [
+          {
+            "resourceType": "Practitioner",
+            "id": "prac-001",
+            "identifier": [
+              {
+                "system": "http://hl7.org/fhir/sid/us-npi",
+                "value": "9941339108"
+              }
+            ],
+            "name": [
+              {
+                "family": "Careful",
+                "given": [
+                  "Adam"
+                ]
+              }
+            ]
+          }
+        ],
         "status": "active",
         "intent": "order",
         "medicationCodeableConcept": {
@@ -172,7 +192,7 @@
           "reference": "Patient/pat-001"
         },
         "requester": {
-          "reference": "Practitioner/prac-001"
+          "reference": "#prac-001"
         },
         "authoredOn": "2026-05-01T09:30:00Z"
       }
