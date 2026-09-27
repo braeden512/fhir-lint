@@ -51,7 +51,7 @@ Build the foundational FHIR R4 dataset ingestion layer, boundary pre-flight veri
 ```text
 src/
 ├── main/
-│   ├── java/com/braeden/fhirlint/
+│   ├── java/org/fhirlint/
 │   │   ├── cli/
 │   │   │   ├── FhirLintApplication.java       # Picocli root command & main entry point
 │   │   │   ├── command/
@@ -77,7 +77,7 @@ src/
 │   └── resources/
 │       └── logback.xml                        # Quiet logging configuration
 └── test/
-    └── java/com/braeden/fhirlint/
+    └── java/org/fhirlint/
         ├── cli/
         │   └── FhirLintCliTest.java           # CLI integration tests (table, json, sarif, exit codes, stdin)
         └── core/

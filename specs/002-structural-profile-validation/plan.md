@@ -77,7 +77,7 @@ specs/002-structural-profile-validation/
 
 ```text
 src/
-├── main/java/com/braeden/fhirlint/
+├── main/java/org/fhirlint/
 │   ├── cli/
 │   │   ├── FhirLintApplication.java
 │   │   ├── command/
@@ -108,7 +108,7 @@ src/
 │   ├── logback.xml
 │   └── profiles/
 │       └── us-core/ (prepackaged StructureDefinitions & ValueSets)
-└── test/java/com/braeden/fhirlint/
+└── test/java/org/fhirlint/
     ├── cli/
     │   └── FhirLintCliTest.java
     └── core/
@@ -119,7 +119,7 @@ src/
             └── UsCoreProfileValidationTest.java
 ```
 
-**Structure Decision**: Builds directly upon the established single-project layout from Phase 1 (`src/main/java/com/braeden/fhirlint`), placing validation logic under `core/validation/` to keep the core engine modular and framework-agnostic.
+**Structure Decision**: Builds directly upon the established single-project layout from Phase 1 (`src/main/java/org/fhirlint`), placing validation logic under `core/validation/` to keep the core engine modular and framework-agnostic.
 
 ## Complexity Tracking
 

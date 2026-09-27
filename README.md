@@ -7,114 +7,180 @@ FHIR provides a standardized schema for healthcare data, but "valid FHIR" does n
 **FHIRLint** answers the question:
 > **"Can my application safely and reliably use this healthcare data, and what problems should I fix first?"**
 
-FHIRLint operates **locally and in-memory with zero infrastructure dependencies**. No databases, no external network calls, and no cloud hosting costs—guaranteeing 100% zero-retention privacy for sensitive healthcare data.
+FHIRLint operates **locally and in-memory with zero infrastructure dependencies**. No databases, no external network calls, and no cloud hosting costs—guaranteeing 100% zero-retention privacy for sensitive healthcare data (PHI).
 
 ---
 
 ## Key Features
 
-- **Local-First & Privacy Guaranteed**: Runs locally in your terminal or in your private CI/CD pipeline. No Protected Health Information (PHI) ever leaves your security perimeter.
-- **Deep Conformance & Profile Validation**: Powered by [HAPI FHIR R4](https://hapifhir.io/)—the world gold standard for HL7 FHIR compliance.
+- **Local-First & Privacy Guaranteed**: Runs locally in your terminal or inside your private CI/CD runner. No Protected Health Information (PHI) ever leaves your security perimeter.
+- **Deep Conformance & Profile Validation**: Powered by [HAPI FHIR R4](https://hapifhir.io/) for HL7 FHIR compliance, with built-in support for US Core v3.1.1 profiles.
 - **Cross-Resource Integrity**: Detects broken internal references, dangling IDs, and orphaned clinical records within Bundles.
 - **Clinical Chronology & Coherence**: Catches temporal inversions (e.g. encounter end date before start date, or procedures authored before birth).
 - **Deterministic Quality Scoring**: Generates an engineering score (0–100) and grade (`EXCELLENT`, `ACCEPTABLE`, `DEGRADED`, `CRITICAL`) with defect density calculations.
 - **CI/CD Quality Gates**: Built for automated pipelines (GitHub Actions, GitLab CI) with POSIX exit codes (`0` for pass, `1` for quality failure) and **SARIF 2.1.0** export for inline pull request annotations.
-- **Dual Interfaces**: High-performance **CLI tool** for terminal/CI workflows and a pure, framework-agnostic **Java library API** for embedding directly into ingestion pipelines.
+- **Dual Interfaces**: High-performance **CLI tool** for terminal and CI workflows alongside a lightweight, framework-agnostic **Java library API** for embedding directly into ingestion microservices.
 
 ---
 
-## Quickstart
+## Getting Started
 
-### 1. Build
-Requires Java 21+:
+### Prerequisites
+- **Java 21+** (JDK 21 or later)
+
+### Quick Build
 ```bash
+git clone https://github.com/braeden512/fhir-lint.git
+cd fhir-lint
 ./gradlew assemble
 ```
 
-### 2. Run the CLI
-Validate a sample FHIR Bundle with a colorized terminal report:
+Run validation on a sample dataset:
 ```bash
-./gradlew run --args="validate sample-data/messy/messy-bundle.json"
+./gradlew run --args="validate sample-data/clean/clean-bundle.json"
 ```
 
-Choose between target validation profiles:
+---
+
+## Core Use Cases & CLI Workflows
+
+### 1. Interactive Terminal Linting
+Inspect a dataset with an ANSI colorized breakdown of scores, categories, and actionable remediation suggestions:
+
+```bash
+fhir-lint validate patient-bundle.json
+```
+
+Target specific validation profiles:
 ```bash
 # Validate against US Core v3.1.1 (default)
-./gradlew run --args="validate bundle.json --profile US_CORE"
+fhir-lint validate bundle.json --profile US_CORE
 
 # Validate strictly against HL7 FHIR R4 base schema
-./gradlew run --args="validate bundle.json --profile BASE_R4"
+fhir-lint validate bundle.json --profile BASE_R4
 ```
 
+---
+
+### 2. Stream Processing & UNIX Pipes (`stdin`)
+In command-line workflows, you can pass `-` to read directly from standard input. This enables seamless composition with tools like `curl`, `jq`, or decompression utilities without writing intermediate or unencrypted PHI to disk:
+
+```bash
+# Lint a payload fetched directly from a FHIR server endpoint
+curl -s https://hapi.fhir.org/baseR4/Patient/123 | fhir-lint validate -
+
+# Decompress and validate a gzip bundle in-memory
+gzip -dc large-bundle.json.gz | fhir-lint validate -
+
+# Filter or extract a resource slice with jq and lint it
+jq '.entry[0].resource' messy-bundle.json | fhir-lint validate -
+```
+
+---
+
 ### 3. CI/CD Pipeline Quality Gate
-Enforce a minimum quality score of 85 and fail on errors:
+Automate healthcare data verification in continuous integration pipelines (GitHub Actions, GitLab CI, Jenkins). Set score thresholds or strict failure modes to stop bad fixture data or pipeline regressions before deployment:
+
 ```bash
 fhir-lint validate bundle.json --profile US_CORE --min-score 85 --fail-on error
 ```
-*Returns exit code `0` if passed, `1` if the quality gate fails, `2` for syntax or argument errors.*
 
-### 4. UNIX Pipes (`stdin`)
-Pipe JSON directly from curl, jq, or other tools:
+#### Exit Codes
+| Exit Code | Meaning |
+| :--- | :--- |
+| `0` | **Success**: Quality score meets threshold and no blocking issues found. |
+| `1` | **Quality Gate Failed**: Score below `--min-score` or findings matched `--fail-on` (e.g. `error` or `warning`). |
+| `2` | **Execution Error**: File unreadable, malformed JSON syntax, or invalid CLI arguments. |
+
+---
+
+### 4. GitHub Pull Request Annotations (SARIF 2.1.0)
+Export findings in [SARIF](https://sarifweb.azurewebsites.net/) (Static Analysis Results Interchange Format) to render line-level annotations directly on GitHub Pull Request diffs:
+
 ```bash
-cat sample-data/clean/clean-bundle.json | fhir-lint validate - --format table
+fhir-lint validate data/bundle.json --format sarif -o results.sarif
 ```
 
-### 5. Generate SARIF for GitHub Pull Request Annotations
-```bash
-fhir-lint validate bundle.json --format sarif -o results.sarif
+#### GitHub Actions Workflow Example
+```yaml
+name: Healthcare Data Quality Gate
+
+on: [pull_request]
+
+jobs:
+  lint-fhir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Run FHIRLint
+        run: ./gradlew run --args="validate fixtures/ --format sarif -o fhir-results.sarif --fail-on none"
+
+      - name: Upload SARIF to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: fhir-results.sarif
 ```
 
 ---
 
 ## Programmatic Java API
 
-Embed FHIRLint directly in your Java/Kotlin/JVM applications, ETL jobs, or Spring Batch pipelines without any web server or database overhead:
+Embed FHIRLint directly into your JVM applications, Spring services, or Apache Camel / Kafka ETL ingestion pipelines:
 
 ```java
-import com.braeden.fhirlint.core.FhirLinter;
-import com.braeden.fhirlint.core.model.LintReport;
-import com.braeden.fhirlint.core.model.ValidationProfile;
+import org.fhirlint.core.FhirLinter;
+import org.fhirlint.core.model.LintReport;
+import org.fhirlint.core.model.ValidationProfile;
+import java.io.File;
 
+// Initialize linter configured with target profile
 FhirLinter linter = FhirLinter.create()
     .withProfile(ValidationProfile.US_CORE);
 
+// Lint a file, string, or input stream
 LintReport report = linter.lint(new File("patient-bundle.json"));
 
-System.out.println("Score: " + report.getQualityScore().getOverallScore());
+// Access deterministic quality score and grade
+System.out.printf("Quality Score: %d/100 (%s)%n",
+    report.getQualityScore().getOverallScore(),
+    report.getQualityScore().getGrade());
+
+// Inspect prioritized findings and suggestions
 if (report.hasErrors()) {
-    report.getIssues().forEach(issue -> 
-        System.err.println(issue.ruleId() + " [" + issue.path() + "]: " + issue.message() + " -> Suggestion: " + issue.suggestion())
+    report.getIssues().forEach(issue ->
+        System.err.printf("[%s] %s (%s): %s -> Fix: %s%n",
+            issue.severity(),
+            issue.ruleId(),
+            issue.path(),
+            issue.message(),
+            issue.suggestion())
     );
 }
 ```
 
 ---
 
-## Development Roadmap
+## CLI Options & Flags
 
-| Phase | Description | Status |
+| Option | Description | Default |
 | :--- | :--- | :--- |
-| **Phase 0** | Research, HAPI FHIR Architecture, Synthetic Benchmark Datasets | Completed |
-| **Phase 1** | Local Dataset Ingestion, HAPI R4 Parsing, Boundary Verification | Completed |
-| **Phase 2** | Structural and US Core Profile Validation | Completed |
-| **Phase 3** | Referential Integrity & In-Memory Resource Graph | Planned |
-| **Phase 4** | Pluggable Rule Engine & Data Quality Checks | Planned |
-| **Phase 5** | Deterministic Quality Scoring & Defect Density Model | Planned |
-| **Phase 6** | Polished CLI Experience (Picocli), ANSI Tables & SARIF Output | Planned |
-| **Phase 7** | Standalone Packaging (Fat JAR, GraalVM Native Image, GitHub Action) | Planned |
-| **Phase 8** | Advanced Extensibility (Custom Rules, Dataset Diffs) | Proposed |
-
----
-
-## Documentation
-
-- [Product Specification](PRODUCT_SPEC.md)
-- [Project Constitution](.specify/memory/constitution.md)
-- [Architecture Decision Records (ADRs)](docs/adr/README.md)
-- [Phase 0 Research & Technical Findings](docs/research/phase-0-research-findings.md)
+| `[file]` | Path to FHIR JSON bundle file, or `-` for standard input. | Required |
+| `--profile` | Validation profile (`US_CORE`, `BASE_R4`). | `US_CORE` |
+| `--format` | Output format (`table`, `json`, `sarif`). | `table` |
+| `-o, --output` | Write output report to a destination file path. | `stdout` |
+| `--min-score` | Minimum passing score threshold (0–100). | `0` |
+| `--fail-on` | Severity threshold that triggers exit code 1 (`none`, `warning`, `error`). | `error` |
+| `--verbose` | Output full diagnostic details without truncating findings. | `false` |
 
 ---
 
 ## License
 
-Apache 2.0. See [LICENSE](LICENSE) for details.
+FHIRLint is distributed under the terms of the [Apache License (Version 2.0)](LICENSE).

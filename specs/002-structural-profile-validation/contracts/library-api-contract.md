@@ -7,10 +7,10 @@ This document defines the programmatic Java API contract for embedding `fhir-lin
 ## 1. Primary Entry Point: `FhirLinter`
 
 ```java
-package com.braeden.fhirlint.core;
+package org.fhirlint.core;
 
-import com.braeden.fhirlint.core.model.LintReport;
-import com.braeden.fhirlint.core.model.ValidationProfile;
+import org.fhirlint.core.model.LintReport;
+import org.fhirlint.core.model.ValidationProfile;
 import org.hl7.fhir.r4.model.IBaseResource;
 
 import java.io.File;
@@ -69,10 +69,10 @@ public class FhirLinter {
 ## 2. Validation Engine SPI: `FhirValidationEngine`
 
 ```java
-package com.braeden.fhirlint.core.validation;
+package org.fhirlint.core.validation;
 
-import com.braeden.fhirlint.core.model.QualityIssue;
-import com.braeden.fhirlint.core.model.ValidationProfile;
+import org.fhirlint.core.model.QualityIssue;
+import org.fhirlint.core.model.ValidationProfile;
 import org.hl7.fhir.r4.model.Resource;
 
 import java.util.List;
@@ -102,10 +102,10 @@ public interface FhirValidationEngine {
 ## 3. Usage Example
 
 ```java
-import com.braeden.fhirlint.core.FhirLinter;
-import com.braeden.fhirlint.core.model.LintReport;
-import com.braeden.fhirlint.core.model.ValidationProfile;
-import com.braeden.fhirlint.core.model.QualityIssue;
+import org.fhirlint.core.FhirLinter;
+import org.fhirlint.core.model.LintReport;
+import org.fhirlint.core.model.ValidationProfile;
+import org.fhirlint.core.model.QualityIssue;
 
 import java.io.File;
 

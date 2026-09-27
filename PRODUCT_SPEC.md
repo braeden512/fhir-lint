@@ -249,9 +249,9 @@ fhir-lint validate bundle.json --format sarif -o results.sarif
 For Java applications and ingestion pipelines (Spring Batch, Apache Camel, Kafka consumers), `fhir-lint-core` provides a fluent in-memory API:
 
 ```java
-import com.braeden.fhirlint.core.FhirLinter;
-import com.braeden.fhirlint.core.model.LintReport;
-import com.braeden.fhirlint.core.model.ValidationProfile;
+import org.fhirlint.core.FhirLinter;
+import org.fhirlint.core.model.LintReport;
+import org.fhirlint.core.model.ValidationProfile;
 
 // Initialize linter
 FhirLinter linter = FhirLinter.create()
@@ -367,7 +367,7 @@ public interface QualityRule {
 ```text
 fhir-lint/
 ├── src/
-│   ├── main/java/com/braeden/fhirlint/
+│   ├── main/java/org/fhirlint/
 │   │   ├── cli/                   # Picocli command-line app & output renderers
 │   │   │   ├── FhirLintApplication.java
 │   │   │   └── renderer/          # ANSI table, JSON, SARIF renderers
@@ -378,7 +378,7 @@ fhir-lint/
 │   │       ├── graph/             # In-memory resource relationship index
 │   │       ├── rules/             # Quality rules catalog
 │   │       └── scoring/           # Deterministic quality scoring engine
-│   └── test/java/com/braeden/fhirlint/
+│   └── test/java/org/fhirlint/
 │       ├── cli/                   # CLI execution & output tests
 │       └── core/                  # Core engine unit tests
 ├── sample-data/
