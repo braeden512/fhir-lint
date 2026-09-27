@@ -1,20 +1,15 @@
 <!--
 SYNC IMPACT REPORT
-- Version Change: None/Template -> 1.0.0
-- Rationale: Initial constitution creation for FHIRLint.
+- Version Change: 1.0.0 -> 2.0.0
+- Rationale: Architectural pivot from hosted Spring Boot REST service to a zero-infrastructure standalone CLI and embeddable Java core engine.
 - Modified Principles:
-  * [PRINCIPLE_1_NAME] -> I. Standards-First Healthcare Interoperability
-  * [PRINCIPLE_2_NAME] -> II. Maintainable Spring Boot Architecture
-  * [PRINCIPLE_3_NAME] -> III. Testable and Reliable Software
-  * [PRINCIPLE_4_NAME] -> IV. Actionable Data-Quality Analysis
-  * [PRINCIPLE_5_NAME] -> V. Privacy-Conscious Healthcare Software
-  * [PRINCIPLE_6_NAME] (Added) -> VI. Incremental Development and Simplicity
-  * [PRINCIPLE_7_NAME] (Added) -> VII. Developer-Focused API Design
-- Added Sections:
-  * Technology Stack & Architectural Constraints (replacing SECTION_2)
-  * Development Workflow & Quality Gates (replacing SECTION_3)
+  * Principle II (Maintainable Spring Boot Architecture) -> II. Lean, Dependency-Minimized Architecture (Pure Java 21, framework-agnostic core engine, zero database).
+  * Principle VII (Developer-Focused API Design) -> VII. Developer-Focused CLI & Library Design (POSIX CLI standards, ANSI tables, JSON/SARIF output, standard exit codes).
+- Modified Sections:
+  * Technology Stack & Architectural Constraints: Removed Spring Boot, WebMVC, JPA, and PostgreSQL. Added Picocli. Mandated zero-database stateless in-memory execution.
+  * Development Workflow & Quality Gates: Removed OpenAPI schema checks; added CLI exit code and output format test requirements.
 - Removed Sections: None
-- Follow-up TODOs: None
+- Follow-up TODOs: Update PRODUCT_SPEC.md, ADRs, and spec-001 to align with Constitution 2.0.0.
 -->
 
 # FHIRLint Constitution
@@ -25,12 +20,12 @@ SYNC IMPACT REPORT
 FHIRLint MUST utilize established FHIR R4 standards and the HAPI FHIR library rather than implementing custom parsers, serializers, or data models unnecessarily. The application MUST NOT invent behavior, extensions, or validation rules that conflict with established HL7 FHIR R4 specifications or semantics.
 *Rationale*: Reimplementing complex medical interoperability standards is error-prone, violates compliance, and defeats the goal of native healthcare system integration.
 
-### II. Maintainable Spring Boot Architecture
-The codebase MUST favor a clear separation of concerns (such as controllers, services, repositories) and conventional, idiomatic Spring Boot patterns. Unnecessary abstractions, speculative frameworks, and complex infrastructure (such as message queues or distributed caches) MUST be avoided unless backed by a validated requirement.
-*Rationale*: Over-engineering hinders maintainability. Conventional Spring Boot patterns keep the project approachable and clean.
+### II. Lean, Dependency-Minimized Architecture
+The core linting engine MUST be pure, framework-agnostic Java 21 with zero framework lock-in. Unnecessary abstractions, heavy frameworks, persistent databases, and web servers MUST NOT be introduced. The core engine and CLI MUST be completely stateless and run in-process or locally without requiring background daemons, relational databases, or external network connectivity.
+*Rationale*: Linters must be fast, lightweight, and easily integrated into local development and CI/CD pipelines. Avoiding heavy web and database frameworks eliminates operational costs and removes infrastructure complexity.
 
 ### III. Testable and Reliable Software
-All critical quality rules, custom linting engines, and business logic MUST have comprehensive, automated test coverage. Tests SHOULD verify meaningful, outer-loop behavior (such as end-to-end API response checks and validator outputs) rather than fragile, mock-heavy implementation details. The application MUST NOT claim or document any functionality that is not backed by an active, passing automated test.
+All critical quality rules, custom linting engines, and CLI interfaces MUST have comprehensive, automated test coverage. Tests SHOULD verify meaningful, outer-loop behavior (such as end-to-end CLI execution, exit code contracts, and validator outputs) rather than fragile, mock-heavy implementation details. The application MUST NOT claim or document any functionality that is not backed by an active, passing automated test.
 *Rationale*: High-quality healthcare software requires rock-solid reliability. Ensuring documented features are fully tested prevents regression and false promises of data quality.
 
 ### IV. Actionable Data-Quality Analysis
@@ -38,28 +33,29 @@ Validation and analysis findings MUST explain clearly what is wrong, where in th
 *Rationale*: Vague linting errors frustrate developers. Providing actionable feedback and keeping quality scores scoped to engineering avoids clinical misunderstandings.
 
 ### V. Privacy-Conscious Healthcare Software
-All development, demo, and automated test environments MUST utilize exclusively synthetic, de-identified, or non-PHI (Protected Health Information) data. FHIRLint MUST NOT store or expose healthcare data beyond the transient duration required to execute the requested analysis. The system and its documentation MUST explicitly state that FHIRLint is not clinical decision support, does not guarantee clinical correctness, and is not a substitute for clinical validation.
-*Rationale*: Healthcare software must treat privacy as a core engineering pillar. Restricting data persistence reduces the risk of accidental exposure and simplifies compliance.
+All development, demo, and automated test environments MUST utilize exclusively synthetic, de-identified, or non-PHI (Protected Health Information) data. FHIRLint MUST operate with a strict zero-retention posture: data analyzed by the tool is held transiently in memory for the duration of the linting pass and MUST NOT be written to persistent databases, log sinks, or remote telemetry. The system and its documentation MUST explicitly state that FHIRLint is not clinical decision support, does not guarantee clinical correctness, and is not a substitute for clinical validation.
+*Rationale*: Healthcare software must treat privacy as a core engineering pillar. A local-first, zero-persistence model guarantees that clinical data never escapes the user's security perimeter.
 
 ### VI. Incremental Development and Simplicity
-Developers MUST build and deliver the Minimum Viable Product (MVP) before adding infrastructure or features that are not explicitly justified by current, verified user requirements. Simpler, monolithic solutions MUST be preferred over premature distributed systems, microservices, or early optimizations. Every new external dependency or infrastructure component (e.g., database, broker) MUST require written justification and approval.
+Developers MUST build and deliver the Minimum Viable Product (MVP) before adding infrastructure or features that are not explicitly justified by current, verified user requirements. Simpler, monolithic and library-first solutions MUST be preferred over premature distributed systems, microservices, or early optimizations. Every new external dependency MUST require written justification and approval.
 *Rationale*: Premature complexity is the root of most software failure. Keeping things simple preserves speed and keeps the system maintainable.
 
-### VII. Developer-Focused API Design
-All REST APIs MUST be predictable, versioned (e.g. in the URI path or headers), fully documented, and return JSON-formatted actionable error payloads. The OpenAPI/Swagger documentation MUST be kept strictly in sync with the actual API implementation using automated validation checks.
-*Rationale*: FHIRLint is a developer tool; its interface is its API. Clean, predictable, and accurately documented APIs minimize integration friction.
+### VII. Developer-Focused CLI & Library Design
+FHIRLint is a developer tool; its primary interfaces are its command-line interface (CLI) and an embeddable Java library API. The CLI MUST adhere to standard POSIX conventions: accept files, directories, or standard input; return standard exit codes (0 for success, non-zero for quality gate failures or syntax errors); and provide human-friendly colorized ANSI terminal formatting as well as machine-readable JSON and SARIF (Static Analysis Results Interchange Format) outputs for seamless CI/CD integration.
+*Rationale*: Developers expect linters to integrate frictionlessly into terminal workflows, pre-commit hooks, and CI/CD pipelines (like GitHub Actions).
 
 ## Technology Stack & Architectural Constraints
 To guarantee consistency and technical safety, FHIRLint MUST adhere to the following stack boundaries:
-- **Core Platform**: Java 21+ and Spring Boot.
+- **Core Platform**: Java 21+.
 - **Healthcare Libraries**: HAPI FHIR for parsing, model representation, and baseline conformance validation. Custom code MUST NOT recreate standard FHIR resource parsers or serializers.
-- **Data Stores**: PostgreSQL for storing metadata, jobs, and analysis findings. No real PHI is stored.
-- **Dependency Control**: External libraries MUST have clear justification. Any additions to `build.gradle` require architectural justification and team review.
+- **CLI Framework**: Picocli for command-line parsing, ANSI styling, and native compilation compatibility.
+- **Data Stores**: None. The system is strictly stateless and operates entirely in memory. No databases, persistent disk caches, or external network connections are permitted for core linting operations.
+- **Dependency Control**: External libraries MUST have clear justification. Any additions to `build.gradle` require architectural justification and review.
 
 ## Development Workflow & Quality Gates
 Development of FHIRLint is structured around quality and simplicity:
 - **No Untested Claims**: No functional capabilities can be documented, announced, or committed without a corresponding automated integration/unit test in the codebase.
-- **OpenAPI Schema Consistency**: The OpenAPI/Swagger documentation MUST be verified automatically against the actual endpoints during build verification.
+- **CLI & Contract Consistency**: CLI argument parsing, exit codes, and output serialization formats (ANSI table, JSON, SARIF) MUST be verified with automated test suites.
 - **Code Review & Standards**: All pull requests must verify compliance with this Constitution and must run the project check task (`./gradlew check`) to ensure no compile errors, linter violations, or failing tests exist.
 
 ## Governance
@@ -68,4 +64,4 @@ Development of FHIRLint is structured around quality and simplicity:
 3. **Compliance Review**: All future specifications, implementation plans, and Pull Requests (PRs) must explicitly reference compliance with these principles. If a design violates or seeks to bypass any of these rules, it must be rejected or the Constitution itself must be amended first.
 4. **Tooling & Guidance**: Runtime development decisions, style guidelines, and code linting settings must be kept in sync with these principles. Use `../../PRODUCT_SPEC.md` for specification details.
 
-**Version**: 1.0.0 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-25
+**Version**: 2.0.0 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-26

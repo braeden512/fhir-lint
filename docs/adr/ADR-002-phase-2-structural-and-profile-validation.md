@@ -23,7 +23,7 @@ Building a custom parser or schema engine from scratch would violate **Constitut
 Adopt **Option 1: HAPI `FhirValidator` configured with a cached `ValidationSupportChain`**.
 
 ### Configuration Details
-1. **Singleton `FhirContext`**: Instantiated once as a Spring `@Bean` (`FhirContext.forR4()`) to avoid expensive schema re-initialization.
+1. **Thread-Safe Cached `FhirContext`**: Managed as a thread-safe cached instance within `fhir-lint-core` (`FhirContext.forR4Cached()`) to avoid expensive schema re-initialization without requiring a Spring framework container.
 2. **Validation Support Chain**:
    - `DefaultProfileValidationSupport`: Base FHIR R4 StructureDefinitions and ValueSets.
    - `NpmPackageValidationSupport`: Preloaded with the official US Core NPM package (`hl7.fhir.us.core`).

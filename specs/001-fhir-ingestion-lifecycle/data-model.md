@@ -1,131 +1,68 @@
-# Data Model Specification: Phase 1 — FHIR Ingestion & Asynchronous Job Lifecycle
+# Data Model Specification: Phase 1 — In-Memory Dataset & Ingestion Models
 
-This document defines the persistent and transient data models, database schemas, validation invariants, and state transition rules for Phase 1.
-
----
-
-## 1. Entities & Value Objects
-
-### 1.1 `QualityCheckJob` (JPA Entity / Table: `quality_check_jobs`)
-
-Represents an individual asynchronous quality check execution request.
-
-| Field | Type | Nullable | Description | Validation / Constraints |
-| :--- | :--- | :---: | :--- | :--- |
-| `id` | `UUID` | No | Primary key, globally unique job identifier. | Generated via UUID v4. |
-| `status` | `JobStatus` (VARCHAR 32) | No | Current lifecycle status of the job. | Must be one of `QUEUED`, `PROCESSING`, `COMPLETED`, `FAILED`. |
-| `target_profile` | `VARCHAR(64)` | Yes | Optional requested profile constraint (e.g. `US_CORE`, `BASE_R4`). | Defaults to `BASE_R4` if unspecified. |
-| `created_at` | `TIMESTAMP WITH TIME ZONE` | No | Exact timestamp when the request was accepted at the HTTP boundary. | Immutable once created. Set to current UTC time. |
-| `started_at` | `TIMESTAMP WITH TIME ZONE` | Yes | Timestamp when the asynchronous worker began processing. | Must be $\ge$ `created_at`. Null if still `QUEUED`. |
-| `completed_at` | `TIMESTAMP WITH TIME ZONE` | Yes | Timestamp when processing concluded (success or failure). | Must be $\ge$ `started_at`. Null until terminal state reached. |
-| `failure_reason` | `TEXT` | Yes | Human-readable explanation if job reached `FAILED`. | Null if `status != FAILED`. Max 4000 characters. |
-| `resources_analyzed` | `INTEGER` | Yes | Total count of FHIR resources discovered in the payload. | Must be $\ge 0$. Null until `COMPLETED`. |
-| `resource_type_counts` | `JSONB` | Yes | Key-value mapping of FHIR resource types to their occurrence count (e.g. `{"Patient": 1, "Observation": 10}`). | Valid JSON object mapping string to integer. Null until `COMPLETED`. |
-
-> **Privacy Invariant (Constitution Principle V)**: The entity and table MUST NOT contain columns for raw FHIR payload JSON, raw clinical content, or patient-identifiable data.
+This document defines the stateless in-memory data models, inventory metrics, and parsing contracts for Phase 1.
 
 ---
 
-### 1.2 `JobStatus` (Enumeration)
+## 1. Domain Models & Value Objects
 
-Defines the lifecycle state machine of an ingestion job.
-
-```
-          [Client Submit]
-                 │
-                 ▼
-             ┌────────┐
-             │ QUEUED │
-             └────────┘
-                 │ (Worker picks up task)
-                 ▼
-          ┌────────────┐
-          │ PROCESSING │
-          └────────────┘
-            │        │
- (Success)  │        │ (Parsing error or Watchdog timeout)
-            ▼        ▼
-     ┌───────────┐ ┌────────┐
-     │ COMPLETED │ │ FAILED │
-     └───────────┘ └────────┘
-```
-
-- **`QUEUED`**: The submission passed pre-flight boundary validation and was persisted in PostgreSQL. A worker task has been dispatched.
-- **`PROCESSING`**: A worker thread has begun reading and parsing the transient payload with HAPI FHIR.
-- **`COMPLETED`**: Parsing finished successfully. Resource counts and type distribution are recorded. Transient payload memory is released.
-- **`FAILED`**: Parsing encountered an unrecoverable syntax error or the watchdog swept a stalled job. Error details recorded.
-
----
-
-### 1.3 `IngestionMetrics` (Embeddable / Response DTO)
-
-Structured representation of the results extracted during ingestion:
+### 1.1 `ParsedDataset`
+Represents the result of parsing a FHIR R4 JSON input into memory.
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
-| `resourcesAnalyzed` | `int` | Total count of valid resources discovered in the payload. |
-| `resourceTypeCounts` | `Map<String, Integer>` | Distribution of counts indexed by FHIR resource type name. |
-| `durationMs` | `long` | Time elapsed in milliseconds between `startedAt` and `completedAt`. |
+| `rawResource` | `IBaseResource` | Root parsed HAPI FHIR R4 resource (typically a `Bundle` or single resource like `Patient`). |
+| `resources` | `List<IBaseResource>` | Flattened list of all individual resources (unrolled from Bundle entries). |
+| `inventory` | `IngestionInventory` | Extracted inventory metrics (counts and distribution). |
+| `isBundle` | `boolean` | True if the root resource is a Bundle. |
 
 ---
 
-## 2. Relational Database Schema (PostgreSQL DDL)
+### 1.2 `IngestionInventory`
+Structured summary of the resources discovered during ingestion:
 
-```sql
-CREATE TABLE IF NOT EXISTS quality_check_jobs (
-    id UUID PRIMARY KEY,
-    status VARCHAR(32) NOT NULL,
-    target_profile VARCHAR(64) DEFAULT 'BASE_R4',
-    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
-    started_at TIMESTAMP WITH TIME ZONE,
-    completed_at TIMESTAMP WITH TIME ZONE,
-    failure_reason TEXT,
-    resources_analyzed INTEGER,
-    resource_type_counts JSONB,
-    CONSTRAINT chk_job_status CHECK (status IN ('QUEUED', 'PROCESSING', 'COMPLETED', 'FAILED')),
-    CONSTRAINT chk_resources_analyzed CHECK (resources_analyzed IS NULL OR resources_analyzed >= 0)
-);
-
-CREATE INDEX IF NOT EXISTS idx_quality_check_jobs_status_created 
-ON quality_check_jobs (status, created_at);
-
-CREATE INDEX IF NOT EXISTS idx_quality_check_jobs_started_at 
-ON quality_check_jobs (started_at) 
-WHERE status = 'PROCESSING';
-```
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `totalResources` | `int` | Total count of individual FHIR resources in the dataset. |
+| `resourceTypeCounts` | `Map<String, Integer>` | Count per FHIR resource type (e.g., `Patient: 1`, `Observation: 6`). |
+| `parseDurationMs` | `long` | Elapsed time in milliseconds spent parsing the dataset. |
 
 ---
 
-## 3. Data Flow & Memory Lifecycle
+### 1.3 `LintReport`
+The root report object produced by FHIRLint:
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `inventory` | `IngestionInventory` | Resource count breakdown. |
+| `issues` | `List<QualityIssue>` | List of detected quality issues (empty in Phase 1 baseline). |
+| `qualityScore` | `QualityScore` | Deterministic score (100 for clean baseline ingestion). |
+| `status` | `LintStatus` | `PASSED`, `FAILED`, `SYNTAX_ERROR`. |
+| `executionTimeMs` | `long` | Total execution time. |
+
+---
+
+## 2. Ingestion & Memory Lifecycle
 
 ```
-[Client HTTP POST]
+[Input: File / Directory / Stdin]
        │
-       ▼ (Raw JSON InputStream)
+       ▼ (Raw JSON String / Stream)
 ┌──────────────────────────────────────┐
-│ QualityCheckController               │
-│ - Pre-flight JSON check              │
-│ - Extracts `resourceType`            │
-└──────────────────────────────────────┘
-       │ Valid
-       ▼
-┌──────────────────────────────────────┐
-│ QualityCheckService                  │
-│ - Generates UUID                     │
-│ - Saves Job(QUEUED) to PostgreSQL    │
-│ - Hands payload to Async Executor    │
-└──────────────────────────────────────┘
-       │ Returns 202 Accepted immediately
-       ▼
-┌──────────────────────────────────────┐
-│ Async IngestionWorker (Thread Pool)  │
-│ 1. Updates Job to `PROCESSING`       │
-│ 2. Parses via HAPI FHIR IParser      │
-│ 3. Counts resources & types          │
-│ 4. Updates Job to `COMPLETED`        │
-│ 5. Clears all payload references     │
+│ FhirBundleParser (HAPI FHIR)         │
+│ 1. Pre-flight syntax verification    │
+│ 2. Deserializes into IBaseResource   │
+│ 3. Unrolls Bundle.entry resources    │
+│ 4. Extracts IngestionInventory       │
 └──────────────────────────────────────┘
        │
        ▼
-[JVM Garbage Collection reclaims payload memory]
+┌──────────────────────────────────────┐
+│ ParsedDataset (In-Memory Collection) │
+└──────────────────────────────────────┘
+       │ (Passed to CLI Renderers: Table / JSON / SARIF)
+       ▼
+[Process Exits -> Memory Automatically Reclaimed by OS]
 ```
+
+**Privacy Guarantee**: Zero disk caches, zero database persistence. Clinical data exists only in volatile memory during the command run.

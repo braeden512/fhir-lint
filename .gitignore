@@ -21,8 +21,6 @@ hs_err_pid*
 .factorypath
 .project
 .settings
-.springBeans
-.sts4-cache
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
@@ -52,8 +50,6 @@ out/
 .env
 .env.*
 !.env.example
-
-docker-data/
 
 logs/
 *.log

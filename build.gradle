@@ -1,11 +1,10 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '4.1.1'
-	id 'io.spring.dependency-management' version '1.1.7'
+	id 'application'
 }
 
 group = 'com.braeden'
-version = '0.0.1-SNAPSHOT'
+version = '0.1.0-SNAPSHOT'
 
 java {
 	toolchain {
@@ -13,30 +12,43 @@ java {
 	}
 }
 
+application {
+	mainClass = 'com.braeden.fhirlint.cli.FhirLintApplication'
+}
+
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	// HAPI FHIR R4
 	implementation 'ca.uhn.hapi.fhir:hapi-fhir-base:6.10.0'
 	implementation 'ca.uhn.hapi.fhir:hapi-fhir-structures-r4:6.10.0'
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.5'
-	implementation 'org.flywaydb:flyway-core'
-	implementation 'org.flywaydb:flyway-database-postgresql'
-	runtimeOnly 'org.postgresql:postgresql'
-	testImplementation 'org.springframework.boot:spring-boot-starter-actuator-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-validation-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
-	testImplementation 'org.testcontainers:postgresql:1.20.4'
-	testImplementation 'org.testcontainers:junit-jupiter:1.20.4'
+
+	// Picocli CLI Framework
+	implementation 'info.picocli:picocli:4.7.6'
+	annotationProcessor 'info.picocli:picocli-codegen:4.7.6'
+
+	// JSON & Serialization
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2'
+
+	// Logging
+	implementation 'org.slf4j:slf4j-api:2.0.16'
+	implementation 'ch.qos.logback:logback-classic:1.5.16'
+
+	// Testing
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+	testImplementation 'org.assertj:assertj-core:3.27.3'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'com.braeden.fhirlint.cli.FhirLintApplication'
+	}
 }

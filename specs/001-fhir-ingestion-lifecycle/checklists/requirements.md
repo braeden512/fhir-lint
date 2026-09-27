@@ -1,4 +1,4 @@
-# Specification Quality Checklist: Phase 1 — FHIR Ingestion and Asynchronous Job Lifecycle
+# Specification Quality Checklist: Phase 1 — FHIR Dataset Ingestion, Parsing & Boundary Validation
 
 **Purpose**: Validate specification completeness and quality before proceeding to planning
 **Created**: 2026-09-26
@@ -32,6 +32,6 @@
 ## Notes
 
 - All validation checks passed on initial review.
-- Specification strictly decouples functional capabilities from implementation frameworks (Spring Boot, HAPI FHIR, PostgreSQL details reserved for implementation plan).
+- Specification strictly decouples functional capabilities from implementation frameworks (HAPI FHIR, Picocli details reserved for implementation plan).
 - Privacy and zero-retention principles are firmly encoded as functional constraints and verifiable outcomes.
 - Ready for planning (`/speckit-plan`).

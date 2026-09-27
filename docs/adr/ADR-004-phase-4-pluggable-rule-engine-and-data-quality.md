@@ -16,11 +16,11 @@ If these checks are written as ad-hoc procedural `if-else` blocks in service cla
 
 ## Considered Options
 1. **Heavyweight Rule Engine (e.g., Drools / Easy Rules)**: Unnecessary abstraction layer, steep learning curve, hard to debug with HAPI FHIR Java objects.
-2. **Spring Component-based Pluggable Interface (`QualityRule`)**: Standard Spring design pattern where rules implement an interface and are auto-detected by Spring's dependency injection (`List<QualityRule>`).
+2. **Framework-Agnostic Pluggable Interface (`QualityRule`)**: Clean Java interface where rules are registered via an explicit in-memory `RuleRegistry` or Java `ServiceLoader`.
 3. **Pure FHIRPath Rule Scripting**: Defining all rules in external `.fhirpath` files. (Difficult for cross-resource correlation, duplicate matching, and custom scoring).
 
 ## Decision Outcome
-Adopt **Option 2: Spring Component-based Pluggable Interface (`QualityRule`)**.
+Adopt **Option 2: Framework-Agnostic Pluggable Rule Interface (`QualityRule`) with `RuleRegistry`**.
 
 ### Rule Engine Design
 
@@ -66,7 +66,7 @@ The `RuleContext` exposes:
 ## Consequences
 ### Positive
 - Strict separation of concerns: each rule is an isolated, testable class.
-- Extensible: new rules are registered automatically via Spring `@Component`.
+- Extensible: new rules are registered via `RuleRegistry` or Java `ServiceLoader` without requiring a Spring framework container.
 - Powerful: direct access to graph relationships enables deep multi-resource checks.
 
 ### Negative / Trade-offs

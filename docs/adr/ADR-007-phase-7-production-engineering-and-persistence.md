@@ -1,80 +1,45 @@
-# ADR-007: Phase 7 — Production Engineering, Privacy-First Persistence, and Containerization
+# ADR-007: Phase 7 — Standalone Packaging, Native Image Compilation, and CI/CD Automation
 
 ## Status
-Accepted
+Accepted (Amended to reflect ADR-009)
 
 ## Context & Problem Statement
-To demonstrate serious backend engineering, FHIRLint must transition from an in-memory prototype to a robust, reproducible production setup. This encompasses database schema evolution, structured observability, containerization, and rigorous automated testing.
+To make FHIRLint a production-grade developer tool, distribution must be frictionless across different operating environments (macOS, Linux, Windows, CI/CD runners) without requiring users to configure complex runtime dependencies or install a dedicated JVM.
 
-Furthermore, Constitution Principle V mandates strict privacy safeguards: no PHI or submitted healthcare records may be persisted in the database.
+Under the local-first architecture (ADR-009), persistent relational databases and background server daemons are completely eliminated. Production engineering focuses on:
+1. Standalone packaging and distribution formats.
+2. Ahead-of-time (AOT) compilation for instant startup and zero JVM installation.
+3. Automated CI/CD integration gates.
 
 ## Decision Drivers
-1. **Reproducible Infrastructure**: Deployable anywhere via a single `docker compose up` command.
-2. **Versioned Database Migrations**: Relational schema changes must be automated and tracked in source control.
-3. **Integration Testing**: Tests must execute against real PostgreSQL databases in CI using Testcontainers.
-4. **Observability**: Metrics and health checks exposed for modern cloud environments.
+1. **Zero-Friction Installation**: Users can download a single executable file and immediately run `fhir-lint validate bundle.json`.
+2. **Sub-Second Execution**: Instant startup (~15ms) for interactive terminal use and fast CI/CD pipeline steps.
+3. **Multi-Platform Support**: Linux, macOS, and Windows compatibility.
+4. **Automated Quality Gates**: Drop-in GitHub Action for automated pull request quality analysis.
 
 ## Considered Options
-1. **Flyway for Database Migrations**: Mature, SQL-based schema versioning tool natively supported by Spring Boot.
-2. **Hibernate `ddl-auto=update`**: Fragile, unversioned, dangerous for production.
-3. **Docker Compose**: Standard orchestration for local dev running Spring Boot API and PostgreSQL.
+1. **Fat JAR (Shadow / Spring Boot jar)**:
+   - Requires Java 21+ JRE pre-installed on the host. Easy to build, but creates adoption friction for non-Java teams.
+2. **GraalVM Native Image**:
+   - Ahead-of-time compiles Java bytecode into a standalone machine binary.
+   - Zero JVM requirement on user machine; instant startup.
+   - Higher build complexity and memory during compilation.
+3. **Docker Containerized Runner**:
+   - `docker run --rm -v $(pwd):/data fhir-lint validate /data/bundle.json`.
+   - Highly portable across environments with Docker.
 
 ## Decision Outcome
-Adopt **Flyway + PostgreSQL + Docker Compose + Testcontainers + Spring Boot Actuator**.
-
-### Database Schema Design (`db/migration/V1__init_schema.sql`)
-
-```sql
-CREATE TABLE quality_check_jobs (
-    id UUID PRIMARY KEY,
-    status VARCHAR(32) NOT NULL,
-    profile_requested VARCHAR(64) NOT NULL,
-    total_resources INTEGER NOT NULL DEFAULT 0,
-    error_count INTEGER NOT NULL DEFAULT 0,
-    warning_count INTEGER NOT NULL DEFAULT 0,
-    info_count INTEGER NOT NULL DEFAULT 0,
-    overall_score INTEGER,
-    grade VARCHAR(32),
-    category_scores JSONB,
-    error_message TEXT,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    started_at TIMESTAMPTZ,
-    completed_at TIMESTAMPTZ
-);
-
-CREATE INDEX idx_jobs_status_created ON quality_check_jobs(status, created_at DESC);
-
-CREATE TABLE quality_issues (
-    id UUID PRIMARY KEY,
-    job_id UUID NOT NULL REFERENCES quality_check_jobs(id) ON DELETE CASCADE,
-    rule_id VARCHAR(64) NOT NULL,
-    severity VARCHAR(16) NOT NULL,
-    category VARCHAR(32) NOT NULL,
-    resource_type VARCHAR(64),
-    resource_id VARCHAR(64),
-    fhir_path VARCHAR(255),
-    message TEXT NOT NULL,
-    suggestion TEXT,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
-
-CREATE INDEX idx_issues_job_severity ON quality_issues(job_id, severity);
-CREATE INDEX idx_issues_job_category ON quality_issues(job_id, category);
-```
-
-### Docker Compose Architecture
-- `db`: PostgreSQL 16 Alpine container with health check.
-- `app`: Multi-stage build Dockerfile (Eclipse Temurin 21 JRE base), waiting for DB readiness before boot.
-
-### Testcontainers
-Integration tests will spin up an ephemeral PostgreSQL container with `org.testcontainers:postgresql` to test repositories, migrations, and end-to-end API workflows reliably without mocks.
+Adopt **Multi-Tier Distribution**:
+1. **Primary CLI Executable**: GraalVM Native Image binary (`fhir-lint`) distributed via GitHub Releases.
+2. **Universal Fat JAR**: Runnable JAR for JVM environments (`java -jar fhir-lint.jar`).
+3. **GitHub Action**: Official GitHub Action (`uses: fhir-lint/action@v1`) for repository quality gating.
+4. **Lightweight Container**: Minimal distroless container image for containerized CI/CD systems (GitLab CI, Tekton, Argo).
 
 ## Consequences
 ### Positive
-- Fully automated database schema evolution via Flyway.
-- Zero local PostgreSQL installation required for new developers (`docker compose up`).
-- High-fidelity integration tests using Testcontainers matching production environments.
-- Strict non-PHI storage guarantees audited and enforced by schema constraints.
+- Completely removes database operational overhead (zero Flyway, zero PostgreSQL, zero connection pooling).
+- Test execution time drops from minutes (waiting on Testcontainers) to sub-second JUnit 5 test runs.
+- Non-Java developers run the native binary with zero Java runtime installation.
 
 ### Negative / Trade-offs
-- Docker and Testcontainers require Docker daemon running during integration test execution.
+- GraalVM Native Image compilation requires configuring reflection hints for HAPI FHIR model classes and Jackson serializers.

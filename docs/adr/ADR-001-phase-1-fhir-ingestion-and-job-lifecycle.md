@@ -1,7 +1,9 @@
 # ADR-001: Phase 1 — FHIR Ingestion and Asynchronous Job Lifecycle
 
 ## Status
-Accepted
+Superseded by [ADR-009](ADR-009-pivot-to-standalone-cli-and-core-engine.md)
+
+> **Note on Architectural Pivot**: While Phase 1 initially explored asynchronous REST ingestion with PostgreSQL job queues, the project pivoted to a local-first standalone CLI and pure Java core engine (ADR-009). The valuable domain achievements of Phase 1 (HAPI FHIR R4 parsing, bundle entry extraction, strict JSON pre-flight boundary verification, and zero-retention privacy) were preserved and migrated to `com.braeden.fhirlint.core.parser.FhirBundleParser`.
 
 ## Context & Problem Statement
 FHIRLint must accept FHIR R4 resources and Bundles from clients via REST HTTP endpoints. Payloads can range from single resources (<5 KB) to large multi-resource Bundles (1 MB to 10+ MB containing thousands of clinical entries). Running comprehensive linting synchronously in a single HTTP request-response cycle risks request timeouts (HTTP 504), client disconnection, thread starvation, and uncontrolled heap exhaustion.

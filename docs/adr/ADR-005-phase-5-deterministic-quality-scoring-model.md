@@ -57,4 +57,4 @@ $$\text{OverallScore} = \text{round}\left( \sum_{c} w_c \cdot \text{CategoryScor
 - Clear documentation for engineers explaining why their score changed between runs.
 
 ### Negative / Trade-offs
-- Weightings are subjective engineering choices, though clearly documented and configurable in `application.yml`.
+- Weightings are subjective engineering choices, though clearly documented and configurable via programmatic options or CLI flags.

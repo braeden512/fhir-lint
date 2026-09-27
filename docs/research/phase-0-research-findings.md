@@ -303,6 +303,8 @@ To provide a compelling baseline test suite and demonstration asset, we design a
 
 ---
 
+> **Historical Research Note (Pre-Pivot)**: Sections 9 and 10 capture the initial exploration of hosted asynchronous Spring task pools and PostgreSQL job metadata persistence. Under **ADR-009**, this architecture was superseded by a zero-infrastructure, local-first standalone CLI and in-memory Java engine (see Section 11). Sections 9 and 10 are preserved for historical context regarding HAPI heap footprints and zero-retention non-PHI boundaries.
+
 ## 9. Are There Technical Constraints Around Asynchronous Processing?
 
 1. **Memory Footprint of HAPI Data Models**:
@@ -371,9 +373,29 @@ In strict compliance with **Constitution Principle V** (Privacy-Conscious Health
 
 ---
 
+## 11. Local-First Architecture vs. Hosted SaaS: Strategic Trade-Off Analysis
+
+During Phase 0 and Phase 1, an architectural evaluation was conducted comparing a **hosted SaaS REST API** against a **local-first developer tool (standalone CLI and embeddable Java engine)**:
+
+### 11.1 Healthcare Privacy & HIPAA Procurement Friction
+- **The SaaS Barrier**: Deploying a hosted API that receives external FHIR bundles creates severe regulatory and compliance hurdles. In digital health, covered entities and business associates require Business Associate Agreements (BAAs), SOC 2 Type II compliance, external penetration audits, and institutional security reviews before transmitting healthcare payloads across the internet.
+- **The Local-First Solution**: By running locally in the developer's terminal, in a self-hosted CI/CD pipeline, or in-process within their own infrastructure, data never escapes the organization's security boundary. This completely eliminates PHI egress liability, vendor compliance audits, and third-party data leakage risks.
+
+### 11.2 Infrastructure and Operational Costs
+- **The SaaS Problem**: HAPI FHIR object trees and in-memory resource graphs require significant memory (several hundred megabytes per large bundle). A hosted SaaS would require high-memory cloud VMs, multi-tenant job queues, autoscaling, ingress/egress bandwidth, and 24/7 uptime monitoring.
+- **The Local-First Solution**: Running on the consumer's local CPU (developer laptop or GitHub Actions runner) drops all infrastructure and hosting costs to **$0**.
+
+### 11.3 Developer Workflow & "The ESLint of FHIR"
+- Linters are fundamentally developer and CI/CD tools, not remote SaaS services. Developers expect instantaneous feedback via terminal pipes (`cat bundle.json | fhir-lint validate -`), pre-commit hooks, and CI/CD gates that return standard exit codes (`0` or `1`).
+
+### 11.4 Language Strategy: Why Stick With Java?
+- **The HAPI FHIR Advantage**: HAPI FHIR and the official HL7 Core Java Validator represent 10+ years of battle-tested standard compliance. No equivalent exists in TypeScript, Rust, Go, or Python. Recreating full FHIR R4 StructureDefinition parsing, invariant evaluation, and US Core snapshot generation in another language would require months of full-time standards engineering.
+- **Universal CLI Distribution**: Non-Java developers (Python, TypeScript, Go) interact with FHIRLint through the CLI. By packaging the Java engine as a standalone CLI executable (via Picocli, runnable Fat JARs, GraalVM Native Image ahead-of-time compilation, or containerized runners), non-Java teams run FHIRLint with zero JVM friction.
+
+---
+
 ## Summary of Architectural Baseline
 
-With Phase 0 complete:
-1. HAPI FHIR provides the foundation for parsing, model representation, and baseline R4/US Core structure checking.
-2. FHIRLint provides the custom value layer: in-memory graph resolution, temporal consistency checks, pluggable terminology validation, deduplication, and deterministic engineering scoring.
-3. Persistence is strictly restricted to non-PHI job metadata and categorized issue reports.
+1. **Core Engine**: Pure, framework-agnostic Java 21 utilizing HAPI FHIR for parsing, model representation, and baseline R4/US Core structure checking.
+2. **Custom Quality Layer**: In-memory graph resolution, temporal consistency checks, pluggable terminology validation, deduplication, and deterministic engineering scoring.
+3. **Execution Model**: Zero-infrastructure, stateless, local-first CLI and embeddable library with zero persistent database requirements.

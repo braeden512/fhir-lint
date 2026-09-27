@@ -1,12 +1,12 @@
-# Healthcare Data Quality API
+# Healthcare Data Quality Linter & Library
 
 ## 1. Project Overview
 
 ### Working name
 
-**FHIRLint API**
+**FHIRLint**
 
-> A developer-focused API that analyzes FHIR healthcare data and identifies interoperability, integrity, consistency, completeness, and terminology issues before the data reaches downstream applications.
+> A developer-focused command-line tool (CLI) and embeddable Java library that analyzes FHIR healthcare data and identifies interoperability, integrity, consistency, completeness, and terminology issues before the data reaches downstream applications.
 
 ### Problem
 
@@ -26,7 +26,7 @@ Healthcare data can contain:
 
 FHIR Implementation Guides and profiles can impose additional constraints beyond the base FHIR specification. US Core, for example, defines additional constraints for U.S. healthcare interoperability. FHIR also supports `Must Support` requirements and implementation-specific profiles.
 
-The project will build an API that goes beyond basic structural validation and provides a **developer-oriented quality analysis** of a FHIR dataset.
+The project builds a standalone CLI tool and pure Java engine that goes beyond basic structural validation and provides **developer-oriented quality analysis** of a FHIR dataset—locally, instantly, and with zero external infrastructure.
 
 ### Core value proposition
 
@@ -34,7 +34,7 @@ Instead of:
 
 > "Is this valid FHIR?"
 
-the API answers:
+FHIRLint answers:
 
 > **"Can my application safely and reliably use this healthcare data, and what problems should I fix first?"**
 
@@ -44,321 +44,114 @@ the API answers:
 
 ## Primary goals
 
-1. Accept FHIR resources and FHIR Bundles through a REST API.
-2. Validate incoming data against the applicable FHIR specification/profile.
-3. Analyze relationships between resources.
-4. Detect data-quality problems that basic schema validation does not catch.
-5. Produce actionable issues with severity, location, explanation, and suggested remediation.
-6. Produce an overall quality report and category-level metrics.
-7. Support asynchronous processing for larger datasets.
-8. Provide a clean REST API and OpenAPI specification.
-9. Build a small demonstration interface/CLI showing the system in action.
-10. Use the project to demonstrate serious Java/Spring Boot backend engineering.
+1. Accept FHIR resources and Bundles from local files, directories, or standard input (`stdin`).
+2. Validate incoming data against the applicable FHIR specification/profile (e.g. US Core).
+3. Analyze relationships and references between resources using an in-memory graph index.
+4. Detect data-quality problems that basic schema validation does not catch (chronological contradictions, duplicate entities, missing clinical context).
+5. Produce actionable issues with severity, FHIRPath location, explanation, and concrete remediation advice.
+6. Calculate a deterministic overall quality score (0–100) and category-level breakdown.
+7. Provide a high-performance, developer-friendly CLI with colorized ANSI tables, machine-readable JSON, and SARIF output for GitHub code scanning.
+8. Support standard UNIX conventions (pipeable stdin, exit codes `0` for success and `1` for quality gate failure).
+9. Provide an embeddable, framework-agnostic Java library API (`FhirLinter`) for direct integration into ETL and ingestion pipelines.
+10. Operate with complete zero-retention privacy (in-memory processing, zero external databases, zero cloud hosting costs).
 
 ## Secondary goals (Out of scope for now)
 
 Eventually support:
 
-- Multiple FHIR versions
+- Multiple FHIR versions (R4B, R5)
 - Additional Implementation Guides/profiles
-- Custom quality rules
-- Quality checks in CI/CD
-- Webhooks
-- Historical quality tracking
-- Dataset comparison
-- Automated remediation suggestions
-- Healthcare data ingestion/normalization
+- User-defined custom quality rules via DSL or scripts
+- Pre-commit git hook generators
+- GraalVM Native Image compilation for single-file binary distribution
+- Dataset comparison / diffing
 
 ---
 
 # 3. Non-Goals
 
-The initial version will NOT attempt to:
+FHIRLint will NOT attempt to:
 
-- Replace a full EHR
-- Store real patient data
+- Act as a hosted SaaS web application or remote cloud API
+- Store or persist real patient data or raw FHIR payloads
+- Replace a full EHR or clinical repository
 - Provide clinical decision support
 - Determine whether a medical treatment is clinically appropriate
-- Make diagnoses
+- Make medical diagnoses
 - Guarantee that healthcare data is medically correct
 - Become a complete FHIR server
-- Support every FHIR resource immediately
-- Build a general-purpose AI medical assistant
-- Replace established FHIR conformance validators
+- Replace established FHIR conformance validators (it builds on top of HAPI FHIR)
 
-The project is a **developer infrastructure/data-quality tool**, not a clinical product.
+The project is a **developer infrastructure and data-quality linter**, not a clinical product or cloud hosting service.
 
 ---
 
 # 4. Target User
 
-The primary user is a software developer or engineering team working with healthcare data.
+The primary user is a software engineer, data engineer, or integration specialist working with healthcare data.
 
 Example:
 
-> A healthcare application receives a 20,000-resource FHIR Bundle from an external system. Before loading it into the application's database, the engineering team sends it to FHIRLint.
-
-The API responds:
+> An engineering team receives a 20,000-resource FHIR Bundle from an external hospital system. Before loading it into their ingestion pipeline or database, they run `fhir-lint validate bundle.json` in their CI/CD workflow:
 
 ```text
-Quality Score: 84/100
+Quality Score: 84/100 (ACCEPTABLE)
 
 Resources analyzed: 20,143
-
-Errors:       7
-Warnings:    43
-Informational: 91
+Errors: 7 | Warnings: 43 | Informational: 91
 
 Critical findings:
-- 3 broken Patient references
-- 2 invalid terminology codes
-- 1 duplicate Patient
-- 1 Observation missing required relationship
+- 3 broken Patient references (Observation.subject -> Patient/999)
+- 2 invalid terminology codes (Observation.code)
+- 1 duplicate Patient (identical SSN identifier)
+- 1 Encounter period inverted (end before start)
 
-Completeness: 91%
-Referential Integrity: 98%
-Terminology: 94%
-Consistency: 96%
+Category Breakdown:
+- Referential Integrity: 98%
+- Structural Conformance: 100%
+- Profile Conformance:    92%
+- Consistency:            96%
+- Terminology:            94%
+- Completeness:           91%
 ```
 
-The developer can then inspect each issue.
+The CI build can automatically pass or fail based on `--min-score 80` or `--fail-on error`.
 
 ---
 
 # 5. Core Concept: Quality Is More Than Validation
 
-The project will explicitly separate different categories of quality.
+FHIRLint explicitly separates different categories of data quality.
 
 ## 5.1 Structural validity
-
-Does the resource conform to the FHIR structure?
-
-Examples:
-
-- Invalid resource type
-- Invalid datatype
-- Invalid cardinality
-- Invalid field format
-- Invalid Bundle structure
-
-This layer should leverage established FHIR validation tooling rather than reinventing the FHIR specification.
-
----
+Does the resource conform to the FHIR R4 schema structure (datatypes, cardinality, fields)? Leverages HAPI FHIR parser and validator.
 
 ## 5.2 Profile/conformance validation
-
-Does the resource conform to a specified profile or Implementation Guide?
-
-Initial target:
-
-**FHIR R4 + US Core**
-
-US Core is based on FHIR R4 and defines additional constraints and interactions for U.S. healthcare interoperability.
-
-The system should eventually allow the caller to specify a profile:
-
-```json
-{
-  "profile": "US_CORE"
-}
-```
-
-Future possibilities:
-
-```text
-US_CORE
-CUSTOM_PROFILE
-CUSTOM_IMPLEMENTATION_GUIDE
-```
-
----
+Does the resource conform to the specified Implementation Guide (initial target: **FHIR R4 + US Core**)? Evaluates slices, invariants, and Must Support elements.
 
 ## 5.3 Referential integrity
-
-Analyze relationships between resources.
-
-Example:
-
-```text
-Observation/123
-      |
-      └── subject → Patient/999
-                         X
-                    not found
-```
-
-Issue:
-
-```json
-{
-  "severity": "ERROR",
-  "category": "REFERENTIAL_INTEGRITY",
-  "resource": "Observation/123",
-  "path": "Observation.subject",
-  "message": "Referenced Patient/999 does not exist in the dataset."
-}
-```
-
-This is one of the most important custom components of the project.
-
----
+Analyzes relationships across resources within the dataset.
+- Target resource does not exist (broken local reference).
+- Target resource type mismatch.
+- Orphaned resources (observations without patient/encounter connections).
 
 ## 5.4 Data completeness
-
-Identify missing information that could affect downstream processing.
-
-Examples:
-
-```text
-Patient missing birthDate
-Observation missing subject
-MedicationRequest missing dosage information
-Encounter missing participant information
-```
-
-Important distinction:
-
-**Missing data is not automatically an error.**
-
-The system must distinguish between:
-
-- Required
-- Recommended
-- Optional
-- Contextually expected
-
-FHIR's profiling system allows implementation guides to define constraints and `Must Support` expectations, so completeness should be evaluated relative to the selected profile rather than using arbitrary universal rules.
-
----
+Identifies missing information that affects downstream usability (e.g. Observation missing subject or value/dataAbsentReason).
 
 ## 5.5 Terminology quality
-
-Analyze coded healthcare data.
-
-Potential initial terminology targets:
-
-- LOINC
-- SNOMED CT
-- RxNorm
-- ICD-10-CM
-
-Potential checks:
-
-- Invalid code
-- Unknown code system
-- Deprecated code
-- Incorrect value set
-- Code/value mismatch
-- Missing coding system
-
-Terminology validation should initially focus on a manageable subset using a pluggable `TerminologyService` abstraction. For MVP, an in-memory, static file-backed provider validates against a core subset of essential codes (such as US Core value sets, administrative gender, and core LOINC/RxNorm codes) without requiring an external licensed terminology server or database.
-
----
+Analyzes coded healthcare data (LOINC, SNOMED CT, RxNorm, ICD-10-CM, administrative gender). Checks for invalid code systems, missing systems, and invalid fixed value sets.
 
 ## 5.6 Cross-resource consistency
-
-Look for problems that cannot be detected by analyzing resources individually.
-
-Examples:
-
-```text
-Encounter:
-  start = 2026-09-20
-  end   = 2026-09-18
-```
-
-or:
-
-```text
-MedicationRequest:
-  authoredOn = 2026-09-20
-
-Encounter:
-  start = 2026-10-05
-```
-
-or:
-
-```text
-DiagnosticReport
-      |
-      └── result → Observation/123
-
-Observation/123
-      |
-      └── status = entered-in-error
-```
-
-The goal is to identify suspicious relationships and inconsistencies, not to make clinical judgments.
-
----
+Identifies chronological inversions (encounter end before start, procedures before patient birth date) and status contradictions (diagnostic reports referencing entered-in-error observations).
 
 ## 5.7 Duplicate detection
-
-Identify resources that appear to represent the same underlying record.
-
-Initial candidates:
-
-- Patients
-- Medications
-- Conditions
-- Observations
-
-Example:
-
-```text
-Patient/123
-Patient/984
-
-Same:
-  name
-  date of birth
-  identifier
-
-Potential duplicate: 94% similarity
-```
-
-This can initially use deterministic rules and later evolve into more sophisticated matching.
+Identifies resources that represent the same underlying entity (identical identifiers like SSN, or matching demographics).
 
 ---
 
-# 6. Quality Model
+# 6. Quality Model & Scoring Algorithm
 
-The API should not initially pretend that there is a scientifically universal "healthcare data quality score."
-
-Instead, the score will be explicitly defined by the project.
-
-Example:
-
-```text
-Overall Quality
-├── Structural Integrity
-├── Profile Conformance
-├── Referential Integrity
-├── Completeness
-├── Terminology
-└── Cross-Resource Consistency
-```
-
-Each category receives a score.
-
-Example:
-
-```json
-{
-  "overallScore": 84,
-  "categories": {
-    "structural": 100,
-    "profileConformance": 92,
-    "referentialIntegrity": 97,
-    "completeness": 81,
-    "terminology": 88,
-    "consistency": 76
-  }
-}
-```
-
-The scoring algorithm will be documented, deterministic, and reproducible.
+The quality score is explicitly documented, deterministic, and reproducible.
 
 ### 6.1 Category Scoring Formula
 
@@ -372,7 +165,6 @@ $$\text{CategoryScore}_c = \text{round}\Big(\max\big(0, 100 \times (1 - \min(1.0
 
 ### 6.2 Overall Weighted Score
 
-The overall score is a weighted sum across categories:
 - **Referential Integrity**: 25% ($w = 0.25$)
 - **Structural Conformance**: 20% ($w = 0.20$)
 - **Profile Conformance**: 20% ($w = 0.20$)
@@ -389,15 +181,11 @@ $$\text{OverallScore} = \text{round}\left( \sum_{c} w_c \cdot \text{CategoryScor
 - **50–74**: `DEGRADED` — Contains broken references or chronological inconsistencies.
 - **0–49**: `CRITICAL` — Severe structural or relational failures; ingestion should halt.
 
-The score is intended as an **engineering quality indicator**, not a clinical or regulatory measurement.
-
 ---
 
 # 7. Issue Model
 
-Every detected issue should have a consistent structure.
-
-Example:
+Every detected issue has a consistent, actionable structure:
 
 ```json
 {
@@ -407,205 +195,137 @@ Example:
   "resourceType": "Observation",
   "resourceId": "obs-123",
   "path": "subject.reference",
-  "message": "Referenced Patient/p-999 does not exist.",
+  "message": "Referenced Patient/p-999 does not exist in dataset.",
   "ruleId": "REF-001",
   "suggestion": "Verify the Patient reference or include Patient/p-999 in the dataset."
 }
 ```
 
-## Severity levels
+---
 
-### ERROR
+# 8. User Interfaces: CLI & Java Library API
 
-Data is invalid or likely to cause downstream failure.
+## 8.1 Command-Line Interface (CLI)
 
-### WARNING
+The CLI is the primary user-facing interface for terminal users and CI/CD pipelines.
 
-Data may be usable but presents a meaningful quality concern.
+### Usage
+```bash
+fhir-lint validate <file|directory|-> [options]
+```
 
-### INFO
+### Options
+- `-p, --profile <NAME>`: Target validation profile (`BASE_R4`, `US_CORE`). Default: `US_CORE`.
+- `-f, --format <FORMAT>`: Output format: `table` (default ANSI color table), `json`, `sarif`.
+- `--min-score <0-100>`: Minimum passing score. Exits with code `1` if the overall score is below this threshold.
+- `--fail-on <SEVERITY>`: Exit with code `1` if any issue of this severity or higher is detected (`error`, `warning`). Default: `error`.
+- `-v, --verbose`: Display detailed issue listings in terminal table output.
+- `-o, --output <PATH>`: Write output to a file instead of stdout.
 
-Useful observation that does not necessarily indicate a problem.
+### Exit Codes
+- `0`: Quality check passed (score >= `--min-score` and no issues violating `--fail-on`).
+- `1`: Quality check failed quality gate thresholds.
+- `2`: Syntax or invocation error (malformed JSON, file not found, invalid flags).
+
+### Example Terminal Invocations
+```bash
+# Validate a single bundle with default table output
+fhir-lint validate sample-data/messy/messy-bundle.json
+
+# Validate in CI with a score threshold and JSON output
+fhir-lint validate bundle.json --format json --min-score 85
+
+# Validate via UNIX pipe (stdin)
+cat bundle.json | fhir-lint validate - --format table
+
+# Generate SARIF for GitHub Code Scanning
+fhir-lint validate bundle.json --format sarif -o results.sarif
+```
 
 ---
 
-# 8. API Design
+## 8.2 Programmatic Java Library API
 
-## Submit a quality check
+For Java applications and ingestion pipelines (Spring Batch, Apache Camel, Kafka consumers), `fhir-lint-core` provides a fluent in-memory API:
 
-```http
-POST /api/v1/quality-checks
-```
+```java
+import com.braeden.fhirlint.core.FhirLinter;
+import com.braeden.fhirlint.core.model.LintReport;
+import com.braeden.fhirlint.core.model.ValidationProfile;
 
-Request:
+// Initialize linter
+FhirLinter linter = FhirLinter.create()
+    .withProfile(ValidationProfile.US_CORE);
 
-```json
-{
-  "profile": "US_CORE",
-  "bundle": {
-    "resourceType": "Bundle",
-    "type": "collection",
-    "entry": []
-  }
+// Lint from file, string, or HAPI IBaseResource
+LintReport report = linter.lint(new File("bundle.json"));
+
+// Inspect results
+int score = report.getQualityScore().getOverallScore();
+if (report.hasErrors()) {
+    report.getIssues().forEach(issue -> {
+        System.err.println(issue.getRuleId() + ": " + issue.getMessage());
+    });
 }
-```
-
-Response:
-
-```json
-{
-  "id": "qc_12345",
-  "status": "PROCESSING"
-}
-```
-
----
-
-## Retrieve quality check
-
-```http
-GET /api/v1/quality-checks/{id}
-```
-
-Response:
-
-```json
-{
-  "id": "qc_12345",
-  "status": "COMPLETED",
-  "qualityScore": 84,
-  "resourcesAnalyzed": 1842,
-  "errors": 7,
-  "warnings": 43,
-  "info": 91
-}
-```
-
----
-
-## Retrieve issues
-
-```http
-GET /api/v1/quality-checks/{id}/issues
-```
-
-Support filtering:
-
-```text
-?severity=ERROR
-?category=REFERENTIAL_INTEGRITY
-?resourceType=Observation
-```
-
----
-
-## Retrieve category summary
-
-```http
-GET /api/v1/quality-checks/{id}/summary
-```
-
----
-
-## Retrieve individual issue
-
-```http
-GET /api/v1/quality-checks/{id}/issues/{issueId}
 ```
 
 ---
 
 # 9. Processing Architecture
 
-Initial architecture:
+```mermaid
+flowchart TD
+    subgraph Inputs ["Input Stream"]
+        File["Local File / Directory"]
+        Stdin["UNIX Stdin Pipe"]
+        JavaApp["Java App Memory"]
+    end
 
-```text
-                    REST API
-                       |
-                       v
-              Quality Check Service
-                       |
-                       v
-              ┌─────────────────┐
-              │ FHIR Parser     │
-              └────────┬────────┘
-                       |
-                       v
-              ┌─────────────────┐
-              │ FHIR Validator  │
-              └────────┬────────┘
-                       |
-                       v
-              ┌─────────────────┐
-              │ Resource Index  │
-              └────────┬────────┘
-                       |
-          ┌────────────┼────────────┐
-          v            v            v
-      Reference    Terminology   Consistency
-       Rules         Rules         Rules
-          |            |            |
-          └────────────┼────────────┘
-                       v
-                Issue Aggregator
-                       |
-                       v
-                 Quality Scorer
-                       |
-                       v
-                 Report Storage
+    subgraph CoreEngine ["fhir-lint-core Engine"]
+        Parser["HAPI FHIR R4 Parser"]
+        Preflight["Syntactic Pre-flight Verifier"]
+        Graph["Resource Graph & Reference Index"]
+        Validator["Structural & US Core Validator"]
+        Rules["Pluggable Quality Rules Engine"]
+        Scorer["Deterministic Scorer"]
+    end
+
+    subgraph Outputs ["Renderers & Sinks"]
+        Table["ANSI Colorized Console Table"]
+        JSON["Structured JSON Report"]
+        SARIF["SARIF 2.1.0 (GitHub PR Annotations)"]
+        Obj["In-Memory LintReport Object"]
+    end
+
+    File --> Parser
+    Stdin --> Parser
+    JavaApp --> Parser
+    Parser --> Preflight
+    Preflight --> Graph
+    Graph --> Validator
+    Graph --> Rules
+    Validator --> Scorer
+    Rules --> Scorer
+    Scorer --> Table
+    Scorer --> JSON
+    Scorer --> SARIF
+    Scorer --> Obj
 ```
-
-The architecture should be modular enough that new rule types can be added without modifying the core processing pipeline.
 
 ---
 
 # 10. Rule Engine Architecture
 
-A major design decision:
-
-**Quality rules should be pluggable.**
-
-Instead of writing:
-
-```java
-if (something) {
-    createIssue();
-}
-```
-
-throughout the codebase, define a rule abstraction.
-
-Conceptually:
+Quality rules are pluggable and implement a clean, framework-agnostic interface:
 
 ```java
 public interface QualityRule {
-
-    RuleResult evaluate(QualityContext context);
-
+    String getId();
+    String getDescription();
+    IssueCategory getCategory();
+    Severity getSeverity();
+    List<QualityIssue> evaluate(LintContext context);
 }
-```
-
-Potential implementations:
-
-```text
-BrokenReferenceRule
-MissingRequiredFieldRule
-InvalidTerminologyRule
-DuplicateResourceRule
-DateConsistencyRule
-ProfileConformanceRule
-```
-
-Each rule should declare:
-
-```text
-Rule ID
-Category
-Severity
-Applicable resource types
-Evaluation logic
-Description
 ```
 
 ### 10.1 MVP Rule Catalog
@@ -613,7 +333,7 @@ Description
 | Rule ID | Category | Severity | Applicable Types | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | `REF-001` | `REFERENTIAL_INTEGRITY` | `ERROR` | Any with `Reference` | Target resource does not exist in the dataset (broken local/UUID reference). |
-| `REF-002` | `REFERENTIAL_INTEGRITY` | `ERROR` | Any with `Reference` | Target resource type does not match field expectations (e.g. Encounter pointing to non-Encounter). |
+| `REF-002` | `REFERENTIAL_INTEGRITY` | `ERROR` | Any with `Reference` | Target resource type does not match field expectations. |
 | `REF-003` | `REFERENTIAL_INTEGRITY` | `WARNING` | Observation, Condition | Resource is orphaned without connection to a Patient or Encounter. |
 | `CONS-001`| `CONSISTENCY` | `ERROR` | Encounter, Coverage | Chronological inversion: `period.end` occurs before `period.start`. |
 | `CONS-002`| `CONSISTENCY` | `ERROR` | MedicationRequest, Observation | Clinical event occurs prior to Patient's `birthDate`. |
@@ -627,731 +347,72 @@ Description
 | `COMP-001`| `COMPLETENESS` | `ERROR` | Observation, Condition | Clinical resource missing required `subject` reference. |
 | `COMP-002`| `COMPLETENESS` | `WARNING` | Observation | Observation has neither a `value[x]` nor a `dataAbsentReason`. |
 
-This makes the system predictable, well-defined, and much easier to extend.
-
 ---
 
 # 11. Technology Stack
 
-## Backend
-
-**Java 21+**
-
-Reason:
-
-- Modern Java
-- Strong typing
-- Excellent ecosystem
-- Directly relevant to user's professional development
-
-## Framework
-
-**Spring Boot**
-
-Primary technologies:
-
-- Spring Web
-- Spring Validation
-- Spring Data JPA
-- Spring Boot Actuator
-- Spring Security later
-
-Spring Boot will be the primary application framework rather than building a minimal Java HTTP server.
-
----
-
-## FHIR libraries
-
-Use an established Java FHIR implementation rather than manually parsing the entire FHIR specification.
-
-Primary candidate:
-
-**HAPI FHIR**
-
-Responsibilities:
-
-- FHIR resource parsing
-- FHIR model representation
-- FHIR validation
-- Profile support
-
-The project should build custom quality-analysis functionality around established FHIR infrastructure rather than attempting to recreate the FHIR specification.
-
----
-
-## Database
-
-**PostgreSQL**
-
-Use PostgreSQL for:
-
-- Quality-check jobs
-- Results
-- Issues
-- Rule metadata
-- API users/API keys later
-- Processing metadata
-- Audit information
-
-Do not initially attempt to make PostgreSQL the primary FHIR repository.
-
-To comply with privacy requirements, raw submitted FHIR payloads MUST NOT be stored in the database. PostgreSQL stores only anonymized job execution metadata, scores, and issue reports (which reference resource IDs and FHIRPath locations, without persisting raw PHI/payload body).
-
----
-
-## Caching
-
-Potential future:
-
-**Redis**
-
-Use only when an actual performance requirement emerges.
-
-Potential use cases:
-
-- terminology lookups
-- repeated validation
-- job status
-- rate limiting
-
-Redis is not required for MVP.
-
----
-
-## Async processing
-
-MVP:
-
-**Spring's asynchronous/job capabilities**
-
-Future:
-
-**RabbitMQ or Kafka**
-
-Large FHIR datasets should eventually be processed asynchronously.
-
-Do not introduce Kafka merely to make the architecture look impressive.
-
----
-
-## API documentation
-
-**OpenAPI / Swagger**
-
-The API should be fully documented and interactable through Swagger UI.
-
----
-
-## Testing
-
-- JUnit 5
-- Mockito where appropriate
-- Spring Boot integration tests
-- Testcontainers
-- PostgreSQL integration tests
-- API-level tests
-
-Quality rules should have extensive unit tests using intentionally broken FHIR examples.
-
----
-
-## Build
-
-**Gradle**
-
-Use Gradle for dependency management and builds.
-
----
-
-## Containers
-
-**Docker**
-
-The application should be runnable with:
-
-```bash
-docker compose up
-```
-
-Initial Compose environment:
-
-```text
-FHIRLint API
-PostgreSQL
-```
-
-Add other infrastructure only when needed.
+- **Language**: Java 21+
+- **Healthcare Libraries**: HAPI FHIR (`hapi-fhir-base`, `hapi-fhir-structures-r4`)
+- **CLI Framework**: Picocli (`info.picocli:picocli`)
+- **JSON Processing**: Jackson (`jackson-databind`)
+- **Logging**: SLF4J + Logback
+- **Build Tool**: Gradle (with `application` and `java` plugins)
+- **Testing**: JUnit 5, AssertJ
+- **Distribution Options**: Runnable Fat JAR, GraalVM Native Image executable, GitHub Action
 
 ---
 
 # 12. Repository Structure
 
-Initial structure:
-
 ```text
 fhir-lint/
-│
 ├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com.fhir-lint/
-│   │   │       ├── api/
-│   │   │       ├── quality/
-│   │   │       ├── validation/
-│   │   │       ├── terminology/
-│   │   │       ├── rules/
-│   │   │       ├── scoring/
-│   │   │       ├── persistence/
-│   │   │       └── config/
-│   │   │
-│   │   └── resources/
-│   │       ├── application.yml
-│   │       └── ...
-│   │
-│   └── test/
-│
+│   ├── main/java/com/braeden/fhirlint/
+│   │   ├── cli/                   # Picocli command-line app & output renderers
+│   │   │   ├── FhirLintApplication.java
+│   │   │   └── renderer/          # ANSI table, JSON, SARIF renderers
+│   │   └── core/                  # Pure Java engine (zero framework dependencies)
+│   │       ├── FhirLinter.java    # Fluent Java entry point
+│   │       ├── parser/            # HAPI FHIR parser & Bundle unroller
+│   │       ├── model/             # Issue, Score, Category, LintReport models
+│   │       ├── graph/             # In-memory resource relationship index
+│   │       ├── rules/             # Quality rules catalog
+│   │       └── scoring/           # Deterministic quality scoring engine
+│   └── test/java/com/braeden/fhirlint/
+│       ├── cli/                   # CLI execution & output tests
+│       └── core/                  # Core engine unit tests
 ├── sample-data/
-│   ├── valid/
-│   ├── invalid/
-│   └── edge-cases/
-│
+│   ├── clean/clean-bundle.json
+│   └── messy/messy-bundle.json
 ├── docs/
-│
-├── docker-compose.yml
-├── Dockerfile
+│   ├── adr/                       # Architecture Decision Records
+│   └── research/                  # Technical research & findings
 ├── build.gradle
 └── README.md
 ```
-
-The exact package structure can evolve as implementation begins.
 
 ---
 
 # 13. Development Phases
 
-## Phase 0 — Research & Architecture (Status: Completed)
-
-Goal:
-
-Understand the FHIR ecosystem well enough to avoid building something redundant or incorrectly.
-
-Tasks:
-
-- [x] Study FHIR R4 resource model
-- [x] Study Bundles
-- [x] Study profiles & US Core
-- [x] Study `Must Support`
-- [x] Study HAPI FHIR validation engine
-- [x] Identify existing validation capabilities & gaps
-- [x] Define what FHIRLint adds beyond existing validators
-- [x] Design reference resolution & in-memory graph indexing
-- [x] Establish deterministic multi-category quality scoring model
-- [x] Design privacy-preserving PostgreSQL persistence (no PHI stored)
-- [x] Formulate ADRs for all subsequent project phases
-
-Deliverables:
-
-- [Phase 0 Research & Technical Findings](file:///home/braeden/projects/fhir-lint/docs/research/phase-0-research-findings.md)
-- [Architecture Decision Records (ADRs) Index](file:///home/braeden/projects/fhir-lint/docs/adr/README.md)
-- [Synthetic Messy Bundle Dataset](file:///home/braeden/projects/fhir-lint/sample-data/messy/messy-bundle.json)
-- [Clean Benchmark Bundle Dataset](file:///home/braeden/projects/fhir-lint/sample-data/clean/clean-bundle.json)
-
----
-
-# Phase 1 — FHIR Ingestion
-
-> **Architecture Decision Record**: [ADR-001: Phase 1 — FHIR Ingestion and Asynchronous Job Lifecycle](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-001-phase-1-fhir-ingestion-and-job-lifecycle.md)
-
-Goal:
-
-Build a working Spring Boot API that accepts FHIR.
-
-Implement:
-
-```http
-POST /api/v1/quality-checks
-```
-
-Support:
-
-- Single resources
-- Bundles
-- JSON
-- FHIR R4
-
-Store:
-
-- Job
-- Status
-- Input metadata
-- Results
-
-Do not build custom quality rules yet.
-
----
-
-# Phase 2 — Structural Validation
-
-> **Architecture Decision Record**: [ADR-002: Phase 2 — Structural and Profile Validation with HAPI FHIR](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-002-phase-2-structural-and-profile-validation.md)
-
-Integrate HAPI FHIR validation.
-
-Return:
-
-- Errors
-- Warnings
-- Resource/path information
-- Validation messages
-
-Goal:
-
-Establish a baseline:
-
-> "This is what existing FHIR validation says."
-
-This is important because the project's differentiation should be built **on top of** established validation.
-
----
-
-# Phase 3 — Referential Integrity
-
-> **Architecture Decision Record**: [ADR-003: Phase 3 — Referential Integrity and Resource Graph Indexing](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-003-phase-3-referential-integrity-and-resource-graph.md)
-
-Build the resource graph.
-
-Example:
-
-```text
-Patient/1
-   ↑
-   |
-Observation/5
-   |
-   └── Encounter/3
-```
-
-Detect:
-
-- Missing references
-- Broken references
-- Orphaned resources
-- Invalid reference types
-- Duplicate identifiers
-
-This should be one of the first major custom features.
-
----
-
-# Phase 4 — Data Quality Rules
-
-> **Architecture Decision Record**: [ADR-004: Phase 4 — Pluggable Rule Engine and Data-Quality Checks](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-004-phase-4-pluggable-rule-engine-and-data-quality.md)
-
-Implement the rule engine.
-
-Initial rules:
-
-### Completeness
-
-- Missing important fields
-- Missing profile-required information
-- Missing recommended relationships
-
-### Consistency
-
-- Invalid date relationships
-- Conflicting values
-- Invalid resource relationships
-
-### Duplicates
-
-- Exact duplicate resources
-- Duplicate identifiers
-- Basic Patient similarity
-
-### Terminology
-
-Start with a limited number of terminology systems.
-
-Do not attempt to implement the entire medical terminology ecosystem.
-
----
-
-# Phase 5 — Quality Scoring
-
-> **Architecture Decision Record**: [ADR-005: Phase 5 — Deterministic Multi-Category Quality Scoring Model](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-005-phase-5-deterministic-quality-scoring-model.md)
-
-Create:
-
-```text
-Overall Score
-Category Scores
-Issue Counts
-Resource Counts
-```
-
-Build a deterministic scoring algorithm.
-
-Document exactly how scores are calculated.
-
-Example:
-
-```text
-Structural:       100
-Conformance:       92
-References:        98
-Completeness:      81
-Terminology:       88
-Consistency:       76
-
-Overall:           84
-```
-
----
-
-# Phase 6 — Developer Experience
-
-> **Architecture Decision Record**: [ADR-006: Phase 6 — Developer Experience, OpenAPI Specification, and CLI Client](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-006-phase-6-developer-experience-and-api-design.md)
-
-Build the polished API experience.
-
-Implement:
-
-- Swagger/OpenAPI
-- Good error responses
-- Pagination
-- Filtering
-- Job status
-- API documentation
-- Example requests
-- Example datasets
-
-Add a CLI or lightweight frontend.
-
-The frontend is **not the product**.
-
-It exists to make the backend easy to demonstrate.
-
----
-
-# Phase 7 — Production Engineering
-
-> **Architecture Decision Record**: [ADR-007: Phase 7 — Production Engineering, Privacy-First Persistence, and Containerization](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-007-phase-7-production-engineering-and-persistence.md)
-
-Once the core system works:
-
-- Docker
-- Testcontainers
-- integration testing
-- structured logging
-- metrics
-- health checks
-- request IDs
-- rate limiting
-- authentication/API keys
-- database migrations
-- CI/CD
-
-Potential architecture:
-
-```text
-Client
-  |
-  v
-API
-  |
-  v
-Job Queue
-  |
-  +---- Validator
-  |
-  +---- Quality Rules
-  |
-  +---- Terminology
-  |
-  v
-Results DB
-```
-
----
-
-# Phase 8 — Advanced Features
-
-> **Architecture Decision Record**: [ADR-008: Phase 8 — Advanced Extensibility, CI/CD Integration, and Dataset Comparison](file:///home/braeden/projects/fhir-lint/docs/adr/ADR-008-phase-8-advanced-extensibility-and-monitoring.md)
-
-Only after the core project is solid.
-
-Potential additions:
-
-### Custom Rules
-
-Allow developers to define organization-specific quality rules.
-
-### CI/CD Integration
-
-```bash
-fhir-lint validate bundle.json --fail-on error
-```
-
-Example:
-
-```text
-Quality score: 91
-
-Errors: 0
-Warnings: 12
-
-BUILD PASSED
-```
-
-Or:
-
-```text
-Quality score: 63
-
-Errors: 4
-
-BUILD FAILED
-```
-
-### Dataset Comparison
-
-```http
-POST /api/v1/compare
-```
-
-Identify what changed between two healthcare datasets.
-
-### Webhooks
-
-Notify clients when asynchronous validation completes.
-
-### Historical Quality
-
-Track:
-
-```text
-Dataset A
-  ↓
-Quality: 72
-
-Dataset B
-  ↓
-Quality: 81
-
-Dataset C
-  ↓
-Quality: 94
-```
-
-This could eventually make the system useful as a **healthcare data-quality monitoring platform**.
-
----
-
-# 14. Demo Strategy
-
-The final demo should tell a simple story.
-
-## Step 1
-
-Upload a deliberately messy FHIR Bundle.
-
-## Step 2
-
-FHIRLint analyzes it.
-
-## Step 3
-
-Show:
-
-```text
-84 / 100
-
-7 Errors
-43 Warnings
-91 Info
-```
-
-## Step 4
-
-Click into the errors.
-
-Example:
-
-```text
-ERROR REF-001
-
-Observation/123
-
-subject.reference = Patient/999
-
-Patient/999 does not exist.
-
-Suggested action:
-Verify the patient reference or include the
-referenced Patient resource.
-```
-
-## Step 5
-
-Show the resource relationship graph.
-
-## Step 6
-
-Fix the data.
-
-## Step 7
-
-Run it again.
-
-```text
-84 → 97
-```
-
-That before/after demonstration is the key visual payoff.
-
----
-
-# 15. Sample Dataset Strategy
-
-Do not use real patient data.
-
-Create synthetic datasets specifically designed to exercise the rules.
-
-Examples:
-
-### Dataset A — Clean
-
-Valid FHIR Bundle with good relationships.
-
-Expected:
-
-```text
-95–100 quality
-```
-
-### Dataset B — Broken References
-
-Missing Patient/Observation references.
-
-Expected:
-
-```text
-multiple referential integrity errors
-```
-
-### Dataset C — Missing Data
-
-Resources with missing important fields.
-
-Expected:
-
-```text
-completeness warnings
-```
-
-### Dataset D — Duplicate Patients
-
-Two highly similar patient records.
-
-Expected:
-
-```text
-duplicate warning
-```
-
-### Dataset E — Terminology Problems
-
-Invalid or inconsistent codes.
-
-Expected:
-
-```text
-terminology warnings/errors
-```
-
-### Dataset F — "Technically Valid, Practically Bad"
-
-This should be the flagship dataset.
-
-It should pass basic FHIR validation while containing multiple cross-resource quality problems.
-
-This dataset demonstrates **why FHIRLint exists beyond a normal FHIR validator**.
-
----
-
-# 16. Important Architectural Principle
-
-The project should be designed around:
-
-> **Existing standards first, custom intelligence second.**
-
-Do not rebuild:
-
-- FHIR parsing
-- FHIR schemas
-- FHIR validation
-- terminology databases
-
-Instead:
-
-```text
-Existing FHIR infrastructure
-          +
-FHIRLint's quality-analysis layer
-          =
-Product
-```
-
-This makes the project both more realistic and more technically defensible.
-
----
-
-# 17. Future Product Direction
-
-The long-term vision can evolve from:
-
-**FHIR Quality Checker**
-
-into:
-
-**Healthcare Data Quality Infrastructure**
-
-Potential architecture:
-
-```text
-                Healthcare Data
-                       |
-          ┌────────────┴────────────┐
-          |                         |
-       FHIR                      HL7/CSV
-          |                         |
-          └────────────┬────────────┘
-                       ↓
-                FHIRLint
-                       |
-              ┌────────┴────────┐
-              ↓                 ↓
-         Normalization       Validation
-              ↓                 ↓
-              └────────┬────────┘
-                       ↓
-                 Quality Engine
-                       |
-        ┌──────────────┼──────────────┐
-        ↓              ↓              ↓
-     Reports        Webhooks       Monitoring
-        ↓              ↓              ↓
-      API          Developer      Dashboard
-                     Systems
-```
-
-The initial implementation should **not** attempt to build all of this.
-
-The first milestone is simply:
-
-> **"Give me a FHIR Bundle and tell me exactly what's wrong with it, why it matters, and where I should fix it."**
-
-Everything else can grow from that foundation.
+- **Phase 0 — Research & Architecture (Status: Completed)**
+  - HAPI FHIR validation analysis, scoring model, synthetic datasets, and local-first architecture.
+- **Phase 1 — Local Dataset Ingestion & Boundary Parsing (Status: In Progress)**
+  - Local file and stdin parsing via HAPI FHIR R4, syntactic pre-flight boundary validation, and resource inventory metrics.
+- **Phase 2 — Structural & Profile Validation**
+  - Integrate HAPI FHIR baseline validator and US Core StructureDefinitions.
+- **Phase 3 — Referential Integrity & Resource Graph**
+  - Build in-memory resource relationship index; detect broken/missing references.
+- **Phase 4 — Data Quality Rules**
+  - Pluggable rule engine implementing the Phase 4 catalog (consistency, duplicates, completeness, terminology).
+- **Phase 5 — Quality Scoring**
+  - Deterministic multi-category scoring formula and engineering grade assignment.
+- **Phase 6 — Developer Experience & CLI Outputs**
+  - Polished Picocli interface, ANSI tables, JSON report, and SARIF output.
+- **Phase 7 — Standalone Packaging & CI/CD Gates**
+  - Fat JAR, GraalVM native binary compilation, and GitHub Action.
+- **Phase 8 — Advanced Extensibility**
+  - Custom rule definitions and dataset comparison.
 
 ---
 
@@ -1359,127 +420,27 @@ Everything else can grow from that foundation.
 
 The project is considered MVP-complete when a developer can:
 
-1. Start the application with Docker.
-2. Submit a FHIR R4 Bundle.
-3. Select a validation profile.
-4. Receive an asynchronous quality-check job.
-5. Have the system perform standard FHIR validation.
-6. Detect broken resource references.
-7. Detect selected completeness problems.
-8. Detect selected terminology problems.
-9. Detect selected consistency problems.
-10. Detect basic duplicates.
-11. Receive categorized issues.
-12. Receive an overall quality score.
-13. Retrieve results through documented REST endpoints.
-14. View the results through Swagger or a small demo UI.
-15. Re-run the same dataset after fixing it and observe the quality improvement.
-16. Run a comprehensive automated test suite.
+1. Clone or download `fhir-lint`.
+2. Run `fhir-lint validate sample-data/messy/messy-bundle.json` in their terminal.
+3. Observe immediate, colorized terminal output with:
+   - Overall Quality Score (e.g., `84/100 ACCEPTABLE`)
+   - Category breakdowns
+   - Actionable list of errors and warnings with FHIRPath locations and suggestions.
+4. Pass `--format json` or `--format sarif` to pipe or record structured outputs.
+5. Provide `--min-score 90` to observe exit code `1` on a degraded dataset and `0` on `clean-bundle.json`.
+6. Embed `FhirLinter.create().lint(...)` as a Java dependency in code with zero external services or databases required.
+7. Run the comprehensive automated test suite in under 3 seconds.
 
 ---
 
-# 19. Resume-Level Technical Story
+# Technology Decision Summary
 
-The eventual resume description should emphasize the engineering problem rather than simply saying "built a healthcare API."
-
-Possible direction:
-
-**Healthcare Data Quality Infrastructure — Java, Spring Boot, PostgreSQL, HAPI FHIR, Docker**
-
-> Built a developer-focused FHIR data-quality platform that analyzes healthcare datasets for profile conformance, referential integrity, terminology issues, duplicates, completeness, and cross-resource inconsistencies; designed a pluggable rule engine and asynchronous processing pipeline for scalable quality analysis.
-
-As the project develops, the bullet should be updated to reflect the actual engineering accomplishments rather than prematurely claiming features.
-
----
-
-# 20. Guiding Principles
-
-### 1. Build a real developer tool
-
-The API should feel like something another developer could actually use.
-
-### 2. Avoid fake complexity
-
-Do not add Kafka, Redis, Kubernetes, microservices, or AI simply because they look impressive.
-
-### 3. Favor depth over feature count
-
-Five excellent quality checks are better than fifty superficial ones.
-
-### 4. Make every issue explainable
-
-Developers should understand:
-
-```text
-What happened?
-Where?
-Why does it matter?
-How can I fix it?
-```
-
-### 5. Separate standard validation from custom quality analysis
-
-The project should clearly demonstrate what established FHIR tooling provides and what FHIRLint adds.
-
-### 6. Make the demo obvious
-
-A viewer should be able to understand the value within approximately 60 seconds.
-
-### 7. Keep the architecture extensible
-
-The system should eventually support additional profiles, rules, input formats, and integrations without requiring a rewrite.
-
-### 8. Treat healthcare as the domain, not an excuse for unnecessary complexity
-
-The project should remain fundamentally a strong backend/infrastructure project.
-
----
-
-# Initial Technology Decision Summary
-
-| Area                | Decision                                    |
-| ------------------- | ------------------------------------------- |
-| Language            | Java                                        |
-| Framework           | Spring Boot                                 |
-| Java version        | 21+                                         |
-| Healthcare standard | FHIR R4                                     |
-| Initial profile     | US Core                                     |
-| FHIR library        | HAPI FHIR                                   |
-| Database            | PostgreSQL                                  |
-| ORM                 | Spring Data JPA                             |
-| Build               | Gradle                                      |
-| API                 | REST                                        |
-| Documentation       | OpenAPI / Swagger                           |
-| Testing             | JUnit 5 + Spring Boot Test + Testcontainers |
-| Containerization    | Docker                                      |
-| Async processing    | Spring-based initially                      |
-| Messaging           | Deferred until justified                    |
-| Cache               | Deferred until justified                    |
-| Frontend            | Minimal demo UI, not core product           |
-| Authentication      | Later phase                                 |
-| Deployment          | Later phase                                 |
-| AI/ML               | Not part of MVP                             |
-
-## First implementation target
-
-**Do not start by building the UI.**
-
-The first coding milestone should be:
-
-```text
-Spring Boot application
-        ↓
-POST /api/v1/quality-checks
-        ↓
-Accept FHIR R4 Bundle
-        ↓
-Parse with HAPI FHIR
-        ↓
-Run baseline FHIR validation
-        ↓
-Return structured validation results
-```
-
-Once that works, begin adding **FHIRLint-specific quality rules**.
-
-The most important early architectural decision is making the rule engine extensible. That is the part most likely to turn this from "FHIR validator wrapper" into an actual software engineering project.
+| Area | Decision | Rationale |
+| :--- | :--- | :--- |
+| **Language** | Java 21+ | Best-in-class HAPI FHIR ecosystem, strong typing, high performance |
+| **Interface** | CLI (Picocli) & Java Library | Zero infrastructure cost, local-first privacy, direct CI/CD integration |
+| **FHIR Library** | HAPI FHIR R4 | Reference HL7 implementation, official R4 & US Core support |
+| **Data Storage** | None (Stateless In-Memory) | Zero retention, HIPAA compliant, zero database overhead |
+| **Outputs** | ANSI Table, JSON, SARIF | Standard developer ergonomics, pipeable, GitHub Code Scanning native |
+| **Build Tool** | Gradle | Standard Java build automation |
+| **Packaging** | Fat JAR / Native Binary / GitHub Action | Portable execution on any platform |
