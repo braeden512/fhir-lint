@@ -1,14 +1,15 @@
 <configuration>
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name="ca.uhn.fhir" level="WARN"/>
-    <logger name="org.hl7.fhir" level="WARN"/>
+    <logger name="ca.uhn.fhir" level="ERROR"/>
+    <logger name="org.hl7.fhir" level="ERROR"/>
 
-    <root level="WARN">
+    <root level="ERROR">
         <appender-ref ref="CONSOLE"/>
     </root>
 </configuration>

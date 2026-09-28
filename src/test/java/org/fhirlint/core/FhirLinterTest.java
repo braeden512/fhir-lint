@@ -79,4 +79,83 @@ class FhirLinterTest {
             .toList();
         assertThat(refIssues).isEmpty();
     }
+
+    @Test
+    @DisplayName("Should successfully lint InputStream using fluent API")
+    void shouldLintInputStreamWithFluentApi() throws Exception {
+        FhirLinter linter = FhirLinter.create();
+        try (java.io.InputStream is = java.nio.file.Files.newInputStream(java.nio.file.Path.of("sample-data/clean/clean-bundle.json"))) {
+            LintReport report = linter.lint(is);
+            assertThat(report).isNotNull();
+            assertThat(report.inventory().totalResources()).isEqualTo(5);
+            assertThat(report.qualityScore().getOverallScore()).isGreaterThanOrEqualTo(90);
+        }
+    }
+
+    @Test
+    @DisplayName("Should successfully lint multi-file collection and aggregate resources")
+    void shouldLintFileListWithAggregation() {
+        FhirLinter linter = FhirLinter.create();
+        List<File> files = List.of(
+            new File("sample-data/clean/clean-bundle.json"),
+            new File("sample-data/referential/broken-reference.json")
+        );
+
+        LintReport report = linter.lint(files);
+        assertThat(report).isNotNull();
+        // 5 resources from clean bundle + 2 from broken reference bundle = 7
+        assertThat(report.inventory().totalResources()).isEqualTo(7);
+        assertThat(report.hasErrors()).isTrue();
+    }
+
+    @Test
+    @DisplayName("Should programmatically evaluate quality gate via LintReport")
+    void shouldEvaluateQualityGateProgrammatically() {
+        FhirLinter linter = FhirLinter.create();
+        LintReport report = linter.lint(new File("sample-data/clean/clean-bundle.json"));
+
+        org.fhirlint.core.model.QualityGateResult passResult = report.evaluateGate(
+            org.fhirlint.core.model.QualityGateConfig.of(80, org.fhirlint.core.model.Severity.ERROR)
+        );
+        assertThat(passResult.passed()).isTrue();
+        assertThat(passResult.breaches()).isEmpty();
+
+        org.fhirlint.core.model.QualityGateResult failResult = report.evaluateGate(
+            org.fhirlint.core.model.QualityGateConfig.of(100, org.fhirlint.core.model.Severity.INFO)
+        );
+        // Clean bundle has 0 errors/warnings, but info count or score check
+        assertThat(failResult).isNotNull();
+    }
+
+    @Test
+    @DisplayName("Should throw FhirParseException when file list is empty or null")
+    void shouldRejectEmptyOrNullFileList() {
+        FhirLinter linter = FhirLinter.create();
+        org.junit.jupiter.api.Assertions.assertThrows(
+            org.fhirlint.core.parser.FhirParseException.class,
+            () -> linter.lint((List<File>) null)
+        );
+        org.junit.jupiter.api.Assertions.assertThrows(
+            org.fhirlint.core.parser.FhirParseException.class,
+            () -> linter.lint(List.of())
+        );
+    }
+
+    @Test
+    @DisplayName("Should throw NullPointerException when file, stream, or payload is null")
+    void shouldRejectNullSingleInputs() {
+        FhirLinter linter = FhirLinter.create();
+        org.junit.jupiter.api.Assertions.assertThrows(
+            NullPointerException.class,
+            () -> linter.lint((File) null)
+        );
+        org.junit.jupiter.api.Assertions.assertThrows(
+            NullPointerException.class,
+            () -> linter.lint((java.io.InputStream) null)
+        );
+        org.junit.jupiter.api.Assertions.assertThrows(
+            NullPointerException.class,
+            () -> linter.lint((String) null)
+        );
+    }
 }

@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import org.fhirlint.core.parser.FhirParseException;
 
 /**
  * Main programmatic entry point for FHIRLint.
@@ -80,6 +82,7 @@ public class FhirLinter {
      * Lints a FHIR JSON file.
      */
     public LintReport lint(File file) {
+        Objects.requireNonNull(file, "File cannot be null");
         long start = System.currentTimeMillis();
         ParsedDataset dataset = parser.parse(file);
         return evaluate(dataset, start);
@@ -89,6 +92,7 @@ public class FhirLinter {
      * Lints a FHIR JSON string.
      */
     public LintReport lint(String jsonContent) {
+        Objects.requireNonNull(jsonContent, "Payload cannot be null");
         long start = System.currentTimeMillis();
         ParsedDataset dataset = parser.parse(jsonContent);
         return evaluate(dataset, start);
@@ -98,6 +102,7 @@ public class FhirLinter {
      * Lints a FHIR JSON InputStream.
      */
     public LintReport lint(InputStream inputStream) {
+        Objects.requireNonNull(inputStream, "InputStream cannot be null");
         long start = System.currentTimeMillis();
         ParsedDataset dataset = parser.parse(inputStream);
         return evaluate(dataset, start);
@@ -107,6 +112,9 @@ public class FhirLinter {
      * Lints multiple FHIR JSON files, aggregating their resources into a unified report.
      */
     public LintReport lint(List<File> files) {
+        if (files == null || files.isEmpty()) {
+            throw new FhirParseException("File collection cannot be null or empty.");
+        }
         long start = System.currentTimeMillis();
         int totalResources = 0;
         java.util.Map<String, Integer> aggregatedCounts = new java.util.TreeMap<>();

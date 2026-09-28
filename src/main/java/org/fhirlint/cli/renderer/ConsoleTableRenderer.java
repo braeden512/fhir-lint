@@ -81,21 +81,25 @@ public class ConsoleTableRenderer {
         // 6. Issues Listing
         if (!report.issues().isEmpty()) {
             sb.append("\n  ").append(BOLD).append("Findings:").append(RESET).append("\n");
-            int displayCount = verbose ? report.issues().size() : Math.min(report.issues().size(), 10);
+            java.util.List<QualityIssue> sortedIssues = report.issues().stream()
+                .sorted(java.util.Comparator.comparing(QualityIssue::severity))
+                .toList();
+            int displayCount = verbose ? sortedIssues.size() : Math.min(sortedIssues.size(), 10);
 
             for (int i = 0; i < displayCount; i++) {
-                QualityIssue issue = report.issues().get(i);
+                QualityIssue issue = sortedIssues.get(i);
                 String sevColor = switch (issue.severity()) {
                     case ERROR -> RED;
                     case WARNING -> YELLOW;
                     case INFO -> BLUE;
                 };
 
+                String location = formatLocation(issue);
                 sb.append(String.format("    %s[%-7s]%s %s%-8s%s %s (%s)\n",
                     sevColor, issue.severity(), RESET,
                     BOLD, issue.ruleId(), RESET,
                     issue.message(),
-                    issue.path() != null ? issue.path() : "root"
+                    location
                 ));
                 if (issue.suggestion() != null) {
                     sb.append(String.format("      %s→ Suggestion: %s%s\n", GRAY, issue.suggestion(), RESET));
@@ -103,7 +107,7 @@ public class ConsoleTableRenderer {
             }
 
             if (!verbose && report.issues().size() > 10) {
-                sb.append(String.format("    %s... and %d more findings. Use --verbose to view all.%s\n",
+                sb.append(String.format("    %s... and %d more findings. Pass -v or --verbose to view all.%s\n",
                     GRAY, report.issues().size() - 10, RESET
                 ));
             }
@@ -129,5 +133,23 @@ public class ConsoleTableRenderer {
             }
         }
         return bar.toString();
+    }
+
+    private String formatLocation(QualityIssue issue) {
+        StringBuilder sb = new StringBuilder();
+        if (issue.resourceType() != null) {
+            sb.append(issue.resourceType());
+            if (issue.resourceId() != null) {
+                sb.append("/").append(issue.resourceId());
+            }
+            if (issue.path() != null && !issue.path().isBlank()) {
+                sb.append(": ").append(issue.path());
+            }
+        } else if (issue.path() != null && !issue.path().isBlank()) {
+            sb.append(issue.path());
+        } else {
+            sb.append("root");
+        }
+        return sb.toString();
     }
 }

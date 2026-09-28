@@ -59,7 +59,14 @@ public class FhirBundleParser {
      */
     public ParsedDataset parse(InputStream inputStream) {
         try {
-            String jsonContent = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+            byte[] bytes = inputStream.readAllBytes();
+            if (bytes.length == 0) {
+                throw new FhirParseException("Input stream is empty");
+            }
+            String jsonContent = new String(bytes, StandardCharsets.UTF_8);
+            if (jsonContent.trim().isEmpty()) {
+                throw new FhirParseException("Input stream is empty");
+            }
             return parse(jsonContent);
         } catch (IOException e) {
             throw new FhirParseException("Failed to read input stream: " + e.getMessage(), e);

@@ -40,11 +40,11 @@ class QualityGateCliTest {
         PrintStream originalErr = System.err;
         try {
             System.setErr(new PrintStream(errContent));
-            int exitCode = cmd.execute("validate", "sample-data/clean/clean-bundle.json", "--min-score", "101");
+            int exitCode = cmd.execute("validate", "sample-data/messy/messy-bundle.json", "--min-score", "100");
             assertThat(exitCode).isEqualTo(1);
             String errOutput = errContent.toString(StandardCharsets.UTF_8);
             assertThat(errOutput).contains("Quality gate breach:");
-            assertThat(errOutput).contains("is below required minimum threshold (101)");
+            assertThat(errOutput).contains("is below required minimum threshold (100)");
         } finally {
             System.setErr(originalErr);
         }
@@ -80,10 +80,10 @@ class QualityGateCliTest {
         PrintStream originalErr = System.err;
         try {
             System.setErr(new PrintStream(errContent));
-            int exitCode = cmd.execute("validate", "sample-data/referential/broken-reference.json", "--min-score", "101", "--fail-on", "error");
+            int exitCode = cmd.execute("validate", "sample-data/referential/broken-reference.json", "--min-score", "100", "--fail-on", "error");
             assertThat(exitCode).isEqualTo(1);
             String errOutput = errContent.toString(StandardCharsets.UTF_8);
-            assertThat(errOutput).contains("is below required minimum threshold (101)");
+            assertThat(errOutput).contains("is below required minimum threshold (100)");
             assertThat(errOutput).contains("with severity ERROR or higher");
         } finally {
             System.setErr(originalErr);
@@ -102,7 +102,7 @@ class QualityGateCliTest {
             System.setErr(new PrintStream(errContent));
             int exitCode = cmd.execute("validate", "sample-data/clean/clean-bundle.json", "--min-score", "-5");
             assertThat(exitCode).isEqualTo(2);
-            assertThat(errContent.toString(StandardCharsets.UTF_8)).contains("--min-score cannot be negative");
+            assertThat(errContent.toString(StandardCharsets.UTF_8)).contains("--min-score must be between 0 and 100");
         } finally {
             System.setErr(originalErr);
         }
@@ -141,6 +141,74 @@ class QualityGateCliTest {
             assertThat(exitCode).isEqualTo(2);
             assertThat(errContent.toString(StandardCharsets.UTF_8)).contains("Supported: error, warning, info, none.");
         } finally {
+            System.setErr(originalErr);
+        }
+    }
+
+    @Test
+    @DisplayName("Pre-flight boundary check rejects --min-score greater than 100 with exit code 2")
+    void testUpperMinScoreRejection() {
+        FhirLintApplication app = new FhirLintApplication();
+        CommandLine cmd = new CommandLine(app);
+
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        try {
+            System.setErr(new PrintStream(errContent));
+            int exitCode = cmd.execute("validate", "sample-data/clean/clean-bundle.json", "--min-score", "105");
+            assertThat(exitCode).isEqualTo(2);
+            assertThat(errContent.toString(StandardCharsets.UTF_8)).contains("--min-score must be between 0 and 100");
+        } finally {
+            System.setErr(originalErr);
+        }
+    }
+
+    @Test
+    @DisplayName("Pre-flight boundary check rejects invalid --format with exit code 2")
+    void testInvalidFormatRejection() {
+        FhirLintApplication app = new FhirLintApplication();
+        CommandLine cmd = new CommandLine(app);
+
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        try {
+            System.setErr(new PrintStream(errContent));
+            int exitCode = cmd.execute("validate", "sample-data/clean/clean-bundle.json", "--format", "unknown_format");
+            assertThat(exitCode).isEqualTo(2);
+            assertThat(errContent.toString(StandardCharsets.UTF_8)).contains("Unsupported format 'unknown_format'");
+        } finally {
+            System.setErr(originalErr);
+        }
+    }
+
+    @Test
+    @DisplayName("Stream isolation: Report writes to stdout while gate breaches write to stderr")
+    void testStreamIsolationOnQualityGateFailure() {
+        FhirLintApplication app = new FhirLintApplication();
+        CommandLine cmd = new CommandLine(app);
+
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        PrintStream originalErr = System.err;
+        try {
+            System.setOut(new PrintStream(outContent));
+            System.setErr(new PrintStream(errContent));
+
+            int exitCode = cmd.execute("validate", "sample-data/messy/messy-bundle.json", "-f", "json", "--min-score", "100");
+            assertThat(exitCode).isEqualTo(1);
+
+            // Stdout must contain valid pure JSON report
+            String outStr = outContent.toString(StandardCharsets.UTF_8);
+            assertThat(outStr).contains("\"overallScore\"");
+            assertThat(outStr).doesNotContain("Quality gate breach:");
+
+            // Stderr must contain the quality gate breach description
+            String errStr = errContent.toString(StandardCharsets.UTF_8);
+            assertThat(errStr).contains("Quality gate breach:");
+            assertThat(errStr).contains("is below required minimum threshold (100)");
+        } finally {
+            System.setOut(originalOut);
             System.setErr(originalErr);
         }
     }

@@ -83,8 +83,14 @@ public class ValidateCommand implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        if (minScore < 0) {
-            System.err.println("Error: --min-score cannot be negative, was: " + minScore);
+        if (minScore < 0 || minScore > 100) {
+            System.err.println("Error: --min-score must be between 0 and 100, was: " + minScore);
+            return 2;
+        }
+
+        String fmt = format != null ? format.toLowerCase() : "";
+        if (!fmt.equals("table") && !fmt.equals("json") && !fmt.equals("sarif")) {
+            System.err.println("Error: Unsupported format '" + format + "'. Supported formats: table, json, sarif.");
             return 2;
         }
 
@@ -131,14 +137,17 @@ public class ValidateCommand implements Callable<Integer> {
         }
 
         // Render report
-        String renderedOutput = switch (format.toLowerCase()) {
+        String renderedOutput = switch (fmt) {
             case "json" -> jsonRenderer.render(report);
             case "sarif" -> sarifRenderer.render(report, inputSource);
             default -> tableRenderer.render(report, verbose);
         };
 
         if (outputFile != null) {
-            try (FileWriter writer = new FileWriter(outputFile)) {
+            if (outputFile.getParentFile() != null) {
+                outputFile.getParentFile().mkdirs();
+            }
+            try (FileWriter writer = new FileWriter(outputFile, java.nio.charset.StandardCharsets.UTF_8)) {
                 writer.write(renderedOutput);
                 System.out.println("Report successfully written to: " + outputFile.getAbsolutePath());
             } catch (IOException e) {
@@ -180,11 +189,11 @@ public class ValidateCommand implements Callable<Integer> {
     }
 
     private Severity parseSeverity(String value) {
-        if (value == null || value.isBlank() || value.equalsIgnoreCase("none") || value.equalsIgnoreCase("off")) {
+        if (value == null || value.isBlank() || value.trim().equalsIgnoreCase("none") || value.trim().equalsIgnoreCase("off")) {
             return null;
         }
         try {
-            return Severity.valueOf(value.toUpperCase());
+            return Severity.valueOf(value.trim().toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Unknown or unsupported severity threshold '" + value + "'. Supported: error, warning, info, none.");
         }

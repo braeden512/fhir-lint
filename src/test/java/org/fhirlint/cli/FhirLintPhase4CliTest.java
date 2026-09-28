@@ -77,8 +77,8 @@ class FhirLintPhase4CliTest {
         int passCode = cmd.execute("validate", "sample-data/clean/clean-bundle.json", "--min-score", "80");
         assertThat(passCode).isZero();
 
-        // Demanding 101% score must fail even on clean bundle
-        int failCode = cmd.execute("validate", "sample-data/clean/clean-bundle.json", "--min-score", "101");
+        // Demanding 100% score must fail on messy bundle
+        int failCode = cmd.execute("validate", "sample-data/messy/messy-bundle.json", "--min-score", "100");
         assertThat(failCode).isEqualTo(1);
     }
 }

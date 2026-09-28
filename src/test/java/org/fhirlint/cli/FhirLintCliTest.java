@@ -39,7 +39,67 @@ class FhirLintCliTest {
             String output = outContent.toString(StandardCharsets.UTF_8);
             assertThat(output).contains("\"totalResources\" : 5");
             assertThat(output).contains("\"grade\" : \"EXCELLENT\"");
+            // Verify output is strictly valid JSON without terminal escape codes
+            com.fasterxml.jackson.databind.ObjectMapper om = new com.fasterxml.jackson.databind.ObjectMapper();
+            assertThat(om.readTree(output)).isNotNull();
+            assertThat(output).doesNotContain("\u001B");
+        } catch (Exception e) {
+            org.junit.jupiter.api.Assertions.fail("JSON output failed to parse: " + e.getMessage());
         } finally {
+            System.setOut(originalOut);
+        }
+    }
+
+    @Test
+    @DisplayName("Should validate from stdin with pure JSON output to stdout")
+    void shouldValidateStdinWithPureJsonOutput() throws Exception {
+        String bundleJson = """
+            {
+              "resourceType": "Bundle",
+              "type": "collection",
+              "entry": [
+                {
+                  "resource": {
+                    "resourceType": "Patient",
+                    "id": "pat-stdin-json",
+                    "identifier": [
+                      {
+                        "system": "http://hospital.smarthealth.org/mrn",
+                        "value": "MRN-STDIN-JSON"
+                      }
+                    ],
+                    "name": [
+                      {
+                        "family": "Smith",
+                        "given": ["John"]
+                      }
+                    ],
+                    "gender": "male"
+                  }
+                }
+              ]
+            }
+            """;
+
+        InputStream originalIn = System.in;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        try {
+            System.setIn(new ByteArrayInputStream(bundleJson.getBytes(StandardCharsets.UTF_8)));
+            System.setOut(new PrintStream(outContent));
+            FhirLintApplication app = new FhirLintApplication();
+            CommandLine cmd = new CommandLine(app);
+
+            int exitCode = cmd.execute("validate", "-", "-f", "json");
+            assertThat(exitCode).isZero();
+            String output = outContent.toString(StandardCharsets.UTF_8);
+            com.fasterxml.jackson.databind.ObjectMapper om = new com.fasterxml.jackson.databind.ObjectMapper();
+            com.fasterxml.jackson.databind.JsonNode rootNode = om.readTree(output);
+            assertThat(rootNode.has("inventory")).isTrue();
+            assertThat(rootNode.get("inventory").get("totalResources").asInt()).isEqualTo(1);
+            assertThat(output).doesNotContain("\u001B");
+        } finally {
+            System.setIn(originalIn);
             System.setOut(originalOut);
         }
     }
@@ -70,7 +130,7 @@ class FhirLintCliTest {
         FhirLintApplication app = new FhirLintApplication();
         CommandLine cmd = new CommandLine(app);
 
-        int exitCode = cmd.execute("validate", "sample-data/clean/clean-bundle.json", "--min-score", "101");
+        int exitCode = cmd.execute("validate", "sample-data/messy/messy-bundle.json", "--min-score", "100");
         assertThat(exitCode).isEqualTo(1);
     }
 
@@ -136,5 +196,82 @@ class FhirLintCliTest {
 
         int exitCode = cmd.execute("validate", "sample-data/clean");
         assertThat(exitCode).isZero();
+    }
+
+    @Test
+    @DisplayName("Should write report to output file specified via -o option")
+    void shouldWriteReportToOutputFile() throws Exception {
+        java.io.File tempFile = java.io.File.createTempFile("fhir-lint-test-report", ".txt");
+        tempFile.deleteOnExit();
+
+        FhirLintApplication app = new FhirLintApplication();
+        CommandLine cmd = new CommandLine(app);
+
+        int exitCode = cmd.execute("validate", "sample-data/clean/clean-bundle.json", "-o", tempFile.getAbsolutePath());
+        assertThat(exitCode).isZero();
+        assertThat(tempFile).exists();
+        String content = java.nio.file.Files.readString(tempFile.toPath());
+        assertThat(content).contains("Quality Score:");
+    }
+
+    @Test
+    @DisplayName("Should reject empty 0-byte standard input stream with exit code 2")
+    void shouldRejectEmptyStdin() {
+        InputStream originalIn = System.in;
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        try {
+            System.setIn(new ByteArrayInputStream(new byte[0]));
+            System.setErr(new PrintStream(errContent));
+            FhirLintApplication app = new FhirLintApplication();
+            CommandLine cmd = new CommandLine(app);
+
+            int exitCode = cmd.execute("validate", "-");
+            assertThat(exitCode).isEqualTo(2);
+            assertThat(errContent.toString(StandardCharsets.UTF_8)).contains("Input stream is empty");
+        } finally {
+            System.setIn(originalIn);
+            System.setErr(originalErr);
+        }
+    }
+
+    @Test
+    @DisplayName("Should reject directory with no .json files with exit code 2")
+    void shouldRejectDirectoryWithNoJsonFiles() throws Exception {
+        java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("empty-json-test");
+        tempDir.toFile().deleteOnExit();
+
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        try {
+            System.setErr(new PrintStream(errContent));
+            FhirLintApplication app = new FhirLintApplication();
+            CommandLine cmd = new CommandLine(app);
+
+            int exitCode = cmd.execute("validate", tempDir.toString());
+            assertThat(exitCode).isEqualTo(2);
+            assertThat(errContent.toString(StandardCharsets.UTF_8)).contains("Directory contains no .json files:");
+        } finally {
+            System.setErr(originalErr);
+            java.nio.file.Files.deleteIfExists(tempDir);
+        }
+    }
+
+    @Test
+    @DisplayName("Should reject unsupported format with exit code 2")
+    void shouldRejectUnsupportedFormat() {
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        try {
+            System.setErr(new PrintStream(errContent));
+            FhirLintApplication app = new FhirLintApplication();
+            CommandLine cmd = new CommandLine(app);
+
+            int exitCode = cmd.execute("validate", "sample-data/clean/clean-bundle.json", "-f", "xml");
+            assertThat(exitCode).isEqualTo(2);
+            assertThat(errContent.toString(StandardCharsets.UTF_8)).contains("Unsupported format 'xml'");
+        } finally {
+            System.setErr(originalErr);
+        }
     }
 }
