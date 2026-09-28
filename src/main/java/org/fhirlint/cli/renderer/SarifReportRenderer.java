@@ -34,6 +34,17 @@ public class SarifReportRenderer {
         addRule(rules, "REF-002", "Reference Type Mismatch", "Target resource exists, but its resource type is not permitted for the referencing field by FHIR R4 schema.");
         addRule(rules, "REF-003", "Orphaned Clinical Resource", "Orphaned clinical resource lacks direct or indirect context link to a Patient.");
         addRule(rules, "REF-004", "Unverified External Reference", "Reference points to an external absolute URI outside the dataset boundary during offline analysis.");
+        addRule(rules, "CONS-001", "Period Chronology Inversion", "Period end occurs chronologically before period start.");
+        addRule(rules, "CONS-002", "Birth-to-Event Chronological Inversion", "Clinical event date predates patient birth date.");
+        addRule(rules, "CONS-003", "Post-Mortem Event Inversion", "Clinical event date occurs after patient deceased date.");
+        addRule(rules, "CONS-004", "Diagnostic Report Observation Inconsistency", "Final DiagnosticReport references entered-in-error or cancelled observation.");
+        addRule(rules, "DUP-001", "Patient Identifier Collision", "Multiple distinct Patient resources share identical identifier system and value.");
+        addRule(rules, "DUP-002", "Probable Demographic Duplicate", "Multiple Patient resources share matching family name, given name, birth date, and postal code.");
+        addRule(rules, "TERM-001", "Non-Canonical System URI", "Coding uses invalid or non-canonical code system URI.");
+        addRule(rules, "TERM-002", "Missing Vital Signs UCUM Unit", "Vital signs observation missing canonical UCUM unit code or system.");
+        addRule(rules, "TERM-003", "Fixed Value Set Binding Violation", "Resource element code does not belong to the required core value set.");
+        addRule(rules, "COMP-001", "Missing Clinical Subject Reference", "Clinical resource is missing a mandatory subject reference linking it to a Patient.");
+        addRule(rules, "COMP-002", "Missing Observation Value or Absent Reason", "Observation has neither a value nor a dataAbsentReason.");
 
         ArrayNode results = run.putArray("results");
         for (QualityIssue issue : report.issues()) {

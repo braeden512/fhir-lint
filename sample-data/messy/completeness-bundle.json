@@ -1,0 +1,55 @@
+{
+  "resourceType": "Bundle",
+  "id": "bundle-completeness-issues",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:pat-comp-01",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "pat-comp-01"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:obs-orphan",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-orphan",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 72,
+          "unit": "beats/minute"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:obs-empty",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-empty",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:pat-comp-01"
+        }
+      }
+    }
+  ]
+}

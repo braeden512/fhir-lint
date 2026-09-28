@@ -17,6 +17,13 @@
       }
     },
     {
+      "fullUrl": "urn:uuid:30000000-0000-0000-0000-000000000003",
+      "resource": {
+        "resourceType": "Device",
+        "id": "dev-orphaned"
+      }
+    },
+    {
       "fullUrl": "urn:uuid:30000000-0000-0000-0000-000000000002",
       "resource": {
         "resourceType": "Observation",
@@ -31,8 +38,17 @@
             }
           ]
         },
+        "subject": {
+          "reference": "Device/dev-orphaned"
+        },
         "encounter": {
           "reference": "Encounter/enc-orphaned"
+        },
+        "valueQuantity": {
+          "value": 72,
+          "unit": "beats/minute",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
         }
       }
     }

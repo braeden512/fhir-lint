@@ -43,21 +43,16 @@ public class DefaultReferentialIntegrityEngine implements ReferentialIntegrityEn
     }
 
     @Override
-    public List<QualityIssue> analyze(List<IBaseResource> resources) {
+    public List<QualityIssue> analyze(List<? extends IBaseResource> resources) {
         if (resources == null || resources.isEmpty()) return List.of();
-
         ResourceGraphIndex index = buildIndex(resources);
-        List<QualityIssue> issues = new ArrayList<>();
+        return analyze(index);
+    }
 
-        // Populate incoming references on resolved target nodes
-        for (ResourceNode node : index.getAllNodes()) {
-            for (ResourceReference ref : node.getOutgoingReferences()) {
-                ReferenceResolution resolution = index.resolve(ref, node);
-                if (resolution.isResolved()) {
-                    resolution.targetNode().addIncomingReference(ref);
-                }
-            }
-        }
+    @Override
+    public List<QualityIssue> analyze(ResourceGraphIndex index) {
+        if (index == null) return List.of();
+        List<QualityIssue> issues = new ArrayList<>();
 
         // Rule Evaluation Pass
         for (ResourceNode node : index.getAllNodes()) {
@@ -150,8 +145,11 @@ public class DefaultReferentialIntegrityEngine implements ReferentialIntegrityEn
     }
 
     @Override
-    public ResourceGraphIndex buildIndex(List<IBaseResource> resources) {
+    public ResourceGraphIndex buildIndex(List<? extends IBaseResource> resources) {
         ResourceGraphIndex index = new ResourceGraphIndex();
+        if (resources == null || resources.isEmpty()) {
+            return index;
+        }
 
         for (IBaseResource item : resources) {
             if (item instanceof Bundle bundle) {
@@ -168,6 +166,16 @@ public class DefaultReferentialIntegrityEngine implements ReferentialIntegrityEn
         // Extract references for all indexed nodes
         for (ResourceNode node : index.getAllNodes()) {
             referenceExtractor.extractReferences(node);
+        }
+
+        // Populate incoming references on resolved target nodes
+        for (ResourceNode node : index.getAllNodes()) {
+            for (ResourceReference ref : node.getOutgoingReferences()) {
+                ReferenceResolution resolution = index.resolve(ref, node);
+                if (resolution.isResolved()) {
+                    resolution.targetNode().addIncomingReference(ref);
+                }
+            }
         }
 
         return index;

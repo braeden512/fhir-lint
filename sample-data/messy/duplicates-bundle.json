@@ -1,0 +1,75 @@
+{
+  "resourceType": "Bundle",
+  "id": "bundle-duplicate-issues",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:pat-dup-id-1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "pat-dup-id-1",
+        "identifier": [
+          {
+            "system": "http://hl7.org/fhir/sid/us-ssn",
+            "value": "999-11-2222"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:pat-dup-id-2",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "pat-dup-id-2",
+        "identifier": [
+          {
+            "system": "http://hl7.org/fhir/sid/us-ssn",
+            "value": "999-11-2222"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:pat-demo-1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "pat-demo-1",
+        "name": [
+          {
+            "family": "Doe",
+            "given": [
+              "Jane"
+            ]
+          }
+        ],
+        "birthDate": "1990-01-01",
+        "address": [
+          {
+            "postalCode": "12345"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:pat-demo-2",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "pat-demo-2",
+        "name": [
+          {
+            "family": "Doe",
+            "given": [
+              "Jane"
+            ]
+          }
+        ],
+        "birthDate": "1990-01-01",
+        "address": [
+          {
+            "postalCode": "12345"
+          }
+        ]
+      }
+    }
+  ]
+}

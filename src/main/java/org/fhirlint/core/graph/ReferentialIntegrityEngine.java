@@ -25,7 +25,7 @@ public interface ReferentialIntegrityEngine {
      * @param resources List of parsed FHIR resources to analyze
      * @return List of detected QualityIssue findings in category REFERENTIAL_INTEGRITY
      */
-    List<QualityIssue> analyze(List<IBaseResource> resources);
+    List<QualityIssue> analyze(List<? extends IBaseResource> resources);
 
     /**
      * Analyzes entries within a FHIR Bundle resource.
@@ -36,10 +36,18 @@ public interface ReferentialIntegrityEngine {
     List<QualityIssue> analyze(Bundle bundle);
 
     /**
+     * Analyzes an existing pre-built ResourceGraphIndex for defects.
+     *
+     * @param graphIndex Pre-built in-memory ResourceGraphIndex
+     * @return List of detected QualityIssue findings in category REFERENTIAL_INTEGRITY
+     */
+    List<QualityIssue> analyze(ResourceGraphIndex graphIndex);
+
+    /**
      * Builds and returns an indexed ResourceGraphIndex from the provided resources.
      *
      * @param resources List of parsed FHIR resources
      * @return In-memory ResourceGraphIndex
      */
-    ResourceGraphIndex buildIndex(List<IBaseResource> resources);
+    ResourceGraphIndex buildIndex(List<? extends IBaseResource> resources);
 }

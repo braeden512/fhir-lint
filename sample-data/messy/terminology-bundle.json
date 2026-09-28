@@ -1,0 +1,71 @@
+{
+  "resourceType": "Bundle",
+  "id": "bundle-terminology-issues",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:pat-term-01",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "pat-term-01"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:obs-term-01",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-term-01",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org/",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:pat-term-01"
+        },
+        "valueQuantity": {
+          "value": 72,
+          "unit": "beats/minute"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:obs-term-02",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-term-02",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8480-6",
+              "display": "Systolic blood pressure"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:pat-term-01"
+        },
+        "valueQuantity": {
+          "value": 120
+        }
+      }
+    }
+  ]
+}

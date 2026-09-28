@@ -66,6 +66,29 @@ public class ResourceGraphIndex {
         return Collections.unmodifiableList(allNodes);
     }
 
+    /**
+     * Resolves a reference string (e.g. "Type/id", "urn:uuid:...", or "fullUrl") to a target ResourceNode.
+     */
+    public Optional<ResourceNode> resolveTarget(String referenceString) {
+        if (referenceString == null || referenceString.isBlank()) {
+            return Optional.empty();
+        }
+        String target = referenceString.trim();
+        ResourceNode node = typeAndIdIndex.get(target);
+        if (node != null) {
+            return Optional.of(node);
+        }
+        node = fullUrlIndex.get(target);
+        if (node != null) {
+            return Optional.of(node);
+        }
+        List<ResourceNode> candidates = bareIdIndex.get(target);
+        if (candidates != null && candidates.size() == 1) {
+            return Optional.of(candidates.get(0));
+        }
+        return Optional.empty();
+    }
+
     public ReferenceResolution resolve(ResourceReference reference, ResourceNode sourceNode) {
         if (reference == null || reference.referenceType() == ReferenceType.MALFORMED) {
             return ReferenceResolution.malformed();

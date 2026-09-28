@@ -1,0 +1,47 @@
+{
+  "resourceType": "Bundle",
+  "id": "bundle-chronology-issues",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:pat-01",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "pat-01",
+        "birthDate": "1980-05-15"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:enc-01",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-01",
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB"
+        },
+        "subject": {
+          "reference": "urn:uuid:pat-01"
+        },
+        "period": {
+          "start": "2023-01-15T10:00:00Z",
+          "end": "2023-01-10T10:00:00Z"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:med-01",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "med-01",
+        "status": "active",
+        "intent": "order",
+        "subject": {
+          "reference": "urn:uuid:pat-01"
+        },
+        "authoredOn": "1975-04-12T08:00:00Z"
+      }
+    }
+  ]
+}
