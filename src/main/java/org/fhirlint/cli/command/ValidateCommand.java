@@ -5,6 +5,8 @@ import org.fhirlint.cli.renderer.JsonReportRenderer;
 import org.fhirlint.cli.renderer.SarifReportRenderer;
 import org.fhirlint.core.FhirLinter;
 import org.fhirlint.core.model.LintReport;
+import org.fhirlint.core.model.QualityGateConfig;
+import org.fhirlint.core.model.QualityGateResult;
 import org.fhirlint.core.model.Severity;
 import org.fhirlint.core.model.ValidationProfile;
 import org.fhirlint.core.parser.FhirParseException;
@@ -59,7 +61,7 @@ public class ValidateCommand implements Callable<Integer> {
     @Option(
         names = {"--fail-on"},
         defaultValue = "error",
-        description = "Minimum severity that causes exit code 1: error, warning, info."
+        description = "Minimum severity that causes exit code 1: error, warning, info, none."
     )
     private String failOn;
 
@@ -81,6 +83,11 @@ public class ValidateCommand implements Callable<Integer> {
 
     @Override
     public Integer call() {
+        if (minScore < 0) {
+            System.err.println("Error: --min-score cannot be negative, was: " + minScore);
+            return 2;
+        }
+
         ValidationProfile profile;
         try {
             profile = ValidationProfile.fromString(profileName);
@@ -89,8 +96,11 @@ public class ValidateCommand implements Callable<Integer> {
             return 2;
         }
 
-        Severity failOnSeverity = parseSeverity(failOn);
-        if (failOnSeverity == null) {
+        Severity failOnSeverity;
+        try {
+            failOnSeverity = parseSeverity(failOn);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
             return 2;
         }
 
@@ -140,8 +150,15 @@ public class ValidateCommand implements Callable<Integer> {
         }
 
         // Evaluate quality gate thresholds
-        boolean passed = report.passes(minScore, failOnSeverity);
-        return passed ? 0 : 1;
+        QualityGateConfig gateConfig = QualityGateConfig.of(minScore, failOnSeverity);
+        QualityGateResult gateResult = report.evaluateGate(gateConfig);
+        if (!gateResult.passed()) {
+            for (String breach : gateResult.breaches()) {
+                System.err.println("Quality gate breach: " + breach);
+            }
+            return 1;
+        }
+        return 0;
     }
 
     private LintReport lintDirectory(File dir, FhirLinter linter) {
@@ -163,14 +180,13 @@ public class ValidateCommand implements Callable<Integer> {
     }
 
     private Severity parseSeverity(String value) {
-        if (value == null || value.isBlank()) {
-            return Severity.ERROR;
+        if (value == null || value.isBlank() || value.equalsIgnoreCase("none") || value.equalsIgnoreCase("off")) {
+            return null;
         }
         try {
             return Severity.valueOf(value.toUpperCase());
         } catch (IllegalArgumentException e) {
-            System.err.println("Error: Unknown or unsupported severity threshold '" + value + "'. Supported: error, warning, info.");
-            return null;
+            throw new IllegalArgumentException("Unknown or unsupported severity threshold '" + value + "'. Supported: error, warning, info, none.");
         }
     }
 }

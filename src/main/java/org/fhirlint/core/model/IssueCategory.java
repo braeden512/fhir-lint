@@ -27,4 +27,24 @@ public enum IssueCategory {
     public double getWeight() {
         return weight;
     }
+
+    /**
+     * Resolves the canonical category under which issues in this category are scored.
+     * DUPLICATE issues are scored under CONSISTENCY per FR-013 and ADR-005.
+     *
+     * @return the canonical scoring category
+     */
+    public IssueCategory scoringCategory() {
+        return this == DUPLICATE ? CONSISTENCY : this;
+    }
+
+    /**
+     * Indicates whether this category participates directly as an independent scored category.
+     * DUPLICATE is not an independent scored category; it maps to CONSISTENCY.
+     *
+     * @return true if this is one of the 6 canonical scored categories
+     */
+    public boolean isScored() {
+        return this != DUPLICATE;
+    }
 }

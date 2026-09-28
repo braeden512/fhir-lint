@@ -41,13 +41,15 @@ public record LintReport(
         return qualityScore;
     }
 
+    public QualityGateResult evaluateGate(QualityGateConfig config) {
+        return qualityScore.evaluateGate(config);
+    }
+
+    public boolean passes(QualityGateConfig config) {
+        return evaluateGate(config).passed();
+    }
+
     public boolean passes(int minScore, Severity failOn) {
-        if (qualityScore.getOverallScore() < minScore) {
-            return false;
-        }
-        if (failOn != null) {
-            return issues.stream().noneMatch(i -> i.severity().isAtLeast(failOn));
-        }
-        return true;
+        return passes(QualityGateConfig.of(minScore, failOn));
     }
 }

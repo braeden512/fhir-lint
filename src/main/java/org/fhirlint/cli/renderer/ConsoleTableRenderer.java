@@ -112,6 +112,8 @@ public class ConsoleTableRenderer {
         }
 
         sb.append(CYAN).append("══════════════════════════════════════════════════════════════════════════════").append(RESET).append("\n");
+        sb.append(GRAY).append("  ").append(score.getDisclaimer()).append(RESET).append("\n");
+        sb.append(CYAN).append("══════════════════════════════════════════════════════════════════════════════").append(RESET).append("\n");
         return sb.toString();
     }
 

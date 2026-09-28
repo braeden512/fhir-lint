@@ -61,10 +61,11 @@ class ReportRenderersTest {
         assertThat(output).contains("Missing required slice category:VSCat");
         assertThat(output).contains("Observation.category");
         assertThat(output).contains("Suggestion: Provide category coding");
+        assertThat(output).contains(QualityScore.NON_CLINICAL_DISCLAIMER);
     }
 
     @Test
-    @DisplayName("JsonReportRenderer should serialize normalized issue fields including suggestion")
+    @DisplayName("JsonReportRenderer should serialize normalized issue fields including suggestion and disclaimer")
     void jsonReportRendererShouldIncludeSuggestion() {
         JsonReportRenderer renderer = new JsonReportRenderer();
         LintReport report = createTestReport();
@@ -76,6 +77,7 @@ class ReportRenderersTest {
         assertThat(json).contains("\"severity\" : \"ERROR\"");
         assertThat(json).contains("\"path\" : \"Observation.category\"");
         assertThat(json).contains("\"suggestion\" : \"Provide category coding with system 'http://terminology.hl7.org/CodeSystem/observation-category' and code 'vital-signs'\"");
+        assertThat(json).contains("\"disclaimer\" : \"" + QualityScore.NON_CLINICAL_DISCLAIMER + "\"");
     }
 
     @Test

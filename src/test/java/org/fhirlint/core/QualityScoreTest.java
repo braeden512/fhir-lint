@@ -65,4 +65,28 @@ class QualityScoreTest {
         assertThat(QualityScore.Grade.forScore(65)).isEqualTo(QualityScore.Grade.DEGRADED);
         assertThat(QualityScore.Grade.forScore(30)).isEqualTo(QualityScore.Grade.CRITICAL);
     }
+
+    @Test
+    @DisplayName("Should map DUPLICATE issues into CONSISTENCY score")
+    void testDuplicateIssuesMapToConsistency() {
+        QualityIssue dupIssue = QualityIssue.builder()
+            .severity(Severity.ERROR)
+            .category(IssueCategory.DUPLICATE)
+            .ruleId("DUP-001")
+            .message("Duplicate resource detected")
+            .build();
+
+        QualityScore score = QualityScore.calculate(10, List.of(dupIssue));
+        assertThat(score.getCategoryScores().get(IssueCategory.CONSISTENCY)).isEqualTo(90);
+        assertThat(score.getCategoryScores().containsKey(IssueCategory.DUPLICATE)).isFalse();
+    }
+
+    @Test
+    @DisplayName("Should expose canonical non-clinical engineering disclaimer")
+    void testNonClinicalDisclaimerPresent() {
+        QualityScore score = QualityScore.calculate(5, Collections.emptyList());
+        assertThat(score.getDisclaimer()).isEqualTo(
+            "Quality scores produced by FHIRLint reflect technical data hygiene and engineering standards rather than clinical, medical, or regulatory compliance measurements."
+        );
+    }
 }
