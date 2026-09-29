@@ -1,0 +1,18 @@
+{
+  "resources": {
+    "includes": [
+      {
+        "pattern": "logback.xml"
+      },
+      {
+        "pattern": "profiles/us-core/.*"
+      },
+      {
+        "pattern": "ca/uhn/fhir/.*"
+      },
+      {
+        "pattern": "org/hl7/fhir/.*"
+      }
+    ]
+  }
+}

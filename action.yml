@@ -1,0 +1,175 @@
+name: 'FHIRLint Healthcare Data Quality Gate'
+description: 'Validates FHIR healthcare datasets for interoperability, integrity, completeness, and profile conformance with automated quality gates and SARIF annotations.'
+author: 'FHIRLint Maintainers'
+branding:
+  icon: 'activity'
+  color: 'blue'
+
+inputs:
+  path:
+    description: 'Path to local FHIR JSON file or directory containing FHIR resources'
+    required: true
+  profile:
+    description: 'Target validation profile (US_CORE or BASE_R4)'
+    required: false
+    default: 'US_CORE'
+  format:
+    description: 'Output format rendered in GitHub Actions console log (table, json, sarif)'
+    required: false
+    default: 'table'
+  min-score:
+    description: 'Minimum passing quality score threshold (0-100)'
+    required: false
+  fail-on:
+    description: 'Failure severity threshold (error, warning, info, none)'
+    required: false
+    default: 'error'
+  output-file:
+    description: 'Optional destination file path for rendered output report'
+    required: false
+  upload-sarif:
+    description: 'Upload SARIF results to GitHub Code Scanning'
+    required: false
+    default: 'false'
+  github-token:
+    description: 'GitHub token for SARIF upload (requires security-events: write)'
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  score:
+    description: 'Overall quality score (0-100)'
+    value: ${{ steps.lint.outputs.score }}
+  grade:
+    description: 'Engineering grade tier (EXCELLENT, ACCEPTABLE, DEGRADED, CRITICAL)'
+    value: ${{ steps.lint.outputs.grade }}
+  errors:
+    description: 'Total error-level issues detected'
+    value: ${{ steps.lint.outputs.errors }}
+  warnings:
+    description: 'Total warning-level issues detected'
+    value: ${{ steps.lint.outputs.warnings }}
+  passed:
+    description: 'Boolean quality gate verdict (true or false)'
+    value: ${{ steps.lint.outputs.passed }}
+  report-path:
+    description: 'Path to saved output report'
+    value: ${{ steps.lint.outputs.report_path }}
+
+runs:
+  using: 'composite'
+  steps:
+    - id: resolve-runtime
+      shell: bash
+      run: |
+        if command -v fhir-lint >/dev/null 2>&1; then
+          echo "RUNNER_BIN=fhir-lint" >> "$GITHUB_ENV"
+        elif [ -f "${{ github.action_path }}/build/native/nativeCompile/fhir-lint" ]; then
+          echo "RUNNER_BIN=${{ github.action_path }}/build/native/nativeCompile/fhir-lint" >> "$GITHUB_ENV"
+        elif [ -f "${{ github.action_path }}/build/native/nativeCompile/fhir-lint.exe" ]; then
+          echo "RUNNER_BIN=${{ github.action_path }}/build/native/nativeCompile/fhir-lint.exe" >> "$GITHUB_ENV"
+        elif [ -f "${{ github.workspace }}/build/native/nativeCompile/fhir-lint" ]; then
+          echo "RUNNER_BIN=${{ github.workspace }}/build/native/nativeCompile/fhir-lint" >> "$GITHUB_ENV"
+        elif [ -f "${{ github.workspace }}/build/native/nativeCompile/fhir-lint.exe" ]; then
+          echo "RUNNER_BIN=${{ github.workspace }}/build/native/nativeCompile/fhir-lint.exe" >> "$GITHUB_ENV"
+        elif [ -f "${{ github.action_path }}/build/libs/fhir-lint-all.jar" ]; then
+          echo "RUNNER_JAR=${{ github.action_path }}/build/libs/fhir-lint-all.jar" >> "$GITHUB_ENV"
+        elif [ -f "${{ github.workspace }}/build/libs/fhir-lint-all.jar" ]; then
+          echo "RUNNER_JAR=${{ github.workspace }}/build/libs/fhir-lint-all.jar" >> "$GITHUB_ENV"
+        elif [ -f "${{ github.action_path }}/gradlew" ]; then
+          "${{ github.action_path }}/gradlew" -p "${{ github.action_path }}" fatJar -q --no-daemon
+          echo "RUNNER_JAR=${{ github.action_path }}/build/libs/fhir-lint-all.jar" >> "$GITHUB_ENV"
+        elif [ -f "${{ github.workspace }}/gradlew" ]; then
+          "${{ github.workspace }}/gradlew" -p "${{ github.workspace }}" fatJar -q --no-daemon
+          echo "RUNNER_JAR=${{ github.workspace }}/build/libs/fhir-lint-all.jar" >> "$GITHUB_ENV"
+        else
+          echo "::error::Could not resolve FHIRLint executable or JAR archive."
+          exit 2
+        fi
+
+    - id: lint
+      shell: bash
+      run: |
+        TMP_DIR="${RUNNER_TEMP:-/tmp}/fhirlint-action"
+        mkdir -p "$TMP_DIR"
+        JSON_REPORT="$TMP_DIR/report.json"
+        SARIF_REPORT="$TMP_DIR/report.sarif"
+
+        run_linter() {
+          if [ -n "${RUNNER_JAR:-}" ]; then
+            java -jar "$RUNNER_JAR" "$@"
+          else
+            "${RUNNER_BIN:-fhir-lint}" "$@"
+          fi
+        }
+
+        # Pass 1: Extract machine-readable JSON for deterministic outputs
+        run_linter validate "${{ inputs.path }}" --profile "${{ inputs.profile }}" --format json -o "$JSON_REPORT" || true
+
+        # Extract step outputs deterministically
+        if command -v jq >/dev/null 2>&1; then
+          SCORE=$(jq -r '.qualityScore.overallScore // 0' "$JSON_REPORT")
+          GRADE=$(jq -r '.qualityScore.grade // "UNKNOWN"' "$JSON_REPORT")
+          ERRORS=$(jq -r '.qualityScore.errorCount // .errorCount // 0' "$JSON_REPORT")
+          WARNINGS=$(jq -r '.qualityScore.warningCount // 0' "$JSON_REPORT")
+        else
+          SCORE=$(grep -E "\"overallScore\"[[:space:]]*:[[:space:]]*[0-9]+" "$JSON_REPORT" | head -1 | sed -E "s/.*:[[:space:]]*([0-9]+).*/\1/")
+          GRADE=$(grep -E "\"grade\"[[:space:]]*:[[:space:]]*\"[^\"]+\"" "$JSON_REPORT" | head -1 | sed -E "s/.*:[[:space:]]*\"([^\"]+)\".*/\1/")
+          ERRORS=$(grep -E "\"errorCount\"[[:space:]]*:[[:space:]]*[0-9]+" "$JSON_REPORT" | tail -1 | sed -E "s/.*:[[:space:]]*([0-9]+).*/\1/")
+          WARNINGS=$(grep -E "\"warningCount\"[[:space:]]*:[[:space:]]*[0-9]+" "$JSON_REPORT" | tail -1 | sed -E "s/.*:[[:space:]]*([0-9]+).*/\1/")
+        fi
+
+        echo "score=${SCORE:-0}" >> "$GITHUB_OUTPUT"
+        echo "grade=${GRADE:-UNKNOWN}" >> "$GITHUB_OUTPUT"
+        echo "errors=${ERRORS:-0}" >> "$GITHUB_OUTPUT"
+        echo "warnings=${WARNINGS:-0}" >> "$GITHUB_OUTPUT"
+        echo "sarif_path=$SARIF_REPORT" >> "$GITHUB_OUTPUT"
+        if [ -n "${{ inputs.output-file }}" ]; then
+          echo "report_path=${{ inputs.output-file }}" >> "$GITHUB_OUTPUT"
+        else
+          echo "report_path=$JSON_REPORT" >> "$GITHUB_OUTPUT"
+        fi
+
+        # Generate SARIF file if upload is requested
+        if [ "${{ inputs.upload-sarif }}" = "true" ]; then
+          run_linter validate "${{ inputs.path }}" --profile "${{ inputs.profile }}" --format sarif -o "$SARIF_REPORT" || true
+        fi
+
+        # Pass 2: Render requested user format to standard output with quality gates
+        CMD_ARGS=("validate" "${{ inputs.path }}" "--profile" "${{ inputs.profile }}" "--format" "${{ inputs.format }}")
+        if [ -n "${{ inputs.min-score }}" ]; then
+          CMD_ARGS+=("--min-score" "${{ inputs.min-score }}")
+        fi
+        if [ -n "${{ inputs.fail-on }}" ]; then
+          CMD_ARGS+=("--fail-on" "${{ inputs.fail-on }}")
+        fi
+        if [ -n "${{ inputs.output-file }}" ]; then
+          CMD_ARGS+=("-o" "${{ inputs.output-file }}")
+        fi
+
+        GATE_EXIT_CODE=0
+        run_linter "${CMD_ARGS[@]}" || GATE_EXIT_CODE=$?
+
+        if [ "$GATE_EXIT_CODE" -eq 0 ]; then
+          echo "passed=true" >> "$GITHUB_OUTPUT"
+          echo "GATE_EXIT_CODE=0" >> "$GITHUB_ENV"
+        else
+          echo "passed=false" >> "$GITHUB_OUTPUT"
+          echo "GATE_EXIT_CODE=$GATE_EXIT_CODE" >> "$GITHUB_ENV"
+        fi
+
+    - id: upload-sarif
+      if: inputs.upload-sarif == 'true'
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: ${{ steps.lint.outputs.sarif_path }}
+        token: ${{ inputs.github-token }}
+      continue-on-error: true
+
+    - id: enforce-verdict
+      shell: bash
+      run: |
+        if [ "$GATE_EXIT_CODE" -ne 0 ]; then
+          echo "::error::FHIRLint quality gate failure (exit code $GATE_EXIT_CODE)"
+          exit "$GATE_EXIT_CODE"
+        fi

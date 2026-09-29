@@ -1,6 +1,7 @@
 plugins {
 	id 'java'
 	id 'application'
+	id 'org.graalvm.buildtools.native' version '0.10.4'
 }
 
 group = 'org.fhirlint'
@@ -47,6 +48,7 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	dependsOn tasks.named('fatJar')
 }
 
 tasks.named('run') {
@@ -56,5 +58,36 @@ tasks.named('run') {
 jar {
 	manifest {
 		attributes 'Main-Class': 'org.fhirlint.cli.FhirLintApplication'
+	}
+}
+
+tasks.register('fatJar', Jar) {
+	archiveFileName = 'fhir-lint-all.jar'
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	manifest {
+		attributes 'Main-Class': 'org.fhirlint.cli.FhirLintApplication'
+	}
+	exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+	from {
+		configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+	with tasks.named('jar').get()
+}
+
+graalvmNative {
+	agent {
+		defaultMode = 'standard'
+		enabled = project.hasProperty('agent')
+	}
+	binaries {
+		main {
+			imageName = 'fhir-lint'
+			mainClass = 'org.fhirlint.cli.FhirLintApplication'
+			buildArgs.addAll(
+				'--no-fallback',
+				'-H:+ReportExceptionStackTraces',
+				'--enable-url-protocols=http,https'
+			)
+		}
 	}
 }

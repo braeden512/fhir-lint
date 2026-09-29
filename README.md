@@ -23,21 +23,77 @@ FHIRLint operates **locally and in-memory with zero infrastructure dependencies*
 
 ---
 
-## Getting Started
+## Installation & Distribution
+
+FHIRLint offers multiple distribution formats to fit any developer or CI/CD workflow:
+
+### 1. Homebrew (macOS & Linux)
+Install the standalone native binary with zero Java runtime requirement:
+```bash
+# Tap and install
+brew tap braeden512/fhir-lint
+brew install fhir-lint
+
+# Or in a single command:
+brew install braeden512/fhir-lint/fhir-lint
+```
+
+### 2. Standalone Native Binary (Zero Java Prerequisite)
+Download the pre-compiled native binary for your platform from [GitHub Releases](https://github.com/braeden512/fhir-lint/releases):
+- **Linux (x86_64)**: `fhir-lint-linux-x86_64`
+- **macOS (Apple Silicon)**: `fhir-lint-macos-aarch64`
+- **macOS (Intel)**: `fhir-lint-macos-x86_64`
+- **Windows**: `fhir-lint-windows-x86_64.exe`
+
+Make it executable and run instantly (< 50ms startup):
+```bash
+chmod +x fhir-lint-linux-x86_64
+./fhir-lint-linux-x86_64 validate sample-data/clean/clean-bundle.json
+```
+
+### 3. Universal Executable Fat JAR
+If you have Java 21+ installed, run the universal standalone Fat JAR anywhere:
+```bash
+# Build locally
+./gradlew fatJar
+
+# Or download fhir-lint-all.jar from releases
+java -jar build/libs/fhir-lint-all.jar validate sample-data/clean/clean-bundle.json
+```
+
+### 4. Official GitHub Action
+Add automated healthcare data quality gates and SARIF annotations directly to your GitHub repository workflows:
+```yaml
+- name: Validate Healthcare Data
+  uses: fhir-lint/action@v1
+  with:
+    path: 'sample-data/clean/clean-bundle.json'
+    profile: 'US_CORE'
+    min-score: 85
+    fail-on: 'error'
+    upload-sarif: 'true'
+```
+
+### 5. Lightweight Container Image
+Run via Docker without installing host dependencies:
+```bash
+docker run --rm \
+  -v $(pwd)/sample-data:/workspace/sample-data \
+  ghcr.io/braeden512/fhir-lint:latest validate /workspace/sample-data/clean/clean-bundle.json
+```
+
+---
+
+## Building from Source
 
 ### Prerequisites
 - **Java 21+** (JDK 21 or later)
+- **Gradle 9+** (wrapper provided)
 
-### Quick Build
 ```bash
 git clone https://github.com/braeden512/fhir-lint.git
 cd fhir-lint
-./gradlew assemble
-```
-
-Run validation on a sample dataset:
-```bash
-./gradlew run --args="validate sample-data/clean/clean-bundle.json"
+./gradlew check
 ```
 
 ---

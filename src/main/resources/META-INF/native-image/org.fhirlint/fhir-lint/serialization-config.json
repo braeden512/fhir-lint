@@ -1,0 +1,44 @@
+[
+  {
+    "name": "org.fhirlint.core.model.LintReport"
+  },
+  {
+    "name": "org.fhirlint.core.model.IngestionInventory"
+  },
+  {
+    "name": "org.fhirlint.core.model.QualityIssue"
+  },
+  {
+    "name": "org.fhirlint.core.model.QualityScore"
+  },
+  {
+    "name": "org.fhirlint.core.model.Severity"
+  },
+  {
+    "name": "org.fhirlint.core.model.IssueCategory"
+  },
+  {
+    "name": "org.fhirlint.core.model.ValidationProfile"
+  },
+  {
+    "name": "java.lang.String"
+  },
+  {
+    "name": "java.lang.Integer"
+  },
+  {
+    "name": "java.lang.Long"
+  },
+  {
+    "name": "java.lang.Boolean"
+  },
+  {
+    "name": "java.util.ArrayList"
+  },
+  {
+    "name": "java.util.HashMap"
+  },
+  {
+    "name": "java.util.LinkedHashMap"
+  }
+]

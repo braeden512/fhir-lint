@@ -1,8 +1,9 @@
-.git
-.gradle
-build
-out
+.git/
+.gradle/
+build/
+.idea/
+*.iml
+.vscode/
 *.log
-.env*
-.idea
-.vscode
+.DS_Store
+Thumbs.db

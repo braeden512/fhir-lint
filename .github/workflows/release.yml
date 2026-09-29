@@ -1,0 +1,148 @@
+name: Release Packaging & Multi-Platform Distribution
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-fatjar:
+    name: Build Universal Fat JAR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Build Fat JAR
+        run: ./gradlew fatJar --no-daemon
+
+      - name: Sanity Check Fat JAR
+        run: |
+          java -jar build/libs/fhir-lint-all.jar --version
+          java -jar build/libs/fhir-lint-all.jar validate sample-data/clean/clean-bundle.json
+
+      - name: Generate Checksum
+        working-directory: build/libs
+        run: sha256sum fhir-lint-all.jar > fhir-lint-all.jar.sha256
+
+      - name: Verify Checksum
+        working-directory: build/libs
+        run: sha256sum -c fhir-lint-all.jar.sha256
+
+      - name: Upload Fat JAR Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fhir-lint-all-jar
+          path: |
+            build/libs/fhir-lint-all.jar
+            build/libs/fhir-lint-all.jar.sha256
+
+  build-native:
+    name: Compile Native Binary (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: fhir-lint-linux-x86_64
+            binary_src: build/native/nativeCompile/fhir-lint
+          - os: macos-14
+            artifact_name: fhir-lint-macos-aarch64
+            binary_src: build/native/nativeCompile/fhir-lint
+          - os: macos-13
+            artifact_name: fhir-lint-macos-x86_64
+            binary_src: build/native/nativeCompile/fhir-lint
+          - os: windows-latest
+            artifact_name: fhir-lint-windows-x86_64.exe
+            binary_src: build/native/nativeCompile/fhir-lint.exe
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up GraalVM JDK 21
+        uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '21'
+          distribution: 'graalvm-community'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          native-image-job-reports: 'true'
+
+      - name: Compile Native Binary
+        run: ./gradlew nativeCompile --no-daemon
+
+      - name: Sanity Check Native Binary (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          ${{ matrix.binary_src }} --version
+          ${{ matrix.binary_src }} validate sample-data/clean/clean-bundle.json
+
+      - name: Sanity Check Native Binary (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          .\${{ matrix.binary_src }} --version
+          .\${{ matrix.binary_src }} validate sample-data/clean/clean-bundle.json
+
+      - name: Package & Generate Checksum (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          mkdir -p dist
+          cp ${{ matrix.binary_src }} dist/${{ matrix.artifact_name }}
+          cd dist
+          sha256sum ${{ matrix.artifact_name }} > ${{ matrix.artifact_name }}.sha256
+          sha256sum -c ${{ matrix.artifact_name }}.sha256
+
+      - name: Package & Generate Checksum (Windows)
+        if: runner.os == 'Windows'
+        shell: bash
+        run: |
+          mkdir -p dist
+          cp ${{ matrix.binary_src }} dist/${{ matrix.artifact_name }}
+          cd dist
+          sha256sum ${{ matrix.artifact_name }} > ${{ matrix.artifact_name }}.sha256
+          sha256sum -c ${{ matrix.artifact_name }}.sha256
+
+      - name: Upload Native Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: |
+            dist/${{ matrix.artifact_name }}
+            dist/${{ matrix.artifact_name }}.sha256
+
+  publish-release:
+    name: Publish GitHub Release Assets
+    needs: [build-fatjar, build-native]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+
+      - name: Display Release Assets
+        run: ls -la release-assets/
+
+      - name: Publish to GitHub Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-assets/*
+          generate_release_notes: true
+          draft: false
+          prerelease: false
