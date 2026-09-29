@@ -86,7 +86,9 @@ graalvmNative {
 			buildArgs.addAll(
 				'--no-fallback',
 				'-H:+ReportExceptionStackTraces',
-				'--enable-url-protocols=http,https'
+				'--enable-url-protocols=http,https',
+				'--initialize-at-build-time=ca.uhn.fhir.context.FhirVersionEnum',
+				'-J-Xmx5g'
 			)
 		}
 	}
