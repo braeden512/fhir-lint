@@ -132,7 +132,8 @@ public class ValidateCommand implements Callable<Integer> {
             System.err.println("Error: Boundary verification failed: " + e.getMessage());
             return 2;
         } catch (Exception e) {
-            System.err.println("Error: Unexpected failure during linting: " + e.getMessage());
+            System.err.println("Error: Unexpected failure during linting: " + (e.getMessage() != null ? e.getMessage() : e.getClass().getName()));
+            e.printStackTrace(System.err);
             return 2;
         }
 

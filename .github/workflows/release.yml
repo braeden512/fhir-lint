@@ -77,19 +77,19 @@ jobs:
           native-image-job-reports: 'true'
 
       - name: Compile Native Binary
-        run: ./gradlew nativeCompile --no-daemon
+        run: ./gradlew nativeCompile --max-workers=2 --no-daemon
 
       - name: Sanity Check Native Binary (Unix)
         if: runner.os != 'Windows'
         run: |
           ${{ matrix.binary_src }} --version
-          ${{ matrix.binary_src }} validate sample-data/clean/clean-bundle.json
+          ${{ matrix.binary_src }} validate sample-data/clean/clean-bundle.json --verbose
 
       - name: Sanity Check Native Binary (Windows)
         if: runner.os == 'Windows'
         run: |
           .\${{ matrix.binary_src }} --version
-          .\${{ matrix.binary_src }} validate sample-data/clean/clean-bundle.json
+          .\${{ matrix.binary_src }} validate sample-data/clean/clean-bundle.json --verbose
 
       - name: Package & Generate Checksum (Unix)
         if: runner.os != 'Windows'
