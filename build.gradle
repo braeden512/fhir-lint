@@ -84,15 +84,14 @@ graalvmNative {
 		main {
 			imageName = 'fhir-lint'
 			mainClass = 'org.fhirlint.cli.FhirLintApplication'
-			def isMac = System.getProperty('os.name').toLowerCase().contains('mac')
-			def threads = project.hasProperty('nativeThreads') ? project.property('nativeThreads') : (isMac ? '1' : '2')
 			buildArgs.addAll(
 				'--no-fallback',
 				'-H:+ReportExceptionStackTraces',
 				'--enable-url-protocols=http,https',
 				'--initialize-at-build-time=ca.uhn.fhir.context.FhirVersionEnum',
-				"-H:NumberOfThreads=${threads}",
+				'-H:NumberOfThreads=2',
 				'-J-XX:-UseGCOverheadLimit',
+				'-J-Xmx6g',
 				'-Ob'
 			)
 		}
