@@ -5,6 +5,9 @@
         "pattern": "logback.xml"
       },
       {
+        "pattern": "logback-test.xml"
+      },
+      {
         "pattern": "profiles/us-core/.*"
       },
       {
@@ -12,7 +15,24 @@
       },
       {
         "pattern": "org/hl7/fhir/.*"
+      },
+      {
+        "pattern": "META-INF/services/.*"
       }
     ]
-  }
+  },
+  "bundles": [
+    {
+      "name": "Messages",
+      "locales": [
+        "und"
+      ]
+    },
+    {
+      "name": "ca.uhn.fhir.i18n.hapi-messages",
+      "locales": [
+        "und"
+      ]
+    }
+  ]
 }

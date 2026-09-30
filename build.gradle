@@ -68,6 +68,7 @@ tasks.register('fatJar', Jar) {
 		attributes 'Main-Class': 'org.fhirlint.cli.FhirLintApplication'
 	}
 	exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+	exclude 'META-INF/native-image/org.xerial/**'
 	from {
 		configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
 	}
@@ -88,7 +89,8 @@ graalvmNative {
 				'-H:+ReportExceptionStackTraces',
 				'--enable-url-protocols=http,https',
 				'--initialize-at-build-time=ca.uhn.fhir.context.FhirVersionEnum',
-				'-H:NumberOfThreads=2'
+				'-H:NumberOfThreads=2',
+				'-Ob'
 			)
 		}
 	}
