@@ -60,9 +60,6 @@ jobs:
           - os: macos-14
             artifact_name: fhir-lint-macos-aarch64
             binary_src: build/native/nativeCompile/fhir-lint
-          - os: macos-13
-            artifact_name: fhir-lint-macos-x86_64
-            binary_src: build/native/nativeCompile/fhir-lint
           - os: windows-latest
             artifact_name: fhir-lint-windows-x86_64.exe
             binary_src: build/native/nativeCompile/fhir-lint.exe

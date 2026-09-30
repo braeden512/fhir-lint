@@ -5,13 +5,8 @@ class FhirLint < Formula
   license "Apache-2.0"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/braeden512/fhir-lint/releases/download/v#{version}/fhir-lint-macos-aarch64"
-      sha256 "PLACEHOLDER_MAC_ARM64_SHA256"
-    else
-      url "https://github.com/braeden512/fhir-lint/releases/download/v#{version}/fhir-lint-macos-x86_64"
-      sha256 "PLACEHOLDER_MAC_X86_SHA256"
-    end
+    url "https://github.com/braeden512/fhir-lint/releases/download/v#{version}/fhir-lint-macos-aarch64"
+    sha256 "PLACEHOLDER_MAC_ARM64_SHA256"
   end
 
   on_linux do
