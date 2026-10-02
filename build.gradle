@@ -93,7 +93,7 @@ graalvmNative {
 				'-Ob'
 			)
 			if (project.hasProperty('nativeArgs')) {
-				buildArgs.addAll(project.property('nativeArgs').toString().split('\\s+'))
+				buildArgs.addAll(project.property('nativeArgs').toString().split(','))
 			}
 		}
 	}

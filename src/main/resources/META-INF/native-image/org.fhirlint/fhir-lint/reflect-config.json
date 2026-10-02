@@ -896,28 +896,6 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Account",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Account$CoverageComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Account$GuarantorComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ActivityDefinition"
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Address",
     "allDeclaredFields": true,
     "queryAllPublicConstructors": true,
@@ -929,63 +907,8 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.AdverseEvent"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Age",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.AllergyIntolerance",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.AllergyIntolerance$AllergyIntoleranceReactionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Annotation",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Appointment",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Appointment$AppointmentParticipantComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.AppointmentResponse",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Attachment",
     "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.AuditEvent"
   },
   {
     "name": "org.hl7.fhir.r4.model.BackboneElement",
@@ -1003,44 +926,8 @@
     "name": "org.hl7.fhir.r4.model.Base64BinaryType"
   },
   {
-    "name": "org.hl7.fhir.r4.model.BaseBinary",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.BaseExtension",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.BaseNarrative",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.BaseReference",
-    "allDeclaredFields": true
-  },
-  {
     "name": "org.hl7.fhir.r4.model.BaseResource",
     "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Basic"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Binary",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.BiologicallyDerivedProduct"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.BodyStructure"
   },
   {
     "name": "org.hl7.fhir.r4.model.BooleanType",
@@ -1319,15 +1206,6 @@
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.CatalogEntry"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ChargeItem"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ChargeItemDefinition"
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Claim",
     "allDeclaredFields": true,
     "allPublicFields": true,
@@ -1380,84 +1258,6 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$SupportingInformationComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse$AddedItemComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse$AddedItemDetailComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse$AddedItemSubDetailComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse$AdjudicationComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse$ErrorComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse$InsuranceComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse$ItemComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse$ItemDetailComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse$NoteComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse$PaymentComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse$SubDetailComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse$TotalComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClinicalImpression",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClinicalImpression$ClinicalImpressionFindingComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ClinicalImpression$ClinicalImpressionInvestigationComponent",
     "allDeclaredFields": true
   },
   {
@@ -1596,136 +1396,6 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Communication"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.CommunicationRequest",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.CommunicationRequest$CommunicationRequestPayloadComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.CompartmentDefinition",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.CompartmentDefinition$CompartmentDefinitionResourceComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.CompartmentDefinition$CompartmentTypeEnumFactory",
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Composition",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Composition$CompositionAttesterComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Composition$CompositionEventComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Composition$CompositionRelatesToComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Composition$SectionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ConceptMap",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ConceptMap$ConceptMapGroupComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ConceptMap$ConceptMapGroupUnmappedComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ConceptMap$OtherElementComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ConceptMap$SourceElementComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ConceptMap$TargetElementComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Condition",
     "allDeclaredFields": true,
     "allPublicFields": true,
@@ -1744,17 +1414,6 @@
   {
     "name": "org.hl7.fhir.r4.model.Condition$ConditionStageComponent",
     "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Consent"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Constants",
-    "fields": [
-      {
-        "name": "VERSION"
-      }
-    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.ContactDetail",
@@ -1788,82 +1447,7 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Contract",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$ActionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$ActionSubjectComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$AnswerComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$AssetContextComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$ComputableLanguageComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$ContentDefinitionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$ContractAssetComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$ContractOfferComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$ContractPartyComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$FriendlyLanguageComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$LegalLanguageComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$SecurityLabelComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$SignatoryComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$TermComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Contract$ValuedItemComponent",
-    "allDeclaredFields": true
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Contributor",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Count",
     "allDeclaredFields": true
   },
   {
@@ -1888,12 +1472,6 @@
   {
     "name": "org.hl7.fhir.r4.model.Coverage$ExemptionComponent",
     "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.CoverageEligibilityRequest"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.CoverageEligibilityResponse"
   },
   {
     "name": "org.hl7.fhir.r4.model.DataRequirement",
@@ -1942,25 +1520,6 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.DetectedIssue",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DetectedIssue$DetectedIssueEvidenceComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DetectedIssue$DetectedIssueMitigationComponent",
-    "allDeclaredFields": true
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Device",
     "allDeclaredFields": true,
     "allPublicFields": true,
@@ -1992,74 +1551,6 @@
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.DeviceDefinition",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DeviceDefinition$DeviceDefinitionCapabilityComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DeviceDefinition$DeviceDefinitionDeviceNameComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DeviceDefinition$DeviceDefinitionMaterialComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DeviceDefinition$DeviceDefinitionPropertyComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DeviceDefinition$DeviceDefinitionSpecializationComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DeviceDefinition$DeviceDefinitionUdiDeviceIdentifierComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DeviceMetric",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DeviceMetric$DeviceMetricCalibrationComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DeviceRequest",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DeviceRequest$DeviceRequestParameterComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DeviceUseStatement"
-  },
-  {
     "name": "org.hl7.fhir.r4.model.DiagnosticReport",
     "allDeclaredFields": true,
     "allPublicFields": true,
@@ -2083,13 +1574,6 @@
         "parameterTypes": []
       }
     ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Distance",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.DocumentManifest"
   },
   {
     "name": "org.hl7.fhir.r4.model.DocumentReference",
@@ -2119,158 +1603,12 @@
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.Dosage",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Dosage$DosageDoseAndRateComponent",
-    "allDeclaredFields": true
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Duration",
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.EffectEvidenceSynthesis"
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Element",
     "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ElementDefinition",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ElementDefinition$ConstraintSeverityEnumFactory",
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ElementDefinition$DiscriminatorTypeEnumFactory",
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionBaseComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionBindingComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionConstraintComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionExampleComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionMappingComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionSlicingComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionSlicingDiscriminatorComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ElementDefinition$PropertyRepresentationEnumFactory",
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ElementDefinition$SlicingRulesEnumFactory",
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ElementDefinition$TypeRefComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Encounter",
@@ -2316,35 +1654,6 @@
   {
     "name": "org.hl7.fhir.r4.model.Encounter$StatusHistoryComponent",
     "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Endpoint",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.EnrollmentRequest"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.EnrollmentResponse"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Enumeration",
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": [
-          "org.hl7.fhir.r4.model.EnumFactory"
-        ]
-      }
-    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Enumerations$AdministrativeGenderEnumFactory",
@@ -2401,37 +1710,6 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.EpisodeOfCare",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.EpisodeOfCare$DiagnosisComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.EpisodeOfCare$EpisodeOfCareStatusHistoryComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.EventDefinition"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Evidence"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.EvidenceVariable"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ExampleScenario"
-  },
-  {
     "name": "org.hl7.fhir.r4.model.ExplanationOfBenefit"
   },
   {
@@ -2440,87 +1718,6 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Extension",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.FamilyMemberHistory",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.FamilyMemberHistory$FamilyMemberHistoryConditionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Flag"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Goal",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Goal$GoalTargetComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.GraphDefinition"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Group",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Group$GroupCharacteristicComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Group$GroupMemberComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.GuidanceResponse"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.HealthcareService",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.HealthcareService$HealthcareServiceAvailableTimeComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.HealthcareService$HealthcareServiceEligibilityComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.HealthcareService$HealthcareServiceNotAvailableComponent",
     "allDeclaredFields": true
   },
   {
@@ -2565,29 +1762,6 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ImagingStudy",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImagingStudy$ImagingStudySeriesComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImagingStudy$ImagingStudySeriesInstanceComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImagingStudy$ImagingStudySeriesPerformerComponent",
-    "allDeclaredFields": true
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Immunization",
     "allDeclaredFields": true,
     "allPublicFields": true,
@@ -2615,138 +1789,6 @@
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.ImmunizationEvaluation",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImmunizationRecommendation",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImmunizationRecommendation$ImmunizationRecommendationRecommendationComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImmunizationRecommendation$ImmunizationRecommendationRecommendationDateCriterionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide$GuidePageGenerationEnumFactory",
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDefinitionComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDefinitionGroupingComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDefinitionPageComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDefinitionParameterComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDefinitionResourceComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDefinitionTemplateComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDependsOnComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideGlobalComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideManifestComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ManifestPageComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ManifestResourceComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide$SPDXLicenseEnumFactory",
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
     "name": "org.hl7.fhir.r4.model.InstantType",
     "queryAllPublicConstructors": true,
     "methods": [
@@ -2755,53 +1797,6 @@
         "parameterTypes": []
       }
     ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.InsurancePlan",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.InsurancePlan$CoverageBenefitComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.InsurancePlan$CoverageBenefitLimitComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.InsurancePlan$InsurancePlanContactComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.InsurancePlan$InsurancePlanCoverageComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.InsurancePlan$InsurancePlanPlanComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.InsurancePlan$InsurancePlanPlanGeneralCostComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.InsurancePlan$InsurancePlanPlanSpecificCostComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.InsurancePlan$PlanBenefitComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.InsurancePlan$PlanBenefitCostComponent",
-    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4.model.IntegerType",
@@ -2814,37 +1809,6 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Invoice"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Library"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Linkage"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ListResource"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Location",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Location$LocationHoursOfOperationComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Location$LocationPositionComponent",
-    "allDeclaredFields": true
-  },
-  {
     "name": "org.hl7.fhir.r4.model.MarkdownType",
     "queryAllPublicConstructors": true,
     "methods": [
@@ -2853,87 +1817,6 @@
         "parameterTypes": []
       }
     ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MarketingStatus",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Measure"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MeasureReport"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Media",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Medication",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Medication$MedicationBatchComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Medication$MedicationIngredientComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicationAdministration",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicationAdministration$MedicationAdministrationDosageComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicationAdministration$MedicationAdministrationPerformerComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicationDispense",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicationDispense$MedicationDispensePerformerComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicationDispense$MedicationDispenseSubstitutionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicationKnowledge"
   },
   {
     "name": "org.hl7.fhir.r4.model.MedicationRequest",
@@ -2978,53 +1861,6 @@
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicationStatement",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicinalProduct"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductAuthorization"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductContraindication"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductIndication"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductIngredient"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductInteraction"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductManufactured"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductPackaged"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductPharmaceutical"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductUndesirableEffect"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MessageDefinition"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MessageHeader"
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Meta",
     "allDeclaredFields": true,
     "queryAllPublicConstructors": true,
@@ -3044,58 +1880,8 @@
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MolecularSequence",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceQualityComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceQualityRocComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceReferenceSeqComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceRepositoryComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceStructureVariantComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceStructureVariantInnerComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceStructureVariantOuterComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceVariantComponent",
-    "allDeclaredFields": true
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Money",
     "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.MoneyQuantity",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.NamingSystem"
   },
   {
     "name": "org.hl7.fhir.r4.model.Narrative",
@@ -3116,41 +1902,6 @@
         "parameterTypes": []
       }
     ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.NutritionOrder",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritionOrderEnteralFormulaAdministrationComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritionOrderEnteralFormulaComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritionOrderOralDietComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritionOrderOralDietNutrientComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritionOrderOralDietTextureComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritionOrderSupplementComponent",
-    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4.model.Observation",
@@ -3182,70 +1933,7 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ObservationDefinition"
-  },
-  {
     "name": "org.hl7.fhir.r4.model.OidType"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.OperationDefinition",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.OperationDefinition$OperationDefinitionOverloadComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.OperationDefinition$OperationDefinitionParameterBindingComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.OperationDefinition$OperationDefinitionParameterComponent",
-    "allDeclaredFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.OperationDefinition$OperationDefinitionParameterReferencedFromComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.OperationDefinition$OperationKindEnumFactory",
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.OperationDefinition$OperationParameterUseEnumFactory",
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.OperationOutcome"
@@ -3264,9 +1952,6 @@
   {
     "name": "org.hl7.fhir.r4.model.Organization$OrganizationContactComponent",
     "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.OrganizationAffiliation"
   },
   {
     "name": "org.hl7.fhir.r4.model.ParameterDefinition",
@@ -3300,12 +1985,6 @@
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.PaymentNotice"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.PaymentReconciliation"
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Period",
     "allDeclaredFields": true,
     "queryAllPublicConstructors": true,
@@ -3315,52 +1994,6 @@
         "parameterTypes": []
       }
     ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Person"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.PlanDefinition",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionActionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionActionConditionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionActionDynamicValueComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionActionParticipantComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionActionRelatedActionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionGoalComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionGoalTargetComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Population",
-    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4.model.PositiveIntType"
@@ -3379,25 +2012,6 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Practitioner$PractitionerQualificationComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.PractitionerRole",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.PractitionerRole$PractitionerRoleAvailableTimeComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.PractitionerRole$PractitionerRoleNotAvailableComponent",
     "allDeclaredFields": true
   },
   {
@@ -3421,14 +2035,6 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Procedure$ProcedurePerformerComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ProdCharacteristic",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ProductShelfLife",
     "allDeclaredFields": true
   },
   {
@@ -3471,52 +2077,6 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Questionnaire",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Questionnaire$QuestionnaireItemAnswerOptionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Questionnaire$QuestionnaireItemComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Questionnaire$QuestionnaireItemEnableWhenComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Questionnaire$QuestionnaireItemInitialComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.QuestionnaireResponse",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.QuestionnaireResponse$QuestionnaireResponseItemAnswerComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.QuestionnaireResponse$QuestionnaireResponseItemComponent",
-    "allDeclaredFields": true
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Range",
     "allDeclaredFields": true
   },
@@ -3540,141 +2100,12 @@
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.RelatedPerson",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.RelatedPerson$RelatedPersonCommunicationComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.RequestGroup",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.RequestGroup$RequestGroupActionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.RequestGroup$RequestGroupActionConditionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.RequestGroup$RequestGroupActionRelatedActionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ResearchDefinition"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ResearchElementDefinition"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ResearchStudy",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ResearchStudy$ResearchStudyArmComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ResearchStudy$ResearchStudyObjectiveComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.ResearchSubject"
-  },
-  {
     "name": "org.hl7.fhir.r4.model.Resource",
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.RiskAssessment",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.RiskAssessment$RiskAssessmentPredictionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.RiskEvidenceSynthesis"
-  },
-  {
     "name": "org.hl7.fhir.r4.model.SampledData",
     "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Schedule",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SearchParameter",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "queryAllPublicConstructors": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SearchParameter$SearchComparatorEnumFactory",
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SearchParameter$SearchParameterComponentComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SearchParameter$XPathUsageTypeEnumFactory",
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.ServiceRequest",
@@ -3690,47 +2121,6 @@
   {
     "name": "org.hl7.fhir.r4.model.Signature",
     "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SimpleQuantity",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Slot",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Specimen",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Specimen$SpecimenCollectionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Specimen$SpecimenContainerComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Specimen$SpecimenProcessingComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SpecimenDefinition"
   },
   {
     "name": "org.hl7.fhir.r4.model.StringType",
@@ -3824,95 +2214,6 @@
         "parameterTypes": []
       }
     ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.StructureMap"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Subscription"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Substance",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Substance$SubstanceIngredientComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Substance$SubstanceInstanceComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SubstanceAmount",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SubstanceAmount$SubstanceAmountReferenceRangeComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SubstanceNucleicAcid"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SubstancePolymer"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SubstanceProtein"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SubstanceReferenceInformation"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SubstanceSourceMaterial"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SubstanceSpecification"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SupplyDelivery"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SupplyRequest"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Task",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Task$ParameterComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Task$TaskOutputComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Task$TaskRestrictionComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.TerminologyCapabilities"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.TestReport"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.TestScript"
   },
   {
     "name": "org.hl7.fhir.r4.model.TimeType"
@@ -4085,28 +2386,6 @@
         "parameterTypes": []
       }
     ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.VerificationResult"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.VisionPrescription",
-    "allDeclaredFields": true,
-    "allPublicFields": true,
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.VisionPrescription$PrismComponent",
-    "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.VisionPrescription$VisionPrescriptionLensSpecificationComponent",
-    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4b.model.Constants",
