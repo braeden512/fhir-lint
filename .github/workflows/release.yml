@@ -57,16 +57,23 @@ jobs:
           - os: ubuntu-latest
             artifact_name: fhir-lint-linux-x86_64
             binary_src: build/native/nativeCompile/fhir-lint
+            extra_args: ""
           - os: macos-14
             artifact_name: fhir-lint-macos-aarch64
             binary_src: build/native/nativeCompile/fhir-lint
+            extra_args: "-PnativeArgs=-J-Xmx6g"
           - os: windows-latest
             artifact_name: fhir-lint-windows-x86_64.exe
             binary_src: build/native/nativeCompile/fhir-lint.exe
+            extra_args: ""
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Free Inactive Memory (macOS)
+        if: runner.os == 'macOS'
+        run: sudo purge || true
 
       - name: Set up GraalVM JDK 21
         uses: graalvm/setup-graalvm@v1
@@ -77,7 +84,9 @@ jobs:
           native-image-job-reports: 'true'
 
       - name: Compile Native Binary
-        run: ./gradlew nativeCompile --max-workers=2 --no-daemon
+        env:
+          GRADLE_OPTS: "-Xmx512m -XX:MaxMetaspaceSize=256m"
+        run: ./gradlew nativeCompile ${{ matrix.extra_args }} --max-workers=2 --no-daemon
 
       - name: Sanity Check Native Binary (Unix)
         if: runner.os != 'Windows'
