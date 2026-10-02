@@ -896,6 +896,12 @@
     ]
   },
   {
+    "name": "org.hl7.fhir.r4.model.Account"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ActivityDefinition"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.Address",
     "allDeclaredFields": true,
     "queryAllPublicConstructors": true,
@@ -907,8 +913,23 @@
     ]
   },
   {
+    "name": "org.hl7.fhir.r4.model.AdverseEvent"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AllergyIntolerance"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Appointment"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AppointmentResponse"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.Attachment",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AuditEvent"
   },
   {
     "name": "org.hl7.fhir.r4.model.BackboneElement",
@@ -928,6 +949,18 @@
   {
     "name": "org.hl7.fhir.r4.model.BaseResource",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Basic"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Binary"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.BiologicallyDerivedProduct"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.BodyStructure"
   },
   {
     "name": "org.hl7.fhir.r4.model.BooleanType",
@@ -1206,6 +1239,15 @@
     "allDeclaredFields": true
   },
   {
+    "name": "org.hl7.fhir.r4.model.CatalogEntry"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ChargeItem"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ChargeItemDefinition"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.Claim",
     "allDeclaredFields": true,
     "allPublicFields": true,
@@ -1259,6 +1301,12 @@
   {
     "name": "org.hl7.fhir.r4.model.Claim$SupportingInformationComponent",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClinicalImpression"
   },
   {
     "name": "org.hl7.fhir.r4.model.CodeSystem",
@@ -1396,6 +1444,21 @@
     ]
   },
   {
+    "name": "org.hl7.fhir.r4.model.Communication"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.CommunicationRequest"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.CompartmentDefinition"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Composition"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ConceptMap"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.Condition",
     "allDeclaredFields": true,
     "allPublicFields": true,
@@ -1414,6 +1477,9 @@
   {
     "name": "org.hl7.fhir.r4.model.Condition$ConditionStageComponent",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Consent"
   },
   {
     "name": "org.hl7.fhir.r4.model.ContactDetail",
@@ -1447,6 +1513,9 @@
     ]
   },
   {
+    "name": "org.hl7.fhir.r4.model.Contract"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.Contributor",
     "allDeclaredFields": true
   },
@@ -1472,6 +1541,12 @@
   {
     "name": "org.hl7.fhir.r4.model.Coverage$ExemptionComponent",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.CoverageEligibilityRequest"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.CoverageEligibilityResponse"
   },
   {
     "name": "org.hl7.fhir.r4.model.DataRequirement",
@@ -1520,6 +1595,9 @@
     ]
   },
   {
+    "name": "org.hl7.fhir.r4.model.DetectedIssue"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.Device",
     "allDeclaredFields": true,
     "allPublicFields": true,
@@ -1551,6 +1629,18 @@
     "allDeclaredFields": true
   },
   {
+    "name": "org.hl7.fhir.r4.model.DeviceDefinition"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceMetric"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceRequest"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceUseStatement"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.DiagnosticReport",
     "allDeclaredFields": true,
     "allPublicFields": true,
@@ -1574,6 +1664,9 @@
         "parameterTypes": []
       }
     ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DocumentManifest"
   },
   {
     "name": "org.hl7.fhir.r4.model.DocumentReference",
@@ -1605,6 +1698,9 @@
   {
     "name": "org.hl7.fhir.r4.model.Duration",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EffectEvidenceSynthesis"
   },
   {
     "name": "org.hl7.fhir.r4.model.Element",
@@ -1654,6 +1750,15 @@
   {
     "name": "org.hl7.fhir.r4.model.Encounter$StatusHistoryComponent",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Endpoint"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EnrollmentRequest"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EnrollmentResponse"
   },
   {
     "name": "org.hl7.fhir.r4.model.Enumerations$AdministrativeGenderEnumFactory",
@@ -1710,6 +1815,21 @@
     ]
   },
   {
+    "name": "org.hl7.fhir.r4.model.EpisodeOfCare"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EventDefinition"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Evidence"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EvidenceVariable"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ExampleScenario"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.ExplanationOfBenefit"
   },
   {
@@ -1719,6 +1839,27 @@
   {
     "name": "org.hl7.fhir.r4.model.Extension",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.FamilyMemberHistory"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Flag"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Goal"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.GraphDefinition"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Group"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.GuidanceResponse"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.HealthcareService"
   },
   {
     "name": "org.hl7.fhir.r4.model.HumanName",
@@ -1762,6 +1903,9 @@
     ]
   },
   {
+    "name": "org.hl7.fhir.r4.model.ImagingStudy"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.Immunization",
     "allDeclaredFields": true,
     "allPublicFields": true,
@@ -1789,6 +1933,15 @@
     "allDeclaredFields": true
   },
   {
+    "name": "org.hl7.fhir.r4.model.ImmunizationEvaluation"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImmunizationRecommendation"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.InstantType",
     "queryAllPublicConstructors": true,
     "methods": [
@@ -1797,6 +1950,9 @@
         "parameterTypes": []
       }
     ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.InsurancePlan"
   },
   {
     "name": "org.hl7.fhir.r4.model.IntegerType",
@@ -1809,6 +1965,21 @@
     ]
   },
   {
+    "name": "org.hl7.fhir.r4.model.Invoice"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Library"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Linkage"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ListResource"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Location"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.MarkdownType",
     "queryAllPublicConstructors": true,
     "methods": [
@@ -1817,6 +1988,27 @@
         "parameterTypes": []
       }
     ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Measure"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MeasureReport"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Media"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Medication"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationAdministration"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationDispense"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationKnowledge"
   },
   {
     "name": "org.hl7.fhir.r4.model.MedicationRequest",
@@ -1861,6 +2053,45 @@
     "allDeclaredFields": true
   },
   {
+    "name": "org.hl7.fhir.r4.model.MedicationStatement"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicinalProduct"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicinalProductAuthorization"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicinalProductContraindication"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicinalProductIndication"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicinalProductIngredient"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicinalProductInteraction"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicinalProductManufactured"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicinalProductPackaged"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicinalProductPharmaceutical"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicinalProductUndesirableEffect"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MessageDefinition"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MessageHeader"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.Meta",
     "allDeclaredFields": true,
     "queryAllPublicConstructors": true,
@@ -1880,8 +2111,14 @@
     "allDeclaredFields": true
   },
   {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.Money",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.NamingSystem"
   },
   {
     "name": "org.hl7.fhir.r4.model.Narrative",
@@ -1902,6 +2139,9 @@
         "parameterTypes": []
       }
     ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.NutritionOrder"
   },
   {
     "name": "org.hl7.fhir.r4.model.Observation",
@@ -1933,7 +2173,13 @@
     ]
   },
   {
+    "name": "org.hl7.fhir.r4.model.ObservationDefinition"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.OidType"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.OperationDefinition"
   },
   {
     "name": "org.hl7.fhir.r4.model.OperationOutcome"
@@ -1952,6 +2198,9 @@
   {
     "name": "org.hl7.fhir.r4.model.Organization$OrganizationContactComponent",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.OrganizationAffiliation"
   },
   {
     "name": "org.hl7.fhir.r4.model.ParameterDefinition",
@@ -1985,6 +2234,12 @@
     "allDeclaredFields": true
   },
   {
+    "name": "org.hl7.fhir.r4.model.PaymentNotice"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PaymentReconciliation"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.Period",
     "allDeclaredFields": true,
     "queryAllPublicConstructors": true,
@@ -1994,6 +2249,12 @@
         "parameterTypes": []
       }
     ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Person"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition"
   },
   {
     "name": "org.hl7.fhir.r4.model.PositiveIntType"
@@ -2013,6 +2274,9 @@
   {
     "name": "org.hl7.fhir.r4.model.Practitioner$PractitionerQualificationComponent",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PractitionerRole"
   },
   {
     "name": "org.hl7.fhir.r4.model.PrimitiveType",
@@ -2077,6 +2341,12 @@
     ]
   },
   {
+    "name": "org.hl7.fhir.r4.model.Questionnaire"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.QuestionnaireResponse"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.Range",
     "allDeclaredFields": true
   },
@@ -2100,12 +2370,42 @@
     "allDeclaredFields": true
   },
   {
+    "name": "org.hl7.fhir.r4.model.RelatedPerson"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ResearchDefinition"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ResearchElementDefinition"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ResearchStudy"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ResearchSubject"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.Resource",
     "allDeclaredFields": true
   },
   {
+    "name": "org.hl7.fhir.r4.model.RiskAssessment"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RiskEvidenceSynthesis"
+  },
+  {
     "name": "org.hl7.fhir.r4.model.SampledData",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Schedule"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SearchParameter"
   },
   {
     "name": "org.hl7.fhir.r4.model.ServiceRequest",
@@ -2121,6 +2421,15 @@
   {
     "name": "org.hl7.fhir.r4.model.Signature",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Slot"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Specimen"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SpecimenDefinition"
   },
   {
     "name": "org.hl7.fhir.r4.model.StringType",
@@ -2214,6 +2523,51 @@
         "parameterTypes": []
       }
     ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.StructureMap"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Subscription"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Substance"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SubstanceNucleicAcid"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SubstancePolymer"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SubstanceProtein"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SubstanceReferenceInformation"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SubstanceSourceMaterial"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SubstanceSpecification"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SupplyDelivery"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SupplyRequest"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Task"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TerminologyCapabilities"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TestReport"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TestScript"
   },
   {
     "name": "org.hl7.fhir.r4.model.TimeType"
@@ -2386,6 +2740,12 @@
         "parameterTypes": []
       }
     ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.VerificationResult"
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.VisionPrescription"
   },
   {
     "name": "org.hl7.fhir.r4b.model.Constants",

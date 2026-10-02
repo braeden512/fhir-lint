@@ -61,7 +61,7 @@ jobs:
           - os: macos-14
             artifact_name: fhir-lint-macos-aarch64
             binary_src: build/native/nativeCompile/fhir-lint
-            extra_args: "-PnativeArgs=-J-Xmx6g,-J-XX:GCTimeRatio=4,-J-XX:ConcGCThreads=2"
+            extra_args: "-PnativeArgs=-J-Xmx6g,-J-XX:-UseGCOverheadLimit"
           - os: windows-latest
             artifact_name: fhir-lint-windows-x86_64.exe
             binary_src: build/native/nativeCompile/fhir-lint.exe
