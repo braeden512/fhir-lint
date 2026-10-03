@@ -57,14 +57,17 @@ jobs:
           - os: ubuntu-latest
             artifact_name: fhir-lint-linux-x86_64
             binary_src: build/native/nativeCompile/fhir-lint
+            max_workers: 2
             extra_args: ""
           - os: macos-14
             artifact_name: fhir-lint-macos-aarch64
             binary_src: build/native/nativeCompile/fhir-lint
-            extra_args: "-PnativeArgs=-J-XX:MaxRAM=12g,-J-Xmx7g"
+            max_workers: 1
+            extra_args: "-PnativeThreads=1 -PnativeArgs=-J-XX:+UseSerialGC,-J-Xmx4500m"
           - os: windows-latest
             artifact_name: fhir-lint-windows-x86_64.exe
             binary_src: build/native/nativeCompile/fhir-lint.exe
+            max_workers: 2
             extra_args: ""
 
     steps:
@@ -86,7 +89,7 @@ jobs:
       - name: Compile Native Binary
         env:
           GRADLE_OPTS: "-Xmx512m -XX:MaxMetaspaceSize=256m"
-        run: ./gradlew nativeCompile ${{ matrix.extra_args }} --max-workers=2 --no-daemon
+        run: ./gradlew nativeCompile ${{ matrix.extra_args }} --max-workers=${{ matrix.max_workers }} --no-daemon
 
       - name: Sanity Check Native Binary (Unix)
         if: runner.os != 'Windows'
