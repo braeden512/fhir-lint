@@ -200,6 +200,60 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: fhir-results.sarif
+
+---
+
+### 5. Dataset Comparison & Regression Diffing (`compare`)
+Compare two FHIR datasets (or entire directories) to detect quality regressions, score drift, and new defects introduced across pipeline runs or monthly data releases:
+
+```bash
+# Compare two bundles and inspect differential ANSI report
+fhir-lint compare baseline-bundle.json latest-bundle.json
+
+# Enforce regression gates in CI/CD (fails with exit code 1 on new errors or score drop)
+fhir-lint compare baseline-bundle.json latest-bundle.json --fail-on-regression
+
+# Fail if target quality score drops by more than 5 points
+fhir-lint compare baseline-bundle.json latest-bundle.json --max-score-drop 5
+
+# Export machine-readable differential report in structured JSON
+fhir-lint compare baseline/ target/ --format json -o diff-report.json
+```
+
+---
+
+### 6. Dynamic Custom Rules via YAML & FHIRPath (`--rules`)
+Enforce custom clinical guidelines, business rules, or institutional constraints using standard **HL7 FHIRPath** expressions without writing or compiling Java:
+
+```yaml
+# custom-rules.yaml
+rules:
+  - id: custom-vital-bp-components
+    name: "Blood Pressure Must Contain Systolic and Diastolic"
+    description: "Ensures blood pressure panels contain both components."
+    resourceType: Observation
+    category: completeness
+    severity: error
+    fhirpath: "code.coding.where(code = '85354-9').empty() or component.count() = 2"
+    message: "Blood pressure observation (LOINC 85354-9) must contain exactly 2 components."
+    suggestion: "Include systolic (8480-6) and diastolic (8462-4) components."
+
+  - id: custom-patient-mrn
+    name: "Patient Must Include Medical Record Number"
+    resourceType: Patient
+    category: completeness
+    severity: warning
+    fhirpath: "identifier.where(type.coding.where(code = 'MR').exists()).exists()"
+    message: "Patient is missing a Medical Record Number (MRN) identifier."
+```
+
+Apply your rules during validation or comparison:
+```bash
+# Validate with custom rules
+fhir-lint validate bundle.json --rules custom-rules.yaml
+
+# Compare datasets with custom rules
+fhir-lint compare baseline.json target.json --rules custom-rules.yaml
 ```
 
 ---

@@ -58,6 +58,22 @@ public class FhirLinter {
         return this;
     }
 
+    public FhirLinter withCustomRules(List<? extends org.fhirlint.core.rules.QualityRule> customRules) {
+        if (customRules != null && this.qualityRuleEngine instanceof org.fhirlint.core.rules.DefaultQualityRuleEngine defaultEngine) {
+            for (org.fhirlint.core.rules.QualityRule rule : customRules) {
+                defaultEngine.getRegistry().register(rule);
+            }
+        }
+        return this;
+    }
+
+    public FhirLinter withCustomRule(org.fhirlint.core.rules.QualityRule customRule) {
+        if (customRule != null) {
+            return withCustomRules(List.of(customRule));
+        }
+        return this;
+    }
+
     public ValidationProfile getProfile() {
         return profile;
     }

@@ -77,6 +77,12 @@ public class ValidateCommand implements Callable<Integer> {
     )
     private File outputFile;
 
+    @Option(
+        names = {"-r", "--rules"},
+        description = "Path to custom YAML rules file, comma-separated list, or directory."
+    )
+    private String rulesPath;
+
     private final ConsoleTableRenderer tableRenderer = new ConsoleTableRenderer();
     private final JsonReportRenderer jsonRenderer = new JsonReportRenderer();
     private final SarifReportRenderer sarifRenderer = new SarifReportRenderer();
@@ -110,7 +116,19 @@ public class ValidateCommand implements Callable<Integer> {
             return 2;
         }
 
-        FhirLinter linter = FhirLinter.create().withProfile(profile);
+        java.util.List<org.fhirlint.core.rules.custom.FhirPathQualityRule> customRules = java.util.Collections.emptyList();
+        if (rulesPath != null && !rulesPath.isBlank()) {
+            try {
+                customRules = org.fhirlint.core.rules.custom.CustomRuleLoader.loadRules(rulesPath);
+            } catch (org.fhirlint.core.rules.custom.CustomRuleException e) {
+                System.err.println("Error: " + e.getMessage());
+                return 2;
+            }
+        }
+
+        FhirLinter linter = FhirLinter.create()
+                .withProfile(profile)
+                .withCustomRules(customRules);
         LintReport report;
 
         try {
