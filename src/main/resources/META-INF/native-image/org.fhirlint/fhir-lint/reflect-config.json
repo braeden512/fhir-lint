@@ -819,10 +819,90 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Account"
+    "name": "org.hl7.fhir.r4.model.Account",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ActivityDefinition"
+    "name": "org.hl7.fhir.r4.model.Account$AccountStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Account$CoverageComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Account$GuarantorComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ActivityDefinition",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ActivityDefinition$ActivityDefinitionKindEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ActivityDefinition$ActivityParticipantTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ActivityDefinition$RequestIntentEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ActivityDefinition$RequestPriorityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Address",
@@ -836,62 +916,403 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.AdverseEvent"
+    "name": "org.hl7.fhir.r4.model.Address$AddressTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Address$AddressUseEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AdverseEvent",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AdverseEvent$AdverseEventActualityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Age",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.AllergyIntolerance"
+    "name": "org.hl7.fhir.r4.model.AllergyIntolerance",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AllergyIntolerance$AllergyIntoleranceCategoryEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AllergyIntolerance$AllergyIntoleranceCriticalityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AllergyIntolerance$AllergyIntoleranceReactionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AllergyIntolerance$AllergyIntoleranceSeverityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AllergyIntolerance$AllergyIntoleranceTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Annotation",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Appointment"
+    "name": "org.hl7.fhir.r4.model.Appointment",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.AppointmentResponse"
+    "name": "org.hl7.fhir.r4.model.Appointment$AppointmentParticipantComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Appointment$AppointmentStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Appointment$ParticipantRequiredEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Appointment$ParticipationStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AppointmentResponse",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AppointmentResponse$ParticipantStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Attachment",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AuditEvent",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.AuditEvent"
+    "name": "org.hl7.fhir.r4.model.AuditEvent$AuditEventActionEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AuditEvent$AuditEventAgentNetworkTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.AuditEvent$AuditEventOutcomeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.BackboneElement",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.BackboneType",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Base",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Base64BinaryType",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.Base64BinaryType"
+    "name": "org.hl7.fhir.r4.model.BaseBinary",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.BaseDateTimeType",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.BaseExtension",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.BaseNarrative",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.BaseReference",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.BaseResource",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Basic",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.Basic"
+    "name": "org.hl7.fhir.r4.model.Binary",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Binary"
+    "name": "org.hl7.fhir.r4.model.BiologicallyDerivedProduct",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.BiologicallyDerivedProduct"
+    "name": "org.hl7.fhir.r4.model.BiologicallyDerivedProduct$BiologicallyDerivedProductCategoryEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.BodyStructure"
+    "name": "org.hl7.fhir.r4.model.BiologicallyDerivedProduct$BiologicallyDerivedProductStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.BiologicallyDerivedProduct$BiologicallyDerivedProductStorageScaleEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.BodyStructure",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4.model.BooleanType",
@@ -928,19 +1349,43 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Bundle$BundleEntryRequestComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Bundle$BundleEntryResponseComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Bundle$BundleEntrySearchComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Bundle$BundleLinkComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Bundle$BundleTypeEnumFactory",
@@ -993,11 +1438,23 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.CapabilityStatement$CapabilityStatementDocumentComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.CapabilityStatement$CapabilityStatementImplementationComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.CapabilityStatement$CapabilityStatementKindEnumFactory",
@@ -1010,15 +1467,33 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.CapabilityStatement$CapabilityStatementMessagingComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.CapabilityStatement$CapabilityStatementMessagingEndpointComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.CapabilityStatement$CapabilityStatementMessagingSupportedMessageComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.CapabilityStatement$CapabilityStatementRestComponent",
@@ -1202,11 +1677,23 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.CarePlan$CarePlanActivityComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.CarePlan$CarePlanActivityDetailComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.CarePlan$CarePlanActivityKindEnumFactory",
@@ -1257,7 +1744,13 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.CareTeam$CareTeamParticipantComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.CareTeam$CareTeamStatusEnumFactory",
@@ -1269,13 +1762,61 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.CatalogEntry"
+    "name": "org.hl7.fhir.r4.model.CatalogEntry",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.ChargeItem"
+    "name": "org.hl7.fhir.r4.model.CatalogEntry$CatalogEntryRelationTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ChargeItemDefinition"
+    "name": "org.hl7.fhir.r4.model.ChargeItem",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ChargeItem$ChargeItemStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ChargeItemDefinition",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ChargeItemDefinition$ChargeItemDefinitionPriceComponentTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim",
@@ -1290,11 +1831,23 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$AccidentComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$CareTeamComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$ClaimStatusEnumFactory",
@@ -1307,39 +1860,93 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$DetailComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$DiagnosisComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$InsuranceComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$ItemComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$PayeeComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$ProcedureComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$RelatedClaimComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$SubDetailComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$SupportingInformationComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Claim$UseEnumFactory",
@@ -1351,10 +1958,202 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ClaimResponse"
+    "name": "org.hl7.fhir.r4.model.ClaimResponse",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ClinicalImpression"
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$AddedItemComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$AddedItemDetailComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$AddedItemSubDetailComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$AdjudicationComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$ClaimResponseStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$ErrorComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$InsuranceComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$ItemComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$ItemDetailComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$NoteComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$PaymentComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$RemittanceOutcomeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$SubDetailComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$TotalComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClaimResponse$UseEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClinicalImpression",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClinicalImpression$ClinicalImpressionFindingComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClinicalImpression$ClinicalImpressionInvestigationComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ClinicalImpression$ClinicalImpressionStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.CodeSystem",
@@ -1492,19 +2291,285 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Communication"
+    "name": "org.hl7.fhir.r4.model.Communication",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.CommunicationRequest"
+    "name": "org.hl7.fhir.r4.model.Communication$CommunicationPriorityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.CompartmentDefinition"
+    "name": "org.hl7.fhir.r4.model.Communication$CommunicationStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Composition"
+    "name": "org.hl7.fhir.r4.model.CommunicationRequest",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ConceptMap"
+    "name": "org.hl7.fhir.r4.model.CommunicationRequest$CommunicationPriorityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.CommunicationRequest$CommunicationRequestPayloadComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.CommunicationRequest$CommunicationRequestStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Comparison",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.CompartmentDefinition",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.CompartmentDefinition$CompartmentDefinitionResourceComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.CompartmentDefinition$CompartmentTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Composition",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Composition$CompositionAttestationModeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Composition$CompositionAttesterComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Composition$CompositionEventComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Composition$CompositionRelatesToComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Composition$CompositionStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Composition$DocumentConfidentialityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Composition$DocumentRelationshipTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Composition$SectionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Composition$SectionModeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ConceptMap",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ConceptMap$ConceptMapGroupComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ConceptMap$ConceptMapGroupUnmappedComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ConceptMap$ConceptMapGroupUnmappedModeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ConceptMap$OtherElementComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ConceptMap$SourceElementComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ConceptMap$TargetElementComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Condition",
@@ -1520,14 +2585,87 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Condition$ConditionEvidenceComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Condition$ConditionStageComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Configuration",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Consent",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.Consent"
+    "name": "org.hl7.fhir.r4.model.Consent$ConsentDataMeaningEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Consent$ConsentProvisionTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Consent$ConsentStateEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Constants",
+    "fields": [
+      {
+        "name": "VERSION"
+      }
+    ],
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4.model.ContactDetail",
@@ -1552,15 +2690,230 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Contract"
+    "name": "org.hl7.fhir.r4.model.ContactPoint$ContactPointSystemEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ContactPoint$ContactPointUseEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$ActionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$ActionSubjectComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$AnswerComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$AssetContextComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$ComputableLanguageComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$ContentDefinitionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$ContractAssetComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$ContractOfferComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$ContractPartyComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$ContractPublicationStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$ContractStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$FriendlyLanguageComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$LegalLanguageComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$SecurityLabelComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$SignatoryComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$TermComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contract$ValuedItemComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Contributor",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Contributor$ContributorTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Count",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Coverage",
@@ -1575,11 +2928,23 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Coverage$ClassComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Coverage$CostToBeneficiaryComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Coverage$CoverageStatusEnumFactory",
@@ -1592,17 +2957,118 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Coverage$ExemptionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.CoverageEligibilityRequest",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.CoverageEligibilityRequest"
+    "name": "org.hl7.fhir.r4.model.CoverageEligibilityRequest$EligibilityRequestPurposeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.CoverageEligibilityResponse"
+    "name": "org.hl7.fhir.r4.model.CoverageEligibilityRequest$EligibilityRequestStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.CoverageEligibilityResponse",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.CoverageEligibilityResponse$EligibilityResponsePurposeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.CoverageEligibilityResponse$EligibilityResponseStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.DataRequirement",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DataRequirement$DataRequirementCodeFilterComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DataRequirement$DataRequirementDateFilterComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DataRequirement$DataRequirementSortComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DataRequirement$SortDirectionEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.DateTimeType",
@@ -1635,7 +3101,53 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.DetectedIssue"
+    "name": "org.hl7.fhir.r4.model.DetectedIssue",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DetectedIssue$DetectedIssueEvidenceComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DetectedIssue$DetectedIssueMitigationComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DetectedIssue$DetectedIssueSeverityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DetectedIssue$DetectedIssueStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Device",
@@ -1650,7 +3162,13 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Device$DeviceDeviceNameComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Device$DeviceNameTypeEnumFactory",
@@ -1663,19 +3181,43 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Device$DevicePropertyComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Device$DeviceSpecializationComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Device$DeviceUdiCarrierComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Device$DeviceVersionComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Device$FHIRDeviceStatusEnumFactory",
@@ -1696,16 +3238,217 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.DeviceDefinition"
+    "name": "org.hl7.fhir.r4.model.DeviceDefinition",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.DeviceMetric"
+    "name": "org.hl7.fhir.r4.model.DeviceDefinition$DeviceDefinitionCapabilityComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.DeviceRequest"
+    "name": "org.hl7.fhir.r4.model.DeviceDefinition$DeviceDefinitionDeviceNameComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.DeviceUseStatement"
+    "name": "org.hl7.fhir.r4.model.DeviceDefinition$DeviceDefinitionMaterialComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceDefinition$DeviceDefinitionPropertyComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceDefinition$DeviceDefinitionSpecializationComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceDefinition$DeviceDefinitionUdiDeviceIdentifierComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceDefinition$DeviceNameTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceMetric",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceMetric$DeviceMetricCalibrationComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceMetric$DeviceMetricCalibrationStateEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceMetric$DeviceMetricCalibrationTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceMetric$DeviceMetricCategoryEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceMetric$DeviceMetricColorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceMetric$DeviceMetricOperationalStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceRequest",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceRequest$DeviceRequestParameterComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceRequest$DeviceRequestStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceRequest$RequestIntentEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceRequest$RequestPriorityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceUseStatement",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.DeviceUseStatement$DeviceUseStatementStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.DiagnosticReport",
@@ -1720,7 +3463,13 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.DiagnosticReport$DiagnosticReportMediaComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.DiagnosticReport$DiagnosticReportStatusEnumFactory",
@@ -1733,10 +3482,23 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Distance",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.DocumentManifest"
+    "name": "org.hl7.fhir.r4.model.DocumentManifest",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4.model.DocumentReference",
@@ -1751,15 +3513,33 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.DocumentReference$DocumentReferenceContentComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.DocumentReference$DocumentReferenceContextComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.DocumentReference$DocumentReferenceRelatesToComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.DocumentReference$DocumentRelationshipTypeEnumFactory",
@@ -1781,25 +3561,217 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.DomainResource",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Dosage",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Dosage$DosageDoseAndRateComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Duration",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EffectEvidenceSynthesis",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.EffectEvidenceSynthesis"
+    "name": "org.hl7.fhir.r4.model.EffectEvidenceSynthesis$ExposureStateEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Element",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.ElementDefinition",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$AggregationModeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$ConstraintSeverityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$DiscriminatorTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionBaseComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionBindingComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionConstraintComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionExampleComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionMappingComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionSlicingComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$ElementDefinitionSlicingDiscriminatorComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$PropertyRepresentationEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$ReferenceVersionRulesEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$SlicingRulesEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ElementDefinition$TypeRefComponent",
     "allDeclaredFields": true,
     "queryAllPublicConstructors": true,
     "methods": [
@@ -1823,19 +3795,43 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Encounter$ClassHistoryComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Encounter$DiagnosisComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Encounter$EncounterHospitalizationComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Encounter$EncounterLocationComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Encounter$EncounterLocationStatusEnumFactory",
@@ -1848,7 +3844,13 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Encounter$EncounterParticipantComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Encounter$EncounterStatusEnumFactory",
@@ -1861,19 +3863,92 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Encounter$StatusHistoryComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Endpoint",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Endpoint$EndpointStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EnrollmentRequest",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.Endpoint"
+    "name": "org.hl7.fhir.r4.model.EnrollmentRequest$EnrollmentRequestStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.EnrollmentRequest"
+    "name": "org.hl7.fhir.r4.model.EnrollmentResponse",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.EnrollmentResponse"
+    "name": "org.hl7.fhir.r4.model.EnrollmentResponse$EnrollmentResponseStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Enumeration"
+    "name": "org.hl7.fhir.r4.model.EnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumeration",
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "org.hl7.fhir.r4.model.EnumFactory"
+        ]
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Enumerations",
@@ -1888,22 +3963,328 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.EpisodeOfCare"
+    "name": "org.hl7.fhir.r4.model.Enumerations$AbstractTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.EventDefinition"
+    "name": "org.hl7.fhir.r4.model.Enumerations$AdministrativeGenderEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Evidence"
+    "name": "org.hl7.fhir.r4.model.Enumerations$AgeUnitsEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.EvidenceVariable"
+    "name": "org.hl7.fhir.r4.model.Enumerations$BindingStrengthEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ExampleScenario"
+    "name": "org.hl7.fhir.r4.model.Enumerations$ConceptMapEquivalenceEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ExplanationOfBenefit"
+    "name": "org.hl7.fhir.r4.model.Enumerations$DataAbsentReasonEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$DataTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$DefinitionResourceTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$DocumentReferenceStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$EventResourceTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$FHIRAllTypesEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$FHIRDefinedTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$FHIRVersionEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$KnowledgeResourceTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$MessageEventEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$NoteTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$PublicationStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$RemittanceOutcomeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$RequestResourceTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$ResourceTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$SearchParamTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Enumerations$SpecialValuesEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EpisodeOfCare",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EpisodeOfCare$DiagnosisComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EpisodeOfCare$EpisodeOfCareStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EpisodeOfCare$EpisodeOfCareStatusHistoryComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EventDefinition",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Evidence",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EvidenceVariable",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EvidenceVariable$EvidenceVariableTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.EvidenceVariable$GroupMeasureEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ExampleScenario",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ExampleScenario$ExampleScenarioActorTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ExampleScenario$FHIRResourceTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ExplanationOfBenefit",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4.model.ExplanationOfBenefit$ExplanationOfBenefitStatusEnumFactory",
@@ -1934,36 +4315,330 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Expression",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Expression$ExpressionLanguageEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ExpressionNode",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Extension",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ExtensionHelper",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Factory",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.FamilyMemberHistory",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.FamilyMemberHistory$FamilyHistoryStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.FamilyMemberHistory$FamilyMemberHistoryConditionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.FhirPublication",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Flag",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.FamilyMemberHistory"
+    "name": "org.hl7.fhir.r4.model.Flag$FlagStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Flag"
+    "name": "org.hl7.fhir.r4.model.Goal",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Goal"
+    "name": "org.hl7.fhir.r4.model.Goal$GoalLifecycleStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.GraphDefinition"
+    "name": "org.hl7.fhir.r4.model.Goal$GoalTargetComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Group"
+    "name": "org.hl7.fhir.r4.model.GraphDefinition",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.GuidanceResponse"
+    "name": "org.hl7.fhir.r4.model.GraphDefinition$CompartmentCodeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.HealthcareService"
+    "name": "org.hl7.fhir.r4.model.GraphDefinition$GraphCompartmentRuleEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.GraphDefinition$GraphCompartmentUseEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Group",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Group$GroupCharacteristicComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Group$GroupMemberComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Group$GroupTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.GuidanceResponse",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.GuidanceResponse$GuidanceResponseStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.HealthcareService",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.HealthcareService$DaysOfWeekEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.HealthcareService$HealthcareServiceAvailableTimeComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.HealthcareService$HealthcareServiceEligibilityComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.HealthcareService$HealthcareServiceNotAvailableComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.HumanName",
     "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.HumanName$NameUseEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ICoding",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
     "queryAllPublicConstructors": true,
     "methods": [
       {
@@ -1994,7 +4669,63 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ImagingStudy"
+    "name": "org.hl7.fhir.r4.model.Identifier$IdentifierUseEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImagingStudy",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImagingStudy$ImagingStudySeriesComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImagingStudy$ImagingStudySeriesInstanceComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImagingStudy$ImagingStudySeriesPerformerComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImagingStudy$ImagingStudyStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Immunization",
@@ -2009,19 +4740,43 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Immunization$ImmunizationEducationComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Immunization$ImmunizationPerformerComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Immunization$ImmunizationProtocolAppliedComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Immunization$ImmunizationReactionComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Immunization$ImmunizationStatusEnumFactory",
@@ -2033,13 +4788,208 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ImmunizationEvaluation"
+    "name": "org.hl7.fhir.r4.model.ImmunizationEvaluation",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ImmunizationRecommendation"
+    "name": "org.hl7.fhir.r4.model.ImmunizationEvaluation$ImmunizationEvaluationStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ImplementationGuide"
+    "name": "org.hl7.fhir.r4.model.ImmunizationRecommendation",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImmunizationRecommendation$ImmunizationRecommendationRecommendationComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImmunizationRecommendation$ImmunizationRecommendationRecommendationDateCriterionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$GuidePageGenerationEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$GuideParameterCodeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDefinitionComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDefinitionGroupingComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDefinitionPageComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDefinitionParameterComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDefinitionResourceComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDefinitionTemplateComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideDependsOnComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideGlobalComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ImplementationGuideManifestComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ManifestPageComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$ManifestResourceComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ImplementationGuide$SPDXLicenseEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.InstantType",
@@ -2052,7 +5002,105 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.InsurancePlan"
+    "name": "org.hl7.fhir.r4.model.InsurancePlan",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.InsurancePlan$CoverageBenefitComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.InsurancePlan$CoverageBenefitLimitComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.InsurancePlan$InsurancePlanContactComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.InsurancePlan$InsurancePlanCoverageComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.InsurancePlan$InsurancePlanPlanComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.InsurancePlan$InsurancePlanPlanGeneralCostComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.InsurancePlan$InsurancePlanPlanSpecificCostComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.InsurancePlan$PlanBenefitComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.InsurancePlan$PlanBenefitCostComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.IntegerType",
@@ -2065,19 +5113,147 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Invoice"
+    "name": "org.hl7.fhir.r4.model.Invoice",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.Library"
+    "name": "org.hl7.fhir.r4.model.Invoice$InvoicePriceComponentTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Linkage"
+    "name": "org.hl7.fhir.r4.model.Invoice$InvoiceStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ListResource"
+    "name": "org.hl7.fhir.r4.model.Library",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.Location"
+    "name": "org.hl7.fhir.r4.model.Linkage",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Linkage$LinkageTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ListResource",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ListResource$ListModeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ListResource$ListStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Location",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Location$DaysOfWeekEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Location$LocationHoursOfOperationComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Location$LocationModeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Location$LocationPositionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Location$LocationStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.MarkdownType",
@@ -2091,28 +5267,210 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.MarketingStatus",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Measure",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.Measure"
+    "name": "org.hl7.fhir.r4.model.MeasureReport",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MeasureReport"
+    "name": "org.hl7.fhir.r4.model.MeasureReport$MeasureReportStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Media"
+    "name": "org.hl7.fhir.r4.model.MeasureReport$MeasureReportTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Medication"
+    "name": "org.hl7.fhir.r4.model.Media",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicationAdministration"
+    "name": "org.hl7.fhir.r4.model.Media$MediaStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicationDispense"
+    "name": "org.hl7.fhir.r4.model.Medication",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicationKnowledge"
+    "name": "org.hl7.fhir.r4.model.Medication$MedicationBatchComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Medication$MedicationIngredientComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Medication$MedicationStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationAdministration",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationAdministration$MedicationAdministrationDosageComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationAdministration$MedicationAdministrationPerformerComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationAdministration$MedicationAdministrationStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationDispense",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationDispense$MedicationDispensePerformerComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationDispense$MedicationDispenseStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationDispense$MedicationDispenseSubstitutionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationKnowledge",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationKnowledge$MedicationKnowledgeStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.MedicationRequest",
@@ -2128,11 +5486,23 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.MedicationRequest$MedicationRequestDispenseRequestComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.MedicationRequest$MedicationRequestDispenseRequestInitialFillComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.MedicationRequest$MedicationRequestIntentEnumFactory",
@@ -2163,46 +5533,180 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.MedicationRequest$MedicationRequestSubstitutionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationStatement",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicationStatement$MedicationStatementStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MedicinalProduct",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicationStatement"
+    "name": "org.hl7.fhir.r4.model.MedicinalProductAuthorization",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicinalProduct"
+    "name": "org.hl7.fhir.r4.model.MedicinalProductContraindication",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductAuthorization"
+    "name": "org.hl7.fhir.r4.model.MedicinalProductIndication",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductContraindication"
+    "name": "org.hl7.fhir.r4.model.MedicinalProductIngredient",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductIndication"
+    "name": "org.hl7.fhir.r4.model.MedicinalProductInteraction",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductIngredient"
+    "name": "org.hl7.fhir.r4.model.MedicinalProductManufactured",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductInteraction"
+    "name": "org.hl7.fhir.r4.model.MedicinalProductPackaged",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductManufactured"
+    "name": "org.hl7.fhir.r4.model.MedicinalProductPharmaceutical",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductPackaged"
+    "name": "org.hl7.fhir.r4.model.MedicinalProductUndesirableEffect",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductPharmaceutical"
+    "name": "org.hl7.fhir.r4.model.MessageDefinition",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.MedicinalProductUndesirableEffect"
+    "name": "org.hl7.fhir.r4.model.MessageDefinition$MessageSignificanceCategoryEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.MessageDefinition"
+    "name": "org.hl7.fhir.r4.model.MessageDefinition$MessageheaderResponseRequestEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.MessageHeader"
+    "name": "org.hl7.fhir.r4.model.MessageHeader",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MessageHeader$ResponseTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Meta",
@@ -2221,21 +5725,197 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.MetadataResource",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.MolecularSequence"
+    "name": "org.hl7.fhir.r4.model.MolecularSequence",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceQualityComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceQualityRocComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceReferenceSeqComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceRepositoryComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceStructureVariantComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceStructureVariantInnerComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceStructureVariantOuterComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence$MolecularSequenceVariantComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence$OrientationTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence$QualityTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence$RepositoryTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence$SequenceTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.MolecularSequence$StrandTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Money",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.MoneyQuantity",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.NamingSystem",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.NamingSystem"
+    "name": "org.hl7.fhir.r4.model.NamingSystem$NamingSystemIdentifierTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.NamingSystem$NamingSystemTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Narrative",
@@ -2249,7 +5929,102 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.NutritionOrder"
+    "name": "org.hl7.fhir.r4.model.Narrative$NarrativeStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.NutritionOrder",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritiionOrderIntentEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritionOrderEnteralFormulaAdministrationComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritionOrderEnteralFormulaComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritionOrderOralDietComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritionOrderOralDietNutrientComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritionOrderOralDietTextureComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritionOrderStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.NutritionOrder$NutritionOrderSupplementComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Observation",
@@ -2265,11 +6040,23 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Observation$ObservationComponentComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Observation$ObservationReferenceRangeComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Observation$ObservationStatusEnumFactory",
@@ -2281,16 +6068,124 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ObservationDefinition"
+    "name": "org.hl7.fhir.r4.model.ObservationDefinition",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.OidType"
+    "name": "org.hl7.fhir.r4.model.ObservationDefinition$ObservationDataTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.OperationDefinition"
+    "name": "org.hl7.fhir.r4.model.ObservationDefinition$ObservationRangeCategoryEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.OperationOutcome"
+    "name": "org.hl7.fhir.r4.model.OidType",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.OperationDefinition",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.OperationDefinition$OperationDefinitionOverloadComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.OperationDefinition$OperationDefinitionParameterBindingComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.OperationDefinition$OperationDefinitionParameterComponent",
+    "allDeclaredFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.OperationDefinition$OperationDefinitionParameterReferencedFromComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.OperationDefinition$OperationKindEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.OperationDefinition$OperationParameterUseEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.OperationOutcome",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4.model.OperationOutcome$IssueSeverityEnumFactory",
@@ -2323,17 +6218,52 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Organization$OrganizationContactComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.OrganizationAffiliation"
+    "name": "org.hl7.fhir.r4.model.OrganizationAffiliation",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4.model.ParameterDefinition",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Parameters"
+    "name": "org.hl7.fhir.r4.model.ParameterDefinition$ParameterUseEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Parameters",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4.model.Patient",
@@ -2349,7 +6279,13 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Patient$ContactComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Patient$LinkTypeEnumFactory",
@@ -2362,17 +6298,61 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Patient$PatientCommunicationComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Patient$PatientLinkComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PaymentNotice",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.PaymentNotice"
+    "name": "org.hl7.fhir.r4.model.PaymentNotice$PaymentNoticeStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.PaymentReconciliation"
+    "name": "org.hl7.fhir.r4.model.PaymentReconciliation",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PaymentReconciliation$PaymentReconciliationStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Period",
@@ -2386,17 +6366,205 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Person"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.PlanDefinition"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Population",
+    "name": "org.hl7.fhir.r4.model.Person",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.PositiveIntType"
+    "name": "org.hl7.fhir.r4.model.Person$IdentityAssuranceLevelEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$ActionCardinalityBehaviorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$ActionConditionKindEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$ActionGroupingBehaviorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$ActionParticipantTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$ActionPrecheckBehaviorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$ActionRelationshipTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$ActionRequiredBehaviorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$ActionSelectionBehaviorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionActionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionActionConditionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionActionDynamicValueComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionActionParticipantComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionActionRelatedActionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionGoalComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$PlanDefinitionGoalTargetComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PlanDefinition$RequestPriorityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Population",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PositiveIntType",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4.model.Practitioner",
@@ -2412,10 +6580,53 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Practitioner$PractitionerQualificationComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.PractitionerRole"
+    "name": "org.hl7.fhir.r4.model.PractitionerRole",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PractitionerRole$DaysOfWeekEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PractitionerRole$PractitionerRoleAvailableTimeComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.PractitionerRole$PractitionerRoleNotAvailableComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.PrimitiveType",
@@ -2442,11 +6653,23 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Procedure$ProcedureFocalDeviceComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Procedure$ProcedurePerformerComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Procedure$ProcedureStatusEnumFactory",
@@ -2459,11 +6682,35 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.ProdCharacteristic",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.ProductShelfLife",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ProfilingWrapper",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Property",
@@ -2490,11 +6737,23 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.Provenance$ProvenanceAgentComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Provenance$ProvenanceEntityComponent",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Provenance$ProvenanceEntityRoleEnumFactory",
@@ -2517,18 +6776,151 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Questionnaire"
+    "name": "org.hl7.fhir.r4.model.Quantity$QuantityComparatorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.QuestionnaireResponse"
+    "name": "org.hl7.fhir.r4.model.Questionnaire",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Questionnaire$EnableWhenBehaviorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Questionnaire$QuestionnaireItemAnswerOptionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Questionnaire$QuestionnaireItemComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Questionnaire$QuestionnaireItemEnableWhenComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Questionnaire$QuestionnaireItemInitialComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Questionnaire$QuestionnaireItemOperatorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Questionnaire$QuestionnaireItemTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.QuestionnaireResponse",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.QuestionnaireResponse$QuestionnaireResponseItemAnswerComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.QuestionnaireResponse$QuestionnaireResponseItemComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.QuestionnaireResponse$QuestionnaireResponseStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Range",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Ratio",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Reference",
@@ -2543,45 +6935,436 @@
   },
   {
     "name": "org.hl7.fhir.r4.model.RelatedArtifact",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RelatedArtifact$RelatedArtifactTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RelatedPerson",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RelatedPerson$RelatedPersonCommunicationComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Request",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup$ActionCardinalityBehaviorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup$ActionConditionKindEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup$ActionGroupingBehaviorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup$ActionPrecheckBehaviorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup$ActionRelationshipTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup$ActionRequiredBehaviorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup$ActionSelectionBehaviorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup$RequestGroupActionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup$RequestGroupActionConditionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup$RequestGroupActionRelatedActionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup$RequestIntentEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup$RequestPriorityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RequestGroup$RequestStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ResearchDefinition",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.RelatedPerson"
+    "name": "org.hl7.fhir.r4.model.ResearchElementDefinition",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.RequestGroup"
+    "name": "org.hl7.fhir.r4.model.ResearchElementDefinition$GroupMeasureEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ResearchDefinition"
+    "name": "org.hl7.fhir.r4.model.ResearchElementDefinition$ResearchElementTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ResearchElementDefinition"
+    "name": "org.hl7.fhir.r4.model.ResearchElementDefinition$VariableTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ResearchStudy"
+    "name": "org.hl7.fhir.r4.model.ResearchStudy",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.ResearchSubject"
+    "name": "org.hl7.fhir.r4.model.ResearchStudy$ResearchStudyArmComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ResearchStudy$ResearchStudyObjectiveComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ResearchStudy$ResearchStudyStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ResearchSubject",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ResearchSubject$ResearchSubjectStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Resource",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ResourceFactory",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.ResourceType",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RiskAssessment",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RiskAssessment$RiskAssessmentPredictionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RiskAssessment$RiskAssessmentStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.RiskEvidenceSynthesis",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.RiskAssessment"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.RiskEvidenceSynthesis"
   },
   {
     "name": "org.hl7.fhir.r4.model.SampledData",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Schedule"
+    "name": "org.hl7.fhir.r4.model.Schedule",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.SearchParameter"
+    "name": "org.hl7.fhir.r4.model.SearchParameter",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SearchParameter$SearchComparatorEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SearchParameter$SearchModifierCodeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SearchParameter$SearchParameterComponentComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SearchParameter$XPathUsageTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.ServiceRequest",
@@ -2622,21 +7405,125 @@
     ]
   },
   {
+    "name": "org.hl7.fhir.r4.model.SidType",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
     "name": "org.hl7.fhir.r4.model.Signature",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.SimpleQuantity",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Slot",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Slot$SlotStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Specimen",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Specimen$SpecimenCollectionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Specimen$SpecimenContainerComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Specimen$SpecimenProcessingComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Specimen$SpecimenStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SpecimenDefinition",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.Slot"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.Specimen"
-  },
-  {
-    "name": "org.hl7.fhir.r4.model.SpecimenDefinition"
+    "name": "org.hl7.fhir.r4.model.SpecimenDefinition$SpecimenContainedPreferenceEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.StringType",
@@ -2732,68 +7619,570 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.StructureMap"
+    "name": "org.hl7.fhir.r4.model.StructureMap",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.Subscription"
+    "name": "org.hl7.fhir.r4.model.StructureMap$StructureMapContextTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.Substance"
+    "name": "org.hl7.fhir.r4.model.StructureMap$StructureMapGroupTypeModeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.StructureMap$StructureMapInputModeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.StructureMap$StructureMapModelModeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.StructureMap$StructureMapSourceListModeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.StructureMap$StructureMapTargetListModeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.StructureMap$StructureMapTransformEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Subscription",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Subscription$SubscriptionChannelTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Subscription$SubscriptionStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Substance",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Substance$FHIRSubstanceStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Substance$SubstanceIngredientComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Substance$SubstanceInstanceComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.SubstanceAmount",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SubstanceAmount$SubstanceAmountReferenceRangeComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.SubstanceNucleicAcid",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
     "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.SubstanceNucleicAcid"
+    "name": "org.hl7.fhir.r4.model.SubstancePolymer",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.SubstancePolymer"
+    "name": "org.hl7.fhir.r4.model.SubstanceProtein",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.SubstanceProtein"
+    "name": "org.hl7.fhir.r4.model.SubstanceReferenceInformation",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.SubstanceReferenceInformation"
+    "name": "org.hl7.fhir.r4.model.SubstanceSourceMaterial",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.SubstanceSourceMaterial"
+    "name": "org.hl7.fhir.r4.model.SubstanceSpecification",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.SubstanceSpecification"
+    "name": "org.hl7.fhir.r4.model.SupplyDelivery",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.SupplyDelivery"
+    "name": "org.hl7.fhir.r4.model.SupplyDelivery$SupplyDeliveryStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.SupplyRequest"
+    "name": "org.hl7.fhir.r4.model.SupplyRequest",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.Task"
+    "name": "org.hl7.fhir.r4.model.SupplyRequest$RequestPriorityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.TerminologyCapabilities"
+    "name": "org.hl7.fhir.r4.model.SupplyRequest$SupplyRequestStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.TestReport"
+    "name": "org.hl7.fhir.r4.model.Task",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.TestScript"
+    "name": "org.hl7.fhir.r4.model.Task$ParameterComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.TimeType"
+    "name": "org.hl7.fhir.r4.model.Task$TaskIntentEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Task$TaskOutputComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Task$TaskPriorityEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Task$TaskRestrictionComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Task$TaskStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TerminologyCapabilities",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TerminologyCapabilities$CapabilityStatementKindEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TerminologyCapabilities$CodeSearchSupportEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TestReport",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TestReport$TestReportActionResultEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TestReport$TestReportParticipantTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TestReport$TestReportResultEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TestReport$TestReportStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TestScript",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TestScript$AssertionDirectionTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TestScript$AssertionOperatorTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TestScript$AssertionResponseTypesEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TestScript$TestScriptRequestMethodCodeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TimeType",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4.model.Timing",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Timing$DayOfWeekEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Timing$EventTimingEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Timing$TimingRepeatComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Timing$UnitsOfTimeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.TriggerDefinition",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TriggerDefinition$TriggerTypeEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.Tuple",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.Type",
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.TypeDetails",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4.model.UnsignedIntType",
@@ -2837,7 +8226,14 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.UuidType"
+    "name": "org.hl7.fhir.r4.model.UuidType",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
     "name": "org.hl7.fhir.r4.model.ValueSet",
@@ -2949,10 +8345,93 @@
     ]
   },
   {
-    "name": "org.hl7.fhir.r4.model.VerificationResult"
+    "name": "org.hl7.fhir.r4.model.VerificationResult",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ],
+    "allDeclaredFields": true
   },
   {
-    "name": "org.hl7.fhir.r4.model.VisionPrescription"
+    "name": "org.hl7.fhir.r4.model.VerificationResult$StatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.VisionPrescription",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.VisionPrescription$PrismComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.VisionPrescription$VisionBaseEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.VisionPrescription$VisionEyesEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.VisionPrescription$VisionPrescriptionLensSpecificationComponent",
+    "allDeclaredFields": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.VisionPrescription$VisionStatusEnumFactory",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.hl7.fhir.r4.model.XhtmlType",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "queryAllPublicConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   },
   {
     "name": "org.hl7.fhir.r4b.model.Constants",
