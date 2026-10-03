@@ -5,20 +5,32 @@ class FhirLint < Formula
   license "Apache-2.0"
 
   on_macos do
-    url "https://github.com/braeden512/fhir-lint/releases/download/v#{version}/fhir-lint-macos-aarch64"
-    sha256 "PLACEHOLDER_MAC_ARM64_SHA256"
+    url "https://github.com/braeden512/fhir-lint/releases/download/v#{version}/fhir-lint-all.jar"
+    sha256 "PLACEHOLDER_FAT_JAR_SHA256"
+
+    depends_on "openjdk@21"
   end
 
   on_linux do
     if Hardware::CPU.intel?
       url "https://github.com/braeden512/fhir-lint/releases/download/v#{version}/fhir-lint-linux-x86_64"
       sha256 "PLACEHOLDER_LINUX_X86_SHA256"
+    else
+      url "https://github.com/braeden512/fhir-lint/releases/download/v#{version}/fhir-lint-all.jar"
+      sha256 "PLACEHOLDER_FAT_JAR_SHA256"
+
+      depends_on "openjdk@21"
     end
   end
 
   def install
-    binary_name = Dir["fhir-lint*"].first
-    bin.install binary_name => "fhir-lint"
+    if File.exist?("fhir-lint-all.jar")
+      libexec.install "fhir-lint-all.jar"
+      bin.write_jar_script libexec/"fhir-lint-all.jar", "fhir-lint"
+    else
+      binary_name = Dir["fhir-lint*"].first
+      bin.install binary_name => "fhir-lint"
+    end
   end
 
   test do
