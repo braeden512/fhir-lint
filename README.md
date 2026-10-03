@@ -15,6 +15,8 @@ FHIRLint operates **locally and in-memory with zero infrastructure dependencies*
 
 - **Local-First & Privacy Guaranteed**: Runs locally in your terminal or inside your private CI/CD runner. No Protected Health Information (PHI) ever leaves your security perimeter.
 - **Deep Conformance & Profile Validation**: Powered by [HAPI FHIR R4](https://hapifhir.io/) for HL7 FHIR compliance, with built-in support for US Core v3.1.1 profiles.
+- **Dataset Regression Diffing (`compare`)**: Compare two dataset versions or directories to track score drift ($\Delta \text{score}$), resource shifts, and isolate newly introduced regressions from resolved defects.
+- **Dynamic Custom Rules via YAML & FHIRPath**: Define organization-specific data quality invariants using standard **HL7 FHIRPath** expressions evaluated in-memory without compiling Java code.
 - **Cross-Resource Integrity**: Detects broken internal references, dangling IDs, and orphaned clinical records within Bundles.
 - **Clinical Chronology & Coherence**: Catches temporal inversions (e.g. encounter end date before start date, or procedures authored before birth).
 - **Deterministic Quality Scoring**: Generates an engineering score (0–100) and grade (`EXCELLENT`, `ACCEPTABLE`, `DEGRADED`, `CRITICAL`) with defect density calculations.
@@ -59,13 +61,13 @@ brew install braeden512/fhir-lint/fhir-lint
 ```
 
 ### 2. Standalone Native Binary (Zero Java Prerequisite)
-Download the pre-compiled native binary for your platform from [GitHub Releases](https://github.com/braeden512/fhir-lint/releases/tag/v0.1.0):
+Download the pre-compiled native binary for your platform from [GitHub Releases](https://github.com/braeden512/fhir-lint/releases/latest):
 - **Linux (x86_64)**: `fhir-lint-linux-x86_64`
 - **Windows (x86_64)**: `fhir-lint-windows-x86_64.exe`
 
 Make it executable and run instantly (< 50ms startup):
 ```bash
-curl -LO https://github.com/braeden512/fhir-lint/releases/download/v0.1.0/fhir-lint-linux-x86_64
+curl -LO https://github.com/braeden512/fhir-lint/releases/latest/download/fhir-lint-linux-x86_64
 chmod +x fhir-lint-linux-x86_64
 sudo mv fhir-lint-linux-x86_64 /usr/local/bin/fhir-lint
 fhir-lint validate sample-data/clean/clean-bundle.json
@@ -75,7 +77,7 @@ fhir-lint validate sample-data/clean/clean-bundle.json
 Run on any platform with Java 21+ installed (or via Homebrew on macOS):
 ```bash
 # Download fhir-lint-all.jar from releases
-curl -LO https://github.com/braeden512/fhir-lint/releases/download/v0.1.0/fhir-lint-all.jar
+curl -LO https://github.com/braeden512/fhir-lint/releases/latest/download/fhir-lint-all.jar
 java -jar fhir-lint-all.jar validate sample-data/clean/clean-bundle.json
 ```
 
@@ -262,17 +264,20 @@ fhir-lint compare baseline.json target.json --rules custom-rules.yaml
 
 Embed FHIRLint directly into your JVM applications, Spring services, or Apache Camel / Kafka ETL ingestion pipelines:
 
+### 1. In-Memory Validation & Custom Rules
 ```java
 import org.fhirlint.core.FhirLinter;
 import org.fhirlint.core.model.LintReport;
 import org.fhirlint.core.model.ValidationProfile;
+import org.fhirlint.core.rules.custom.CustomRuleLoader;
 import java.io.File;
 
-// Initialize linter configured with target profile
+// Initialize linter with target profile and optional custom YAML rules
 FhirLinter linter = FhirLinter.create()
-    .withProfile(ValidationProfile.US_CORE);
+    .withProfile(ValidationProfile.US_CORE)
+    .withCustomRules(CustomRuleLoader.loadRules("custom-rules.yaml"));
 
-// Lint a file, string, or input stream
+// Lint a file, directory, or input stream
 LintReport report = linter.lint(new File("patient-bundle.json"));
 
 // Access deterministic quality score and grade
@@ -293,22 +298,63 @@ if (report.hasErrors()) {
 }
 ```
 
+### 2. In-Memory Dataset Comparison & Regression Tracking
+```java
+import org.fhirlint.core.comparison.DatasetComparator;
+import org.fhirlint.core.comparison.ComparisonReport;
+import org.fhirlint.core.comparison.ComparisonGateResult;
+
+// Compare two in-memory reports
+ComparisonReport diff = DatasetComparator.compare(baselineReport, targetReport);
+
+// Check score delta and new regressions
+System.out.printf("Score Delta: %+d points%n", diff.scoreDelta());
+System.out.printf("New Errors: %d, Resolved Errors: %d%n",
+    diff.getNewErrorCount(), diff.getResolvedErrorCount());
+
+// Evaluate automated CI/CD quality gates
+ComparisonGateResult gate = diff.evaluateGates(true, 5); // failOnRegression=true, maxDrop=5
+if (!gate.passed()) {
+    System.err.println("Regression detected: " + gate.failureReason());
+}
+```
+
 ---
 
-## CLI Options & Flags
+## CLI Commands & Options
+
+### `fhir-lint validate <input> [OPTIONS]`
+Analyze a FHIR dataset and identify data quality, schema, and reference issues.
 
 | Option | Description | Default |
 | :--- | :--- | :--- |
-| `[file]` | Path to FHIR JSON bundle file, or `-` for standard input. | Required |
-| `--profile` | Validation profile (`US_CORE`, `BASE_R4`). | `US_CORE` |
-| `--format` | Output format (`table`, `json`, `sarif`). | `table` |
+| `<input>` | Path to FHIR JSON file, directory of JSON files, or `-` for stdin. | Required |
+| `-p, --profile` | Target validation profile (`US_CORE`, `BASE_R4`). | `US_CORE` |
+| `-f, --format` | Output format (`table`, `json`, `sarif`). | `table` |
 | `-o, --output` | Write output report to a destination file path. | `stdout` |
 | `--min-score` | Minimum passing score threshold (0–100). | `0` |
-| `--fail-on` | Severity threshold that triggers exit code 1 (`none`, `warning`, `error`). | `error` |
-| `--verbose` | Output full diagnostic details without truncating findings. | `false` |
+| `--fail-on` | Minimum severity triggering exit code 1 (`none`, `info`, `warning`, `error`). | `error` |
+| `-r, --rules` | Path to custom YAML rules file, comma-separated list, or directory. | `null` |
+| `-v, --verbose` | Output full diagnostic details without truncating findings. | `false` |
+
+### `fhir-lint compare <baseline> <target> [OPTIONS]`
+Compare two FHIR datasets, evaluate quality score deltas, and detect regressions.
+
+| Option | Description | Default |
+| :--- | :--- | :--- |
+| `<baseline>` | Path to reference baseline FHIR JSON file or directory. | Required |
+| `<target>` | Path to target FHIR JSON file or directory. | Required |
+| `-p, --profile` | Target validation profile (`US_CORE`, `BASE_R4`). | `US_CORE` |
+| `-f, --format` | Output format (`table`, `json`). | `table` |
+| `-o, --output` | Write comparison output to a destination file path. | `stdout` |
+| `--fail-on-regression` | Fail with exit code 1 if any new error-level issue is detected or score drops. | `false` |
+| `--max-score-drop` | Fail with exit code 1 if target score drops by more than N points. | `null` |
+| `-r, --rules` | Path to custom YAML rules file, comma-separated list, or directory. | `null` |
+| `-v, --verbose` | Display all new and resolved issue line items in terminal output. | `false` |
 
 ---
 
 ## License
 
 FHIRLint is distributed under the terms of the [Apache License (Version 2.0)](LICENSE).
+
