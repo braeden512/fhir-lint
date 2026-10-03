@@ -21,7 +21,7 @@ classDiagram
         +LintReport baseline
         +LintReport target
         +int scoreDelta
-        +Map~QualityCategory, Integer~ categoryDeltas
+        +Map~IssueCategory, Integer~ categoryDeltas
         +Map~String, Integer~ resourceCountDeltas
         +List~QualityIssue~ newIssues
         +List~QualityIssue~ resolvedIssues
@@ -41,7 +41,7 @@ classDiagram
         +String name
         +String description
         +String resourceType
-        +QualityCategory category
+        +IssueCategory category
         +Severity severity
         +String fhirpath
         +String message
@@ -55,7 +55,7 @@ classDiagram
     class FhirPathQualityRule {
         +CustomRuleDefinition definition
         +Expression compiledExpression
-        +execute(ResourceGraphIndex index) List~QualityIssue~
+        +evaluate(RuleContext context) List~QualityIssue~
     }
 
     ComparisonReport --> IssueIdentityKey : uses for issue set operations

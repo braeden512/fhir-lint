@@ -39,7 +39,7 @@ Immutable model encapsulating all comparison results.
 package org.fhirlint.core.comparison;
 
 import org.fhirlint.core.model.LintReport;
-import org.fhirlint.core.model.QualityCategory;
+import org.fhirlint.core.model.IssueCategory;
 import org.fhirlint.core.model.QualityIssue;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +48,7 @@ public record ComparisonReport(
     LintReport baseline,
     LintReport target,
     int scoreDelta,
-    Map<QualityCategory, Integer> categoryDeltas,
+    Map<IssueCategory, Integer> categoryDeltas,
     Map<String, Integer> resourceCountDeltas,
     List<QualityIssue> newIssues,
     List<QualityIssue> resolvedIssues,

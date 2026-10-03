@@ -18,7 +18,7 @@
 
 | Option | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `-p, --profile <name>` | `String` | `BASE_R4` | Target validation profile (`BASE_R4` or `US_CORE`) applied to both datasets. |
+| `-p, --profile <name>` | `String` | `US_CORE` | Target validation profile (`US_CORE` or `BASE_R4`) applied to both datasets. |
 | `-f, --format <type>` | `String` | `table` | Output format: `table` (colorized ANSI summary) or `json` (structured machine diff). |
 | `-o, --output <file>` | `Path` | Stdout | Write comparison output directly to the specified file path. |
 | `--fail-on-regression` | `Flag` | `false` | Fail with exit code `1` if any new error-level defect is detected or score drops. |
