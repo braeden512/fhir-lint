@@ -39,26 +39,24 @@ brew install braeden512/fhir-lint/fhir-lint
 ```
 
 ### 2. Standalone Native Binary (Zero Java Prerequisite)
-Download the pre-compiled native binary for your platform from [GitHub Releases](https://github.com/braeden512/fhir-lint/releases):
+Download the pre-compiled native binary for your platform from [GitHub Releases](https://github.com/braeden512/fhir-lint/releases/tag/v0.1.0):
 - **Linux (x86_64)**: `fhir-lint-linux-x86_64`
-- **macOS (Apple Silicon)**: `fhir-lint-macos-aarch64`
-- **macOS (Intel)**: `fhir-lint-macos-x86_64`
-- **Windows**: `fhir-lint-windows-x86_64.exe`
+- **Windows (x86_64)**: `fhir-lint-windows-x86_64.exe`
 
 Make it executable and run instantly (< 50ms startup):
 ```bash
+curl -LO https://github.com/braeden512/fhir-lint/releases/download/v0.1.0/fhir-lint-linux-x86_64
 chmod +x fhir-lint-linux-x86_64
-./fhir-lint-linux-x86_64 validate sample-data/clean/clean-bundle.json
+sudo mv fhir-lint-linux-x86_64 /usr/local/bin/fhir-lint
+fhir-lint validate sample-data/clean/clean-bundle.json
 ```
 
-### 3. Universal Executable Fat JAR
-If you have Java 21+ installed, run the universal standalone Fat JAR anywhere:
+### 3. Universal Executable Fat JAR (macOS, Linux, Windows)
+Run on any platform with Java 21+ installed (or via Homebrew on macOS):
 ```bash
-# Build locally
-./gradlew fatJar
-
-# Or download fhir-lint-all.jar from releases
-java -jar build/libs/fhir-lint-all.jar validate sample-data/clean/clean-bundle.json
+# Download fhir-lint-all.jar from releases
+curl -LO https://github.com/braeden512/fhir-lint/releases/download/v0.1.0/fhir-lint-all.jar
+java -jar fhir-lint-all.jar validate sample-data/clean/clean-bundle.json
 ```
 
 ### 4. Official GitHub Action
