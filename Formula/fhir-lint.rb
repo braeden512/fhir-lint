@@ -6,7 +6,7 @@ class FhirLint < Formula
 
   on_macos do
     url "https://github.com/braeden512/fhir-lint/releases/download/v#{version}/fhir-lint-all.jar"
-    sha256 "PLACEHOLDER_FAT_JAR_SHA256"
+    sha256 "6c68bb9eb8b67bec041cd598553fb01fe6d675a52e0976c6de5212cd0cdd8129"
 
     depends_on "openjdk@21"
   end
@@ -14,10 +14,10 @@ class FhirLint < Formula
   on_linux do
     if Hardware::CPU.intel?
       url "https://github.com/braeden512/fhir-lint/releases/download/v#{version}/fhir-lint-linux-x86_64"
-      sha256 "PLACEHOLDER_LINUX_X86_SHA256"
+      sha256 "0633f71f9762676d1fdccff54f41432b829f60faa2c38745177e1f16a5e2e9a5"
     else
       url "https://github.com/braeden512/fhir-lint/releases/download/v#{version}/fhir-lint-all.jar"
-      sha256 "PLACEHOLDER_FAT_JAR_SHA256"
+      sha256 "6c68bb9eb8b67bec041cd598553fb01fe6d675a52e0976c6de5212cd0cdd8129"
 
       depends_on "openjdk@21"
     end
