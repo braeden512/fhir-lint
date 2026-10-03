@@ -1,5 +1,5 @@
 name: 'FHIRLint Healthcare Data Quality Gate'
-description: 'Validates FHIR healthcare datasets for interoperability, integrity, completeness, and profile conformance with automated quality gates and SARIF annotations.'
+description: 'Validate FHIR datasets for data quality, profile conformance, and regressions with automated gates.'
 author: 'FHIRLint Maintainers'
 branding:
   icon: 'activity'
