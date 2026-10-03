@@ -25,7 +25,27 @@ FHIRLint operates **locally and in-memory with zero infrastructure dependencies*
 
 ## Installation & Distribution
 
-FHIRLint offers multiple distribution formats to fit any developer or CI/CD workflow:
+### ⚡ Quick Install (One-Line Terminal Commands)
+
+#### Linux & macOS (Bash / zsh)
+Install to `~/.local/bin` (no root required):
+```bash
+curl -fsSL https://raw.githubusercontent.com/braeden512/fhir-lint/main/install.sh | bash
+```
+Or install system-wide with `sudo` (to `/usr/local/bin`):
+```bash
+curl -fsSL https://raw.githubusercontent.com/braeden512/fhir-lint/main/install.sh | sudo bash
+```
+
+#### Windows (PowerShell)
+Install to `%USERPROFILE%\.fhir-lint\bin` and automatically update user `PATH`:
+```powershell
+irm https://raw.githubusercontent.com/braeden512/fhir-lint/main/install.ps1 | iex
+```
+
+---
+
+### Package Managers & Manual Downloads
 
 ### 1. Homebrew (macOS & Linux)
 Install the standalone native binary with zero Java runtime requirement:
