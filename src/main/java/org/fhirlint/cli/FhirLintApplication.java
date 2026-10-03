@@ -11,10 +11,11 @@ import picocli.CommandLine.Command;
     name = "fhir-lint",
     description = "FHIRLint: The Developer-Focused Data Quality Linter for FHIR Healthcare Data.",
     subcommands = {
-        ValidateCommand.class
+        ValidateCommand.class,
+        org.fhirlint.cli.command.CompareCommand.class
     },
     mixinStandardHelpOptions = true,
-    version = "0.1.0"
+    version = "0.2.0"
 )
 public class FhirLintApplication implements Runnable {
 

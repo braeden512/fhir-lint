@@ -8495,5 +8495,50 @@
         "parameterTypes": []
       }
     ]
+  },
+  {
+    "name": "org.fhirlint.core.rules.custom.CustomRuleDefinition",
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "org.fhirlint.core.rules.custom.CustomRulesFile",
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "org.fhirlint.core.comparison.ComparisonReport",
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "org.fhirlint.core.comparison.ComparisonGateResult",
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "org.fhirlint.core.comparison.IssueIdentityKey",
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "org.yaml.snakeyaml.constructor.Constructor",
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "org.yaml.snakeyaml.LoaderOptions",
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "org.yaml.snakeyaml.DumperOptions",
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
   }
 ]

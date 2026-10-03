@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'org.fhirlint'
-version = '0.1.0'
+version = '0.2.0'
 
 java {
 	toolchain {
@@ -35,6 +35,7 @@ dependencies {
 	// JSON & Serialization
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2'
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.18.2'
 
 	// Logging
 	implementation 'org.slf4j:slf4j-api:2.0.16'
